@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Kaisar,Android,Android developer,Android hacker,Kaisar youtuber,Mobile security" />
+       
+      <meta name="description" content="Kaisar Android developer blog" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> 狂人日记</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">狂人日记</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['从来如此，便对么？', '凡事总需研究，才会明白。', '我翻开历史一查，这历史没有年代，歪歪斜斜的每页上都写着“仁义道德”几个字。我横竖睡不着，仔细看了半夜，才从字缝里看出字来，满本都写着两个字是“吃人”！'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-解决Ubuntu-20-04无法导入Charles证书"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/"
+    >解决Ubuntu 20.04无法导入Charles证书</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/" class="article-date">
+  <time datetime="2021-12-15T07:49:22.000Z" itemprop="datePublished">2021-12-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux%E7%9B%B8%E5%85%B3/">Linux相关</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>之前在Ubuntu 16.04中使用Charles进行抓https的包一切都正常,但是最近在家里那台Ubuntu 20.04却始终装不上证书,会出现下面提示</p>
+<p><img src="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/1.png" alt="Screenshot from 2021-12-15 15-10-52"></p>
+<p>每次导入证书右下角<code>Import</code>都不可点击,在Google找了很多资料都认为是一个Bug,毕竟在16.04上这么导入是没有问题的.</p>
+<p>下面记录一下解决方案:</p>
+<ol>
+<li><p>用命令行安装证书,首先导出<code>Charles</code>证书: Help<code>-&gt;</code>SSL Proxying<code>-&gt;</code>Save Charles Root Certificate, 再执行以下命令将证书导入系统</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv charles.pem /usr/local/share/ca-certificates/charles.crt</span><br><span class="line">sudo update-ca-certificates</span><br></pre></td></tr></table></figure></li>
+<li><p>在Charles中开启SSL Proxying: Proxy<code>-&gt;</code>SSL Proxying Settings<code>-&gt;</code>SSL Proxying<code>-&gt;</code>Enable SSL Proxying, 点击Include下的<code>Add</code>按钮<code>Host</code>和<code>Port</code>设置为*, 点击确定即可.</p>
+</li>
+</ol>
+<p><img src="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/2.png" alt="Screenshot from 2021-12-15 15-29-57"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-Frida开发手册"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
+    >Frida开发手册</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" class="article-date">
+  <time datetime="2021-04-08T06:14:14.000Z" itemprop="datePublished">2021-04-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下是在使用<code>python</code>开发<code>frida</code>脚本过程中收集到的一些用法, 这里将学习的知识点做个归纳总结</p>
+<h2 id="劫持函数"><a href="#劫持函数" class="headerlink" title="劫持函数"></a>劫持函数</h2><h3 id="Java普通函数"><a href="#Java普通函数" class="headerlink" title="Java普通函数"></a>Java普通函数</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Context</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;android.content.Context&#x27;</span>);</span><br><span class="line"><span class="title class_">Context</span>.<span class="property">checkCallingOrSelfPermission</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">permission: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">checkCallingOrSelfPermission</span>(permission);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有同名的重载函数则直接调用函数的<code>implementation</code>来重写即可</p> 
+      <a class="article-more-link" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-TypeScript回调函数this指向问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/"
+    >TypeScript回调函数this指向问题</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-03-01T11:49:46.000Z" itemprop="datePublished">2021-03-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E4%B8%AD%E8%B6%9F%E8%BF%87%E7%9A%84%E5%A4%A7%E5%9D%91/">开发中趟过的大坑</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近在使用<code>TypeScript</code>开发<code>frida hook</code>时遇到一个问题,当把一个类的函数传给另一个方法作为回调函数时,<code>this</code>指针指向的不是原始类的示例,经过一番搜索发现有很多人也碰到同样的问题所以在此记录一下:<br>出问题的代码:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SetIntervalTest</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">someNumber</span>: <span class="built_in">number</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="built_in">setInterval</span>(<span class="variable language_">this</span>.<span class="property">setIntervalCallback</span>, <span class="number">400</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">setIntervalCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>改成这样就可以了</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> setIntervalCallback = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>因为只是为了临时解决业务问题所以暂不深究日后有空再来研究研究</p>
+<blockquote>
+<p>相关链接:<a target="_blank" rel="noopener" href="https://github.com/microsoft/TypeScript/issues/10285">https://github.com/microsoft/TypeScript/issues/10285</a></p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-解决gradle无法同步的问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/"
+    >解决gradle无法同步的问题</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-01-14T03:52:36.000Z" itemprop="datePublished">2021-01-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">Android疑难杂症</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not install Gradle distribution from &#x27;http://services.gradle.org/distributions/gradle-6.5-bin.zip&#x27;.</span><br></pre></td></tr></table></figure>
+
+<p>就在刚刚为了观摩一下<code>libgdx</code>引擎创建了一个工程虽然挂了梯子但是死活同步不了 不用说了肯定还是我们的万里长城防火墙搞的鬼了,感谢方校长让我们离西方的”邪恶势力”又远了一步!</p>
+<p>好了 不吐槽了解决办法也很简单打开项目下的<code>gradle/wrapper/gradle-wrapper.properties</code>文件将下载地址改为<code>https</code>就好了</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-找回Ubuntu16.04中nautilus输入文字快速定位文件功能"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/08/%E6%89%BE%E5%9B%9EUbuntu16.04%E4%B8%ADnautilus%E8%BE%93%E5%85%A5%E6%96%87%E5%AD%97%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD/"
+    >找回Ubuntu16.04中nautilus输入文字快速定位文件功能</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/08/%E6%89%BE%E5%9B%9EUbuntu16.04%E4%B8%ADnautilus%E8%BE%93%E5%85%A5%E6%96%87%E5%AD%97%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD/" class="article-date">
+  <time datetime="2020-12-08T06:53:25.000Z" itemprop="datePublished">2020-12-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux%E7%9B%B8%E5%85%B3/">Linux相关</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>在<code>16.04</code>的版本中<code>nautilus</code>文件管理器有一项快速定位文件的功能非常好用直接在文件夹中打出首字母即可快速定位到文件,但是在<code>18.04</code>以上的版本中默认就取消了这项功能使得我迁移到新版本中非常不适应今天碰巧找到了找回这个功能的办法记录一下:</p>
+<ol>
+<li>第一种安装第三方插件 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:lubomir-brindza/nautilus-typeahead</span><br><span class="line">sudo apt dist-upgrade</span><br><span class="line">nautilus -r</span><br></pre></td></tr></table></figure></li>
+<li>第二种调整配置文件<br> 先安装<code>dconf</code>工具 <code>sudo apt install dconf-editor</code><br> 打开<code>dconf-editor</code>找到<code>org -&gt; gnome -&gt; nautilus -&gt; preferences -&gt; enable-interactive-search </code>打钩即可</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-解决Android-Studio-missing-essential-plugin-org-jetbrains-android"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/"
+    >解决Android Studio missing essential plugin org.jetbrains.android</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/" class="article-date">
+  <time datetime="2020-11-20T07:39:44.000Z" itemprop="datePublished">2020-11-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">Android疑难杂症</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近把Android Studio升级到了<code>4.1.1</code>版本之前安装了一个<code>smailidea</code>的插件老是报不兼容于是强迫症的我手贱了一下把插件给禁用了,禁用的时候没注意把依赖的一些东西也给禁用了于是报了下面的错误</p>
+<p><img src="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/picture_02.png"></p>
+<p>这是禁用插件时候的依赖提示</p>
+<p><img src="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/picture_01.png"></p>
+<p>可以看见其实把很多核心的组件都给禁用了那怎么办呢?难不成真的要按提示上说的要重装Android Studio?不要慌问题不大其实还有一种办法就是把被禁用的插件恢复就可以了,大家可以把Android Studio的配置目录的<code>disabled_plugins.txt</code>这个文件删除这样Android Studio就可以正常启动了, 这个文件每个系统存放的位置不太一样一般都在下面这几个目录 如果不在可以在主目录全局搜索一下这个文件</p>
+<p>Windows: <code>C:\Users\%USERNAME%\AndroidStudio4.1\config</code></p>
+<p>Linux: <code>~/.config/Google/AndroidStudio4.1</code></p>
+<p>MacOS: <code>~/Library/Application Support/Google/AndroidStudio4.1</code></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-如何获得一个垂直的SeekBar"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/13/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E4%B8%80%E4%B8%AA%E5%9E%82%E7%9B%B4%E7%9A%84SeekBar/"
+    >如何获得一个垂直的SeekBar</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/13/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E4%B8%80%E4%B8%AA%E5%9E%82%E7%9B%B4%E7%9A%84SeekBar/" class="article-date">
+  <time datetime="2020-11-13T05:43:40.000Z" itemprop="datePublished">2020-11-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="小记"><a href="#小记" class="headerlink" title="小记"></a>小记</h2><p>在开发”上帝模式”的一个新功能中偶然需要用到一个垂直的<code>SeekBar</code>,一开始想得比较简单系统应该有提供这样垂直的<code>SeekBar</code>但是翻了一下SDK并没有于是上网搜索,查找下来无非这两种:</p>
+<ol>
+<li>使用原生的<code>SeekBar</code>旋转90度</li>
+<li>自定义<code>SeekBar</code>在<code>onDraw</code>方法和<code>onMeasure</code>方法中旋转画布并重新计算控件大小</li>
+</ol>
+<p>那为什么有两种呢让我们来分别分析一下这两个方案的优缺点:</p>
+<ul>
+<li><p>第一种使用原生的<code>SeekBar</code>最简单但是旋转后的宽高就不对了,实际上的宽是旋转后的高这也导致如果我们要增加<code>SeekBar</code>的高度就需要修改宽度但是会导致布局错乱以下是旋转前后对比:</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SeekBar</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:id</span>=<span class="string">&quot;@+id/seekbar1&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_width</span>=<span class="string">&quot;120dp&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:clickable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layoutDirection</span>=<span class="string">&quot;rtl&quot;</span>/&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">SeekBar</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:id</span>=<span class="string">&quot;@+id/seekbar2&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_width</span>=<span class="string">&quot;120dp&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:clickable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layoutDirection</span>=<span class="string">&quot;rtl&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:rotation</span>=<span class="string">&quot;90&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul> 
+      <a class="article-more-link" href="/2020/11/13/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E4%B8%80%E4%B8%AA%E5%9E%82%E7%9B%B4%E7%9A%84SeekBar/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-ByteBuffer详解"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/11/ByteBuffer%E8%AF%A6%E8%A7%A3/"
+    >ByteBuffer详解</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/11/ByteBuffer%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2020-11-11T07:48:34.000Z" itemprop="datePublished">2020-11-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>之前对NIO开发不熟悉导致对ByteBuffer一直是一知半解的状态正好看到知乎上有个朋友写的不错于是转载过来</p>
+<p>转自:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56876443">https://zhuanlan.zhihu.com/p/56876443</a></p>
+</blockquote>
+<h2 id="在Java-nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解："><a href="#在Java-nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解：" class="headerlink" title="在Java nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解："></a>在Java nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解：</h2><ul>
+<li>Buffer提供了一个字节缓冲区，其可以不断的从Channel中读取接收到的数据。Buffer的优点主要在于其提供了一系列的Api，能够让用户更方便的对数据进行读取和写入；</li>
+<li>Channel简单来说就是一个信道，也就是客户端与服务器的一个连接，而且每个客户端都会对应一个Channel对象；</li>
+<li>Selector是Java nio能够支持高并发数据处理一个关键，其核心理念就是IO多路复用的原理，简单的说就是当多个客户端（Channel）连接服务器时，可以通过Selector同时对这些客户端请求进行监听，当客户端发送数据到服务器之后由Selector对这些Channel进行分发处理。</li>
+</ul>
+<p>本文首先讲解ByteBuffer的实现原理，然后会介绍ByteBuffer中常用的Api，以及其在使用过程中需要注意的点。</p>
+<ol>
+<li><p><strong>实现原理</strong><br>对于ByteBuffer，其主要有五个属性：mark，position，limit，capacity和array。这五个属性的作用如下：</p>
+<ul>
+<li>mark：记录了当前所标记的索引下标；</li>
+<li>position：对于写入模式，表示当前可写入数据的下标，对于读取模式，表示接下来可以读取的数据的下标；</li>
+<li>limit：对于写入模式，表示当前可以写入的数组大小，默认为数组的最大长度，对于读取模式，表示当前最多可以读取的数据的位置下标；</li>
+<li>capacity：表示当前数组的容量大小；</li>
+<li>array：保存了当前写入的数据。</li>
+</ul>
+<p>这几个数据中，除了array是用于保存数据的以外，这里最终的主要是position，limit和capacity三个属性，因为对于写入和读取模式，这三个属性的表示的含义大不一样。</p> 
+      <a class="article-more-link" href="/2020/11/11/ByteBuffer%E8%AF%A6%E8%A7%A3/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-Xposed为何对京东无法生效"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/"
+    >Xposed为何对京东无法生效</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/" class="article-date">
+  <time datetime="2020-11-06T10:20:36.000Z" itemprop="datePublished">2020-11-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Xposed%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">Xposed模块开发</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>  前一阵子对京东的一个功能比较好奇于是就有了逆向京东的想法,我熟练的拿起了<code>jadx</code>对京东进行反编译居然没有混淆心中狂喜很快就找到入口点,于是又祭出了<code>Xposed</code>大法飞快的写了个插件Hook了<code>Activity</code>的<code>onCreate</code>方法,我迫不及待的跑了起来结果hook貌似没有生效任何Log都没有输出,反复检查后仍不得其解不过此时的我已心中暗暗猜测京东应该有一些反<code>Xposed</code>的机制,因为之前曾见过”酷安”和”知乎”也有这样的功能,于是又Hook了像<code>Class.forName </code>和<code>ClassLoader.loadClass</code>这样的函数来验证一下我的想法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">XposedHelpers.findAndHookMethod(ClassLoader.class, <span class="string">&quot;loadClass&quot;</span>, String.class, <span class="keyword">new</span> <span class="title class_">XC_MethodHook</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">beforeHookedMethod</span><span class="params">(MethodHookParam param)</span> <span class="keyword">throws</span> Throwable</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(((String)param.args[<span class="number">0</span>]).startsWith(<span class="string">&quot;de.robv.android.xposed&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">		Log.d(<span class="string">&quot;Kaisar&quot;</span>, <span class="string">&quot;loadclass:&quot;</span> + Arrays.toString(param.args), <span class="keyword">new</span> <span class="title class_">Throwable</span>());</span><br><span class="line">		param.setThrowable(<span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">XposedHelpers.findAndHookMethod(Class.class, <span class="string">&quot;forName&quot;</span>, String.class, <span class="keyword">new</span> <span class="title class_">XC_MethodHook</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">beforeHookedMethod</span><span class="params">(MethodHookParam param)</span> <span class="keyword">throws</span> Throwable</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(((String)param.args[<span class="number">0</span>]).startsWith(<span class="string">&quot;de.robv.android.xposed&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">		Log.d(<span class="string">&quot;Kaisar&quot;</span>, <span class="string">&quot;forName:&quot;</span> + Arrays.toString(param.args), <span class="keyword">new</span> <span class="title class_">Throwable</span>());</span><br><span class="line">		param.setThrowable(<span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xposed/" rel="tag">Xposed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-InputStream无法与BufferReader同时用"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/"
+    >InputStream无法与BufferReader同时用</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/" class="article-date">
+  <time datetime="2020-11-05T09:15:35.000Z" itemprop="datePublished">2020-11-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E4%B8%AD%E8%B6%9F%E8%BF%87%E7%9A%84%E5%A4%A7%E5%9D%91/">开发中趟过的大坑</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>​    前两天客户端这边有一块业务一开始想的是用<code>socket</code>直接跟后端传数据,后来后端觉得基于目前的框架改太麻烦于是协商了一下还是改为HTTP协议,我一想HTTP传过来过我把HTTP的头给忽略掉不就可以了于是直接动手撸了个HTTP服务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> serverSocket.accept();</span><br><span class="line"></span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(socket.getInputStream()));</span><br><span class="line">LinkedHashMap&lt;String, String&gt; headerFields = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;String, String&gt;();</span><br><span class="line"><span class="keyword">for</span>(String header; (header = r.readLine()) != <span class="literal">null</span> &amp;&amp; !header.isEmpty();)&#123;</span><br><span class="line">    <span class="comment">//解析HTTP头</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(header)</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> Integer.parseInt(headerFields.get(<span class="string">&quot;Content-Length&quot;</span>));</span><br><span class="line"><span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[length];</span><br><span class="line">socket.getInputStream().read(buffer);</span><br><span class="line"><span class="comment">//处理业务数据</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">out.write(<span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;fuck you\r\n&quot;</span>).getBytes());</span><br><span class="line">out.flush();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2023
+        <i class="ri-heart-fill heart_icon"></i> Kaisar
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar-circle.png" alt="狂人日记"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Android/">Android</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/">移动安全</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay_qrcode.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat_qrcode.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

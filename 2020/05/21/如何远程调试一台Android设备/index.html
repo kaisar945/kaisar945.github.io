@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Kaisar,Android,Android developer,Android hacker,Kaisar youtuber,Mobile security" />
+       
+      <meta name="description" content="Kaisar Android developer blog" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>如何远程调试一台Android设备 |  狂人日记</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-如何远程调试一台Android设备"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  如何远程调试一台Android设备
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/" class="article-date">
+  <time datetime="2020-05-21T12:18:10.000Z" itemprop="datePublished">2020-05-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/">Android奇巧淫技</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">3 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>要想跨越公网调试Android设备首先需要解决两个问题:</p>
+<ol>
+<li>如何让adb走tcp通信</li>
+<li>如何从公网连接这台设备</li>
+</ol>
+<h2 id="第一个问题-通过tcp调试Android手机"><a href="#第一个问题-通过tcp调试Android手机" class="headerlink" title="第一个问题:通过tcp调试Android手机"></a>第一个问题:通过tcp调试Android手机</h2><p>其实<code>adb</code>本身是支持通过tcp协议传输数据的只是可能大部分人从来没用过这个功能,大家可以在终端里面输入adb –help查看,里面有这么几个参数:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">networking:</span><br><span class="line"> connect HOST[:PORT]      connect to a device via TCP/IP</span><br><span class="line"> disconnect [[HOST]:PORT] disconnect from given TCP/IP device, or all</span><br><span class="line">...</span><br><span class="line"> usb                      restart adbd listening on USB</span><br><span class="line"> tcpip PORT               restart adbd listening on TCP on PORT</span><br></pre></td></tr></table></figure>
+
+<p>connect和disconnect是用来连接一台远程设备或者断开远程设备的,usb和tcpip选项是用来切换手机端adbd守护进程工作模式的我们要用到的就是tcpip这个参数使adbd服务监听在一个特定的网络端口上</p>
+<p>在电脑端执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell ifconfig wlan0 #先查看一下手机wifi的ip地址后续连接的时候会用到</span><br><span class="line">adb tcpip 5555 #将手机切换到tcp模式并在5555端口上监听</span><br><span class="line">adb connect 192.168.1.8:5555 #连接手机对应的ip地址和端口</span><br></pre></td></tr></table></figure>
+
+<p>或者在已root的设备上使用<code>termux</code>软件设置adbd为tcp模式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 持久化设置</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop persist.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line">// 一次性设置重启后失效</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop service.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>至此第一个问题已解决</p>
+<span id="more"></span>
+
+<h2 id="第二个问题-跨越公网连接设备"><a href="#第二个问题-跨越公网连接设备" class="headerlink" title="第二个问题:跨越公网连接设备"></a>第二个问题:跨越公网连接设备</h2><p>在大多数的环境中我们手机都是通过连接一台无线路由器NAT上网的,但是熟悉网络的小伙伴一定知道路由器并不会给手机分配一个公网IP而是一个内网的,因此我们理论上从公网上是不能直接访问到这台手机的.这里我们需要做一个内网穿透把这台手机给暴露在公网上这样我们才能直接访问,而目前内网穿透的方案有很多像商业的<code>花生壳</code>以及开源的<code>nginx</code>或<code>frp</code>这些,商业的限制太多切收费而<code>nginx</code>又太复杂那剩下的只有<code>frp</code>了不了解<code>frp</code>的同学可以自行搜索一下使用起来也比较简单,不过这里又有一个问题了我们需要一台具有公网IP服务器来运行<code>frp</code>的server端!这…貌似又陷入了死循环… 不过幸好找到一个免费的<a target="_blank" rel="noopener" href="https://www.natfrp.com/">frp服务器</a>用<a target="_blank" rel="noopener" href="https://github.com/FrpcCluster/frpc-Android">Android版本的frp的客户端</a>可以直接连接并且速度还不错具体怎么配置查看frp文档很简单,感谢站长用爱发电! 至此需要的东西都准备齐了大致的网络拓扑如下</p>
+<p><img src="https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgQW5kcm9pZOiuvuWkhy0tPj5uYXRmcnDmnI3liqHlmag66YCa6L-HZnJwY-aYoOWwhDU1NTXnq6_lj6NcbiAgICBub3RlIG92ZXIgQW5kcm9pZOiuvuWkhzphZGJk55uR5ZCsNTU1Neerr-WPo1xuICAgIG5vdGUgb3ZlciBuYXRmcnDmnI3liqHlmag655uR5ZCseC54LngueDo1NTU1XG4gICAgUEPlvIDlj5HosIPor5XkuLvmnLotPj5uYXRmcnDmnI3liqHlmag6dGNwXG4gICAgbm90ZSBvdmVyIFBD5byA5Y-R6LCD6K-V5Li75py6OmFkYiBjb25uZWN0IHgueC54Lng6NTU1NVxuICAgIG5hdGZycOacjeWKoeWZqC0tPj5BbmRyb2lk6K6-5aSHOui9rOWPkWNvbm5lY3Tor7fmsYJcbiAgICAgICAgICAgICIsIm1lcm1haWQiOnt9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ"></p>
+<ol>
+<li><p>先把Android设备切换到tcp模式下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb tcpip 5555 #将手机切换到tcp模式并在5555端口上监听</span><br></pre></td></tr></table></figure></li>
+<li><p>去natfrp网站注册账号申请一个隧道<br><img src="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/step_1.png">创建好了之后点击配置文件这个选择之前申请的服务器节点下面就会限制对应的配置文件</p>
+<p><img src="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/step_2.png"></p>
+</li>
+<li><p>安装Android frpc客户端</p>
+<ul>
+<li><p>下载对应手机架构的<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">frpc客户端</a><br>arm架构下载<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases/download/v0.33.0/frp_0.33.0_linux_arm.tar.gz">frp_0.33.0_linux_arm.tar.gz</a><br>arm64架构下载<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases/download/v0.33.0/frp_0.33.0_linux_arm64.tar.gz">frp_0.33.0_linux_arm64.tar.gz</a></p>
+</li>
+<li><p>下载完成后从压缩文件中把<code>frpc</code>解压出来传到设备上的临时目录并追加执行权限</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb push frpc /data/local/tmp</span><br><span class="line">adb shell chmod +x /data/local/tmp/frpc</span><br></pre></td></tr></table></figure></li>
+<li><p>导入在网站上生成的客户端配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line"></span><br><span class="line">cat &gt; /sdcard/frpc.ini &lt;&lt; EOL</span><br><span class="line">[common]</span><br><span class="line">server_addr = 27.155.87.89</span><br><span class="line">server_port = 7000</span><br><span class="line">tcp_mux = true</span><br><span class="line">pool_count = 1</span><br><span class="line">protocol = tcp</span><br><span class="line">user = xxxxxxxxxxxxxx</span><br><span class="line">token = xxxxxxxxxxxxxxxx</span><br><span class="line">dns_server = 114.114.114.114</span><br><span class="line"> </span><br><span class="line">[AndroidTunnel]</span><br><span class="line">privilege_mode = true</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 5555</span><br><span class="line">remote_port = 58998</span><br><span class="line">use_encryption = false</span><br><span class="line">use_compression = true</span><br><span class="line">EOL</span><br><span class="line"> </span><br></pre></td></tr></table></figure></li>
+<li><p>运行<code>frpc</code>客户端映射端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup /data/local/tmp/frpc -c /sdcard/frpc.ini &gt; /sdcard/frpc.log &amp;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 执行完之后就可以把命令行窗口给关闭了</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>远程调试</p>
+<p>找到客户端配置文件中的<code>server_addr</code>和<code>remote_port</code>字段这两个就是我们的连接设备的地址和端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb connect 27.155.87.89:58998</span><br></pre></td></tr></table></figure>
+
+<p>如果不出意外的话应该就会连上的之后就可以像在本地一样调试设备了</p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/08/03/%E6%9F%A5%E7%9C%8Bapk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            查看apk签名信息
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/30/%E9%9B%B6%E6%88%90%E6%9C%AC%E8%AE%A9%E4%BD%A0%E6%8B%A5%E6%9C%89Mac%E8%A7%A6%E6%91%B8%E6%9D%BF%E9%BC%A0%E6%A0%87/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">零成本让你拥有Mac触摸板鼠标</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "wzGK4U2ABF7dnC2fpU0rMY4c-9Nh9j0Va",
+    app_key: "xwX7ayGotkpPKwssQO2AeS77",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2023
+        <i class="ri-heart-fill heart_icon"></i> Kaisar
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar-circle.png" alt="狂人日记"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Android/">Android</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/">移动安全</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay_qrcode.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat_qrcode.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

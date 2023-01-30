@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Kaisar,Android,Android developer,Android hacker,Kaisar youtuber,Mobile security" />
+       
+      <meta name="description" content="Kaisar Android developer blog" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> 狂人日记</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">狂人日记</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['从来如此，便对么？', '凡事总需研究，才会明白。', '我翻开历史一查，这历史没有年代，歪歪斜斜的每页上都写着“仁义道德”几个字。我横竖睡不着，仔细看了半夜，才从字缝里看出字来，满本都写着两个字是“吃人”！'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-使用openstf部署一套内部测试平台"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/29/%E4%BD%BF%E7%94%A8openstf%E9%83%A8%E7%BD%B2%E4%B8%80%E5%A5%97%E5%86%85%E9%83%A8%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0/"
+    >使用openstf部署一套内部测试平台</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/29/%E4%BD%BF%E7%94%A8openstf%E9%83%A8%E7%BD%B2%E4%B8%80%E5%A5%97%E5%86%85%E9%83%A8%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0/" class="article-date">
+  <time datetime="2020-10-29T02:00:00.000Z" itemprop="datePublished">2020-10-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ul>
+<li>Ubuntu20.04</li>
+<li>Docker 19.03.13 #务必从<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">官方</a>渠道安装否则用自带可能会遇到莫名其妙的问题<ul>
+<li><a target="_blank" rel="noopener" href="https://registry.hub.docker.com/_/rethinkdb">rethinkdb</a></li>
+<li><a target="_blank" rel="noopener" href="https://registry.hub.docker.com/r/sorccu/adb">sorccu/adb</a></li>
+<li><a target="_blank" rel="noopener" href="https://registry.hub.docker.com/r/devicefarmer/stf">devicefarmer/stf</a> 镜像(该版本为开发活跃的分叉)</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装openstf"><a href="#安装openstf" class="headerlink" title="安装openstf"></a>安装openstf</h2><ol>
+<li><code>sudo docker pull rethinkdb:latest</code> # 拉取rethinkdb 镜像</li>
+<li><code>sudo docker pull sorccu/adb:latest </code># 拉取android adb 镜像</li>
+<li><code>sudo docker pull devicefarmer/stf:latest</code> #拉取openstf 镜像</li>
+</ol>
+<h2 id="部署openstf"><a href="#部署openstf" class="headerlink" title="部署openstf"></a>部署openstf</h2><p>openstf部署方式有两种</p>
+<ol>
+<li>集中管理: openstf管理平台所连接的设备在一台机器上</li>
+</ol>
+<p><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgIEFbT3BlblNURi3mnLrlmahBXSAtLT4gQihEZXZpY2UpXG4gICBBW09wZW5TVEYt5py65ZmoQV0gLS0-IEMoRGV2aWNlKVxuICAgQVtPcGVuU1RGLeacuuWZqEFdIC0tPiBEKERldmljZSlcbiAgIEFbT3BlblNURi3mnLrlmahBXSAtLT4gRShEZXZpY2UpXG4gICBBW09wZW5TVEYt5py65ZmoQV0gLS0-IEYoRGV2aWNlKVxuICAgQVtPcGVuU1RGLeacuuWZqEFdIC0tPiBIKC4uLikiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCIsInRoZW1lVmFyaWFibGVzIjp7ImJhY2tncm91bmQiOiJ3aGl0ZSIsInByaW1hcnlDb2xvciI6IiNFQ0VDRkYiLCJzZWNvbmRhcnlDb2xvciI6IiNmZmZmZGUiLCJ0ZXJ0aWFyeUNvbG9yIjoiaHNsKDgwLCAxMDAlLCA5Ni4yNzQ1MDk4MDM5JSkiLCJwcmltYXJ5Qm9yZGVyQ29sb3IiOiJoc2woMjQwLCA2MCUsIDg2LjI3NDUwOTgwMzklKSIsInNlY29uZGFyeUJvcmRlckNvbG9yIjoiaHNsKDYwLCA2MCUsIDgzLjUyOTQxMTc2NDclKSIsInRlcnRpYXJ5Qm9yZGVyQ29sb3IiOiJoc2woODAsIDYwJSwgODYuMjc0NTA5ODAzOSUpIiwicHJpbWFyeVRleHRDb2xvciI6IiMxMzEzMDAiLCJzZWNvbmRhcnlUZXh0Q29sb3IiOiIjMDAwMDIxIiwidGVydGlhcnlUZXh0Q29sb3IiOiJyZ2IoOS41MDAwMDAwMDAxLCA5LjUwMDAwMDAwMDEsIDkuNTAwMDAwMDAwMSkiLCJsaW5lQ29sb3IiOiIjMzMzMzMzIiwidGV4dENvbG9yIjoiIzMzMyIsIm1haW5Ca2ciOiIjRUNFQ0ZGIiwic2Vjb25kQmtnIjoiI2ZmZmZkZSIsImJvcmRlcjEiOiIjOTM3MERCIiwiYm9yZGVyMiI6IiNhYWFhMzMiLCJhcnJvd2hlYWRDb2xvciI6IiMzMzMzMzMiLCJmb250RmFtaWx5IjoiXCJ0cmVidWNoZXQgbXNcIiwgdmVyZGFuYSwgYXJpYWwiLCJmb250U2l6ZSI6IjE2cHgiLCJsYWJlbEJhY2tncm91bmQiOiIjZThlOGU4Iiwibm9kZUJrZyI6IiNFQ0VDRkYiLCJub2RlQm9yZGVyIjoiIzkzNzBEQiIsImNsdXN0ZXJCa2ciOiIjZmZmZmRlIiwiY2x1c3RlckJvcmRlciI6IiNhYWFhMzMiLCJkZWZhdWx0TGlua0NvbG9yIjoiIzMzMzMzMyIsInRpdGxlQ29sb3IiOiIjMzMzIiwiZWRnZUxhYmVsQmFja2dyb3VuZCI6IiNlOGU4ZTgiLCJhY3RvckJvcmRlciI6ImhzbCgyNTkuNjI2MTY4MjI0MywgNTkuNzc2NTM2MzEyOCUsIDg3LjkwMTk2MDc4NDMlKSIsImFjdG9yQmtnIjoiI0VDRUNGRiIsImFjdG9yVGV4dENvbG9yIjoiYmxhY2siLCJhY3RvckxpbmVDb2xvciI6ImdyZXkiLCJzaWduYWxDb2xvciI6IiMzMzMiLCJzaWduYWxUZXh0Q29sb3IiOiIjMzMzIiwibGFiZWxCb3hCa2dDb2xvciI6IiNFQ0VDRkYiLCJsYWJlbEJveEJvcmRlckNvbG9yIjoiaHNsKDI1OS42MjYxNjgyMjQzLCA1OS43NzY1MzYzMTI4JSwgODcuOTAxOTYwNzg0MyUpIiwibGFiZWxUZXh0Q29sb3IiOiJibGFjayIsImxvb3BUZXh0Q29sb3IiOiJibGFjayIsIm5vdGVCb3JkZXJDb2xvciI6IiNhYWFhMzMiLCJub3RlQmtnQ29sb3IiOiIjZmZmNWFkIiwibm90ZVRleHRDb2xvciI6ImJsYWNrIiwiYWN0aXZhdGlvbkJvcmRlckNvbG9yIjoiIzY2NiIsImFjdGl2YXRpb25Ca2dDb2xvciI6IiNmNGY0ZjQiLCJzZXF1ZW5jZU51bWJlckNvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IiOiJyZ2JhKDEwMiwgMTAyLCAyNTUsIDAuNDkpIiwiYWx0U2VjdGlvbkJrZ0NvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IyIjoiI2ZmZjQwMCIsInRhc2tCb3JkZXJDb2xvciI6IiM1MzRmYmMiLCJ0YXNrQmtnQ29sb3IiOiIjOGE5MGRkIiwidGFza1RleHRMaWdodENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dERhcmtDb2xvciI6ImJsYWNrIiwidGFza1RleHRPdXRzaWRlQ29sb3IiOiJibGFjayIsInRhc2tUZXh0Q2xpY2thYmxlQ29sb3IiOiIjMDAzMTYzIiwiYWN0aXZlVGFza0JvcmRlckNvbG9yIjoiIzUzNGZiYyIsImFjdGl2ZVRhc2tCa2dDb2xvciI6IiNiZmM3ZmYiLCJncmlkQ29sb3IiOiJsaWdodGdyZXkiLCJkb25lVGFza0JrZ0NvbG9yIjoibGlnaHRncmV5IiwiZG9uZVRhc2tCb3JkZXJDb2xvciI6ImdyZXkiLCJjcml0Qm9yZGVyQ29sb3IiOiIjZmY4ODg4IiwiY3JpdEJrZ0NvbG9yIjoicmVkIiwidG9kYXlMaW5lQ29sb3IiOiJyZWQiLCJsYWJlbENvbG9yIjoiYmxhY2siLCJlcnJvckJrZ0NvbG9yIjoiIzU1MjIyMiIsImVycm9yVGV4dENvbG9yIjoiIzU1MjIyMiIsImNsYXNzVGV4dCI6IiMxMzEzMDAiLCJmaWxsVHlwZTAiOiIjRUNFQ0ZGIiwiZmlsbFR5cGUxIjoiI2ZmZmZkZSIsImZpbGxUeXBlMiI6ImhzbCgzMDQsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlMyI6ImhzbCgxMjQsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSIsImZpbGxUeXBlNCI6ImhzbCgxNzYsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNSI6ImhzbCgtNCwgMTAwJSwgOTMuNTI5NDExNzY0NyUpIiwiZmlsbFR5cGU2IjoiaHNsKDgsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNyI6ImhzbCgxODgsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSJ9fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0"></p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name rethinkdb -v /srv/rethinkdb:/data --net host rethinkdb rethinkdb --<span class="built_in">bind</span> all --cache-size 8192 --http-port 8090</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name adbd --privileged -v /dev/bus/usb:/dev/bus/usb --net host sorccu/adb:latest</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name stf --net host devicefarmer/stf stf <span class="built_in">local</span> --public-ip <span class="variable">$&#123;你的ip&#125;</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点:简单快捷适合小规模部署</li>
+<li>缺点:不够灵活且单台机器挂载能有限</li>
+</ul>
+<ol start="2">
+<li>分布式管理: openstf提供了provider模式可以用来进行分布式部署</li>
+</ol>
+<p><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbkFbT3BlblNURi3mnLrlmahBXSAtLT4gQihQcm92aWRlciBOb2RlKVxuQihQcm92aWRlciBOb2RlLeacuuWZqEIpIC0tPiBCMShEZXZpY2UpXG5CKFByb3ZpZGVyIE5vZGUt5py65ZmoQikgLS0-IEIyKERldmljZSlcbkIoUHJvdmlkZXIgTm9kZS3mnLrlmahCKSAtLT4gQjMoLi4uKVxuQVtPcGVuU1RGLeacuuWZqEFdIC0tPiBDKFByb3ZpZGVyIE5vZGUpXG5DKFByb3ZpZGVyIE5vZGUt5py65ZmoQykgLS0-IEMxKERldmljZSlcbkMoUHJvdmlkZXIgTm9kZS3mnLrlmahDKSAtLT4gQzIoRGV2aWNlKVxuQyhQcm92aWRlciBOb2RlLeacuuWZqEMpIC0tPiBDMyguLi4pXG5BW09wZW5TVEYt5py65ZmoQV0gLS0-IEQoUHJvdmlkZXIgTm9kZSlcbkQoUHJvdmlkZXIgTm9kZS3mnLrlmahEKSAtLT4gRDEoRGV2aWNlKVxuRChQcm92aWRlciBOb2RlLeacuuWZqEQpIC0tPiBEMihEZXZpY2UpXG5EKFByb3ZpZGVyIE5vZGUt5py65ZmoRCkgLS0-IEQzKC4uLikiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCIsInRoZW1lVmFyaWFibGVzIjp7ImJhY2tncm91bmQiOiJ3aGl0ZSIsInByaW1hcnlDb2xvciI6IiNFQ0VDRkYiLCJzZWNvbmRhcnlDb2xvciI6IiNmZmZmZGUiLCJ0ZXJ0aWFyeUNvbG9yIjoiaHNsKDgwLCAxMDAlLCA5Ni4yNzQ1MDk4MDM5JSkiLCJwcmltYXJ5Qm9yZGVyQ29sb3IiOiJoc2woMjQwLCA2MCUsIDg2LjI3NDUwOTgwMzklKSIsInNlY29uZGFyeUJvcmRlckNvbG9yIjoiaHNsKDYwLCA2MCUsIDgzLjUyOTQxMTc2NDclKSIsInRlcnRpYXJ5Qm9yZGVyQ29sb3IiOiJoc2woODAsIDYwJSwgODYuMjc0NTA5ODAzOSUpIiwicHJpbWFyeVRleHRDb2xvciI6IiMxMzEzMDAiLCJzZWNvbmRhcnlUZXh0Q29sb3IiOiIjMDAwMDIxIiwidGVydGlhcnlUZXh0Q29sb3IiOiJyZ2IoOS41MDAwMDAwMDAxLCA5LjUwMDAwMDAwMDEsIDkuNTAwMDAwMDAwMSkiLCJsaW5lQ29sb3IiOiIjMzMzMzMzIiwidGV4dENvbG9yIjoiIzMzMyIsIm1haW5Ca2ciOiIjRUNFQ0ZGIiwic2Vjb25kQmtnIjoiI2ZmZmZkZSIsImJvcmRlcjEiOiIjOTM3MERCIiwiYm9yZGVyMiI6IiNhYWFhMzMiLCJhcnJvd2hlYWRDb2xvciI6IiMzMzMzMzMiLCJmb250RmFtaWx5IjoiXCJ0cmVidWNoZXQgbXNcIiwgdmVyZGFuYSwgYXJpYWwiLCJmb250U2l6ZSI6IjE2cHgiLCJsYWJlbEJhY2tncm91bmQiOiIjZThlOGU4Iiwibm9kZUJrZyI6IiNFQ0VDRkYiLCJub2RlQm9yZGVyIjoiIzkzNzBEQiIsImNsdXN0ZXJCa2ciOiIjZmZmZmRlIiwiY2x1c3RlckJvcmRlciI6IiNhYWFhMzMiLCJkZWZhdWx0TGlua0NvbG9yIjoiIzMzMzMzMyIsInRpdGxlQ29sb3IiOiIjMzMzIiwiZWRnZUxhYmVsQmFja2dyb3VuZCI6IiNlOGU4ZTgiLCJhY3RvckJvcmRlciI6ImhzbCgyNTkuNjI2MTY4MjI0MywgNTkuNzc2NTM2MzEyOCUsIDg3LjkwMTk2MDc4NDMlKSIsImFjdG9yQmtnIjoiI0VDRUNGRiIsImFjdG9yVGV4dENvbG9yIjoiYmxhY2siLCJhY3RvckxpbmVDb2xvciI6ImdyZXkiLCJzaWduYWxDb2xvciI6IiMzMzMiLCJzaWduYWxUZXh0Q29sb3IiOiIjMzMzIiwibGFiZWxCb3hCa2dDb2xvciI6IiNFQ0VDRkYiLCJsYWJlbEJveEJvcmRlckNvbG9yIjoiaHNsKDI1OS42MjYxNjgyMjQzLCA1OS43NzY1MzYzMTI4JSwgODcuOTAxOTYwNzg0MyUpIiwibGFiZWxUZXh0Q29sb3IiOiJibGFjayIsImxvb3BUZXh0Q29sb3IiOiJibGFjayIsIm5vdGVCb3JkZXJDb2xvciI6IiNhYWFhMzMiLCJub3RlQmtnQ29sb3IiOiIjZmZmNWFkIiwibm90ZVRleHRDb2xvciI6ImJsYWNrIiwiYWN0aXZhdGlvbkJvcmRlckNvbG9yIjoiIzY2NiIsImFjdGl2YXRpb25Ca2dDb2xvciI6IiNmNGY0ZjQiLCJzZXF1ZW5jZU51bWJlckNvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IiOiJyZ2JhKDEwMiwgMTAyLCAyNTUsIDAuNDkpIiwiYWx0U2VjdGlvbkJrZ0NvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IyIjoiI2ZmZjQwMCIsInRhc2tCb3JkZXJDb2xvciI6IiM1MzRmYmMiLCJ0YXNrQmtnQ29sb3IiOiIjOGE5MGRkIiwidGFza1RleHRMaWdodENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dERhcmtDb2xvciI6ImJsYWNrIiwidGFza1RleHRPdXRzaWRlQ29sb3IiOiJibGFjayIsInRhc2tUZXh0Q2xpY2thYmxlQ29sb3IiOiIjMDAzMTYzIiwiYWN0aXZlVGFza0JvcmRlckNvbG9yIjoiIzUzNGZiYyIsImFjdGl2ZVRhc2tCa2dDb2xvciI6IiNiZmM3ZmYiLCJncmlkQ29sb3IiOiJsaWdodGdyZXkiLCJkb25lVGFza0JrZ0NvbG9yIjoibGlnaHRncmV5IiwiZG9uZVRhc2tCb3JkZXJDb2xvciI6ImdyZXkiLCJjcml0Qm9yZGVyQ29sb3IiOiIjZmY4ODg4IiwiY3JpdEJrZ0NvbG9yIjoicmVkIiwidG9kYXlMaW5lQ29sb3IiOiJyZWQiLCJsYWJlbENvbG9yIjoiYmxhY2siLCJlcnJvckJrZ0NvbG9yIjoiIzU1MjIyMiIsImVycm9yVGV4dENvbG9yIjoiIzU1MjIyMiIsImNsYXNzVGV4dCI6IiMxMzEzMDAiLCJmaWxsVHlwZTAiOiIjRUNFQ0ZGIiwiZmlsbFR5cGUxIjoiI2ZmZmZkZSIsImZpbGxUeXBlMiI6ImhzbCgzMDQsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlMyI6ImhzbCgxMjQsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSIsImZpbGxUeXBlNCI6ImhzbCgxNzYsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNSI6ImhzbCgtNCwgMTAwJSwgOTMuNTI5NDExNzY0NyUpIiwiZmlsbFR5cGU2IjoiaHNsKDgsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNyI6ImhzbCgxODgsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSJ9fX0"></p>
+<p>   需要准备两台机器A,B 在机器A上部署OpenSTF管理平台</p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name rethinkdb -v /srv/rethinkdb:/data --net host rethinkdb rethinkdb --<span class="built_in">bind</span> all --cache-size 8192 --http-port 8090</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name adbd --privileged -v /dev/bus/usb:/dev/bus/usb --net host sorccu/adb:latest</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name stf --net host devicefarmer/stf stf <span class="built_in">local</span> --public-ip <span class="variable">$&#123;你的ip&#125;</span> --bind-dev-pub=<span class="string">&quot;tcp://0.0.0.0:7114&quot;</span> --bind-dev-pull=<span class="string">&quot;tcp://0.0.0.0:7116&quot;</span> --allow-remote</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意事项</strong>:</p>
+</blockquote>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--bind-dev-pub=&quot;tcp://0.0.0.0:7114&quot; --bind-dev-pull=&quot;tcp://0.0.0.0:7116&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>这行一定要加否则服务将监听在127.0.0.1地址上会导致provider节点无法连接之前没加导致排查了很久</strong></p>
+<p>在机器B上部署Provider节点</p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name adbd --privileged -v /dev/bus/usb:/dev/bus/usb --net host sorccu/adb:latest</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name stf --net host devicefarmer/stf stf provider --connect-sub tcp://<span class="variable">$&#123;机器A的IP&#125;</span>:7114 --connect-push tcp://<span class="variable">$&#123;机器A的IP&#125;</span>:7116 --public-ip <span class="variable">$&#123;机器A的IP&#125;</span> --storage-url http://<span class="variable">$&#123;机器A的IP&#125;</span>:7100/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点:灵活且理论支持无限拓展连接设备</li>
+<li>缺点:配置略微复杂</li>
+</ul>
+<p>部署好后访问安装OpenSTF管理平台机器的ip地址加端口7100,如<a target="_blank" rel="noopener" href="http://192.168.1.1:7100/">http://192.168.1.1:7100</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-不通过文件转储直接从adb-shell读取stdout数据"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/"
+    >不通过文件转储直接从adb shell读取stdout数据</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/" class="article-date">
+  <time datetime="2020-08-04T08:20:56.000Z" itemprop="datePublished">2020-08-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%B0%8F%E6%8A%80%E5%B7%A7/">Android小技巧</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>通常我们从Android设备中捕获当前UI界面信息使用以下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell uiautomator dump /sdcard/screen.xml</span><br><span class="line">adb pull /sdcard/screen.xml</span><br></pre></td></tr></table></figure>
+<p>在上面的代码块中我们经历了两个步骤</p>
+<ol>
+<li><p>执行命令结果输出到<code>/sdcard/screen.xml</code></p>
+</li>
+<li><p>拉取设备上的文件</p>
+</li>
+</ol>
+<p>从效率上来看是很慢的那有没有比较快的办法呢? 答案是有的!<br>我们可以利用<code>/dev/tty</code>设备让它直接输出到<code>stdout</code>上这样就省去文件转储了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure>
+<p>你满怀期待着等着结果只看到</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI hierchary dumped to: /dev/tty</span><br></pre></td></tr></table></figure>
+<p>WTF? 这是什么鬼dump出来的信息去哪了?眉头一紧事情好像貌似没有这么简单…<br>经过一番研究发现我们使用的<code>adb shell</code>会将命令输出发给<code>pty</code>经过一顿骚操作<code>pty</code>把数据搞丢了,所以在新版的<code>adb</code>中引入了一个新的功能<code>exec-out</code>该参数可以将二进制数据直接原封不动的输出。详情请参考<a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/system/core/+/5d9d434efadf1c535c7fea634d5306e18c68ef1f"></a></p>
+<p>所以只需要将命令改成这样即可:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb exec-out uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-查看apk签名信息"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/08/03/%E6%9F%A5%E7%9C%8Bapk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/"
+    >查看apk签名信息</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/08/03/%E6%9F%A5%E7%9C%8Bapk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2020-08-03T07:12:27.000Z" itemprop="datePublished">2020-08-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%B0%8F%E6%8A%80%E5%B7%A7/">Android小技巧</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -jarfile sample.apk</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-如何远程调试一台Android设备"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/"
+    >如何远程调试一台Android设备</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/" class="article-date">
+  <time datetime="2020-05-21T12:18:10.000Z" itemprop="datePublished">2020-05-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/">Android奇巧淫技</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>要想跨越公网调试Android设备首先需要解决两个问题:</p>
+<ol>
+<li>如何让adb走tcp通信</li>
+<li>如何从公网连接这台设备</li>
+</ol>
+<h2 id="第一个问题-通过tcp调试Android手机"><a href="#第一个问题-通过tcp调试Android手机" class="headerlink" title="第一个问题:通过tcp调试Android手机"></a>第一个问题:通过tcp调试Android手机</h2><p>其实<code>adb</code>本身是支持通过tcp协议传输数据的只是可能大部分人从来没用过这个功能,大家可以在终端里面输入adb –help查看,里面有这么几个参数:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">networking:</span><br><span class="line"> connect HOST[:PORT]      connect to a device via TCP/IP</span><br><span class="line"> disconnect [[HOST]:PORT] disconnect from given TCP/IP device, or all</span><br><span class="line">...</span><br><span class="line"> usb                      restart adbd listening on USB</span><br><span class="line"> tcpip PORT               restart adbd listening on TCP on PORT</span><br></pre></td></tr></table></figure>
+
+<p>connect和disconnect是用来连接一台远程设备或者断开远程设备的,usb和tcpip选项是用来切换手机端adbd守护进程工作模式的我们要用到的就是tcpip这个参数使adbd服务监听在一个特定的网络端口上</p>
+<p>在电脑端执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell ifconfig wlan0 #先查看一下手机wifi的ip地址后续连接的时候会用到</span><br><span class="line">adb tcpip 5555 #将手机切换到tcp模式并在5555端口上监听</span><br><span class="line">adb connect 192.168.1.8:5555 #连接手机对应的ip地址和端口</span><br></pre></td></tr></table></figure>
+
+<p>或者在已root的设备上使用<code>termux</code>软件设置adbd为tcp模式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 持久化设置</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop persist.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line">// 一次性设置重启后失效</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop service.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>至此第一个问题已解决</p> 
+      <a class="article-more-link" href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-零成本让你拥有Mac触摸板鼠标"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/30/%E9%9B%B6%E6%88%90%E6%9C%AC%E8%AE%A9%E4%BD%A0%E6%8B%A5%E6%9C%89Mac%E8%A7%A6%E6%91%B8%E6%9D%BF%E9%BC%A0%E6%A0%87/"
+    >零成本让你拥有Mac触摸板鼠标</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/30/%E9%9B%B6%E6%88%90%E6%9C%AC%E8%AE%A9%E4%BD%A0%E6%8B%A5%E6%9C%89Mac%E8%A7%A6%E6%91%B8%E6%9D%BF%E9%BC%A0%E6%A0%87/" class="article-date">
+  <time datetime="2020-04-30T04:56:58.000Z" itemprop="datePublished">2020-04-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/">Android奇巧淫技</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="序章"><a href="#序章" class="headerlink" title="序章"></a>序章</h2><p>相信用过Mac触摸板鼠标的都被它的丝滑流畅给惊艳过,但是作为一个IT穷屌丝怎么买得起那样高大上的玩意,不过前几天玩<code>VNC</code>的时候倒是有一个很意外发现用起来简直跟Mac鼠标有得一拼.</p>
+<h2 id="你需要的东西"><a href="#你需要的东西" class="headerlink" title="你需要的东西"></a>你需要的东西</h2><ul>
+<li><p>手机一台<code>Android</code>/<code>IOS</code>都可以</p>
+</li>
+<li><p><code>RealVNC</code><a target="_blank" rel="noopener" href="http://play.google.com/store/apps/details?id=com.realvnc.viewer.android">Android</a>/<a target="_blank" rel="noopener" href="https://apps.apple.com/us/app/vnc-viewer/id352019548">IOS</a></p>
+</li>
+</ul>
+<h2 id="我该怎么用"><a href="#我该怎么用" class="headerlink" title="我该怎么用"></a>我该怎么用</h2><p>原理很简单就是在电脑上开启vnc server不同操作系统开启方式不一样像Mac和Ubuntu这样本身就是支持VNC的直接在系统设置中打开屏幕共享即可而Windows用户稍微麻烦一些需要额外安装一个<a target="_blank" rel="noopener" href="https://www.tightvnc.com/download.php">tightvnc</a>软件安装过程比较简单在此不讨论自行研究,这样我们直接从手机端通过VNC连过去一个触摸板鼠标就做好了,主要是RealVNC这个软件操作起来比较流畅下面我介绍一下这个软件基本的操作用法:</p>
+<ol>
+<li><code>鼠标左击</code> 直接点击一下屏幕</li>
+<li><code>鼠标右击</code> 双指点击一下屏幕</li>
+<li><code>滚动网页</code> 双指上下搓屏幕</li>
+<li><code>鼠标选择文字</code> 双击屏幕拖动选择</li>
+<li><code>鼠标粘贴问题</code> 三指点击屏幕</li>
+</ol>
+<p>其他的骚操作可以查看RealVNC的帮助信息</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>至此你已经拥有一个流畅的触摸板鼠标了,当然相比于Mac的触摸板鼠标还差很远但是已经有了几分的样子,用手机当触摸板想想也是蛮炫酷的当然有个不好的地方就是手机的画面是和电脑同步的要是有个黑屏只支持操作的模式就好了.</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/" rel="tag">奇思妙想</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-用-Golang-在-Android-上实现代理的几个问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/23/%E7%94%A8-Golang-%E5%9C%A8-Android-%E4%B8%8A%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/"
+    >用 Golang 在 Android 上实现代理的几个问题</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/23/%E7%94%A8-Golang-%E5%9C%A8-Android-%E4%B8%8A%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-04-23T09:42:30.000Z" itemprop="datePublished">2020-04-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>转自:<a target="_blank" rel="noopener" href="https://blog.dio.wtf/post/tips-for-golang-proxy-for-android/">https://blog.dio.wtf/post/tips-for-golang-proxy-for-android/</a> 仅供备份</p>
+</blockquote>
+<p>用 Golang 来实现的代理不要太多，像 <a target="_blank" rel="noopener" href="https://github.com/v2ray/v2ray-core">V2Ray</a>，<a target="_blank" rel="noopener" href="https://github.com/txthinking/brook">Brook</a>，<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash">Clash</a>。一方面得益于 Golang 标准库对于网络编程的支持，另一方面也是由于其便利的交叉编译。如果要在 Android 上用 Golang 实现一套代理方案，还是必须要处理一些问题，或者说是所有的代理方案都要解决的平台特性。</p>
+<h2 id="IPC-传递文件描述符"><a href="#IPC-传递文件描述符" class="headerlink" title="IPC 传递文件描述符"></a>IPC 传递文件描述符</h2><p>Android 上使用 <a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/net/VpnService">VpnService</a> 由系统创建一个 TUN 虚拟网卡并接收所有的流量，API 会返回一个 file descriptor，通过这个 FD 可以读取/写入 IP packet。</p>
+<p>为了稳定性和性能考虑，我们通常会将代理程序放到一个单独的进程里。但是在 Android 的阉割版 Linux 环境下，子进程是无法访问父进程的 FD。这里就需要用到 Linux 通用的进程间共享 FD 的方案，也就是给 Unix Socket 设置 <code>SCM_RIGHTS</code> 标识，然后用 <code>recvmsg</code> 和 <code>sendmsg</code> 来收发。在 Android 和 Golang 中都有对应的 API。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> LocalSocket.setFileDescriptorsForSend (FileDescriptor[] fds)</span><br><span class="line"><span class="keyword">public</span> FileDescriptor[] LocalSocket.getAncillaryFileDescriptors ()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UnixRights encodes file descriptors into a socket control message</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">syscall</span>.<span class="title">UnixRights</span><span class="params">(fds ...<span class="type">int</span>)</span></span> []<span class="type">byte</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">syscall</span>.<span class="title">Sendmsg</span><span class="params">(fd <span class="type">int</span>, p, oob []<span class="type">byte</span>, to Sockaddr, flags <span class="type">int</span>)</span></span> (err <span class="type">error</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">syscall</span>.<span class="title">Recvmsg</span><span class="params">(fd <span class="type">int</span>, p, oob []<span class="type">byte</span>, flags <span class="type">int</span>)</span></span> (n, oobn <span class="type">int</span>, recvflags <span class="type">int</span>, from Sockaddr, err <span class="type">error</span>)</span><br><span class="line"><span class="comment">// ParseSocketControlMessage parses b as an array of socket control</span></span><br><span class="line"><span class="comment">// messages.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">syscall</span>.<span class="title">ParseSocketControlMessage</span><span class="params">(b []<span class="type">byte</span>)</span></span> ([]SocketControlMessage, <span class="type">error</span>)</span><br><span class="line"><span class="comment">// ParseUnixRights decodes a socket control message that contains an</span></span><br><span class="line"><span class="comment">// integer array of open file descriptors from another process.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">syscall</span>.<span class="title">ParseUnixRights</span><span class="params">(m *SocketControlMessage)</span></span> ([]<span class="type">int</span>, <span class="type">error</span>)</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/04/23/%E7%94%A8-Golang-%E5%9C%A8-Android-%E4%B8%8A%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-如何调试Xposed模块不用重启"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/11/29/%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95Xposed%E6%A8%A1%E5%9D%97%E4%B8%8D%E7%94%A8%E9%87%8D%E5%90%AF/"
+    >如何调试Xposed模块不用重启</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/11/29/%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95Xposed%E6%A8%A1%E5%9D%97%E4%B8%8D%E7%94%A8%E9%87%8D%E5%90%AF/" class="article-date">
+  <time datetime="2019-11-29T07:26:26.000Z" itemprop="datePublished">2019-11-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Xposed%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">Xposed模块开发</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>我想做过Xposed模块开发的一定对调试模块必须要重启手机这个机制不陌生， 拜这个机制所赐每次开发起来苦不堪言。稍微改点东西就需要重启手机少则几十秒要是碰到性能稍差一点的手机几分钟也是有可能的。那我们今天就来好好聊聊怎么才能让修改后的代码即时生效呢？首先要搞清楚这个问题还必须从为什么插件每次修改都要重启手机说起，我们可以通过<a target="_blank" rel="noopener" href="https://github.com/rovo89/XposedBridge/wiki/Development-tutorial">Xposed开发文档</a>了解到Xposed的工作方式是通过替换/system/bin/app_process这个二进制文件来实现的进程注入的,我们知道app_process是所有进程的启动入口所以xposed替换了这个文件修改了内部执行逻辑优先去加载我们的插件然后再去加载原始的App代码所以才得以实现各种hook，但是问题就出现在加载插件上了，默认的第一次加载插件时系统会在<code>/data/dalvik-cache/</code>创建一份字节码文件给需虚拟机执行，但是因为这个文件只会在第一次加载的时候创建所以当我们修改了插件后再安装这个文件是不会变的，这也就导致我们的改动不会立即生效需要重启手机让系统生成一个新的字节码文件，那肯定有小伙伴会想那我手动把这个字节码文件删了呢？很遗憾我在Android7.0上尝试了一下并未成功原因未知。</p>
+</blockquote> 
+      <a class="article-more-link" href="/2019/11/29/%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95Xposed%E6%A8%A1%E5%9D%97%E4%B8%8D%E7%94%A8%E9%87%8D%E5%90%AF/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xposed/" rel="tag">Xposed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-如何在Android上通过pm命令安装拆分包"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/11/26/%E5%A6%82%E4%BD%95%E5%9C%A8Android%E4%B8%8A%E9%80%9A%E8%BF%87pm%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E6%8B%86%E5%88%86%E5%8C%85/"
+    >如何在Android上通过pm命令安装拆分包</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/11/26/%E5%A6%82%E4%BD%95%E5%9C%A8Android%E4%B8%8A%E9%80%9A%E8%BF%87pm%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E6%8B%86%E5%88%86%E5%8C%85/" class="article-date">
+  <time datetime="2019-11-26T06:17:36.000Z" itemprop="datePublished">2019-11-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ol>
+<li>首先需要先调用<code>pm install-create -S [size]</code>创建一个install session 其中<code>[size]</code>是指所有拆分文件的总字节数，不过不加<code>-S [size]</code>貌似也是可以的，命令执行完会返回一个session id 这个session会在下面用到。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pm install-create -S 28658294</span><br><span class="line">Success: created install session [1691973442]</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2019/11/26/%E5%A6%82%E4%BD%95%E5%9C%A8Android%E4%B8%8A%E9%80%9A%E8%BF%87pm%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E6%8B%86%E5%88%86%E5%8C%85/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-Android低版本-4-x-无法通过app-process启动java进程详解"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/"
+    >Android低版本(4.x)无法通过app_process启动java进程问题详解</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2019-11-16T17:53:46.000Z" itemprop="datePublished">2019-11-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">Android疑难杂症</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近遇到一个奇怪的事情，公司有一块业务需要在Android上通过启动一个普通的java进程，但是从后台统计数据上来看在Android4.x上进程无法启动所以找台Nexux4 4.2.2的手机来试果然会崩溃，崩溃日志如下</p> 
+      <a class="article-more-link" href="/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2023
+        <i class="ri-heart-fill heart_icon"></i> Kaisar
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar-circle.png" alt="狂人日记"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Android/">Android</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/">移动安全</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay_qrcode.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat_qrcode.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
