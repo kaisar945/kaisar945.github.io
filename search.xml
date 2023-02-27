@@ -263,6 +263,8 @@
 <p>使用adb shell以root用户加载<code>termux-env</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ adb shell</span><br><span class="line">$ su</span><br><span class="line"># source /data/local/tmp/termux-env</span><br></pre></td></tr></table></figure>
 
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-sqlite.png"></p>
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-htop.png"></p>
 <blockquote>
 <p>ref: <a href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></p>
 </blockquote>
