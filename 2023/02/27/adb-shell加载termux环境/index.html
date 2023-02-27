@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>奥林巴斯II |  狂人日记</title>
+      <title>adb shell加载termux环境 |  狂人日记</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -57,7 +57,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-奥林巴斯II"
+  id="post-adb-shell加载termux环境"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -68,7 +68,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  奥林巴斯II
+  adb shell加载termux环境
 </h1>
  
 
@@ -76,11 +76,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/01/31/%E5%A5%A5%E6%9E%97%E5%B7%B4%E6%96%AFII/" class="article-date">
-  <time datetime="2023-01-31T02:53:55.000Z" itemprop="datePublished">2023-01-31</time>
+      <a href="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time datetime="2023-02-27T07:02:33.664Z" itemprop="datePublished">2023-02-27</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+    <a class="article-category-link" href="/categories/Android%E5%B0%8F%E6%8A%80%E5%B7%A7/">Android小技巧</a>
   </div>
   
 <div class="word_count">
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">12</span>
+            <span class="post-count">218</span>
         </span>
     </span>
 
@@ -112,7 +112,22 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="我的第一台微单奥林巴斯II"><a href="#我的第一台微单奥林巴斯II" class="headerlink" title="我的第一台微单奥林巴斯II"></a>我的第一台微单奥林巴斯II</h2> 
+  <p>通常我们调试应用的时候喜欢使用<code>debug</code>版rom不仅拥有root权限而且附带许多调试工具如<code>sqlite</code>等，但是某些情况下我们可能不得不选择<code>release</code>版rom来调试同时由于该版本特性会缺少很多调试工具使得用起来十分不顺手，因此本文介绍一下如何通过Magisk和termux来增强adb shell的使用体验。</p>
+<h2 id="1-安装Magisk框架"><a href="#1-安装Magisk框架" class="headerlink" title="1. 安装Magisk框架"></a>1. 安装<a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases">Magisk</a>框架</h2><p>该部分不是本文重点请自行搜索对应机型的安装方法。</p>
+<h2 id="2-安装Termux软件"><a href="#2-安装Termux软件" class="headerlink" title="2. 安装Termux软件"></a>2. 安装<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">Termux</a>软件</h2><p>先更新升级一下软件包</p>
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/update_upgrade.png"></p>
+<p>安装常用的软件包如<code>sqlite</code> <code>htop</code>等</p>
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/install_sqlite.png"></p>
+<h2 id="3-adb-shell加载termux环境"><a href="#3-adb-shell加载termux环境" class="headerlink" title="3. adb shell加载termux环境"></a>3. adb shell加载termux环境</h2><p>下载<a href="termux-env">termux-env</a>放置于<code>/data/local/tmp/</code>目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb push termux-env /data/local/tmp</span><br></pre></td></tr></table></figure>
+
+<p>使用adb shell以root用户加载<code>termux-env</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell</span><br><span class="line">$ su</span><br><span class="line"># source /data/local/tmp/termux-env</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ref: <a target="_blank" rel="noopener" href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></p>
+</blockquote>
+ 
       <!-- reward -->
       
       <div id="reword-out">
@@ -182,12 +197,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2023/01/31/%E5%A5%A5%E6%9E%97%E5%B7%B4%E6%96%AFII/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/" rel="tag">摄影剪辑</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
 
     </footer>
   </div>
@@ -195,19 +210,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            adb shell加载termux环境
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/" class="article-nav-link">
+      <a href="/2023/01/31/%E5%A5%A5%E6%9E%97%E5%B7%B4%E6%96%AFII/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">解决Ubuntu 20.04无法导入Charles证书</div>
+        <div class="article-nav-title">奥林巴斯II</div>
       </a>
     
   </nav>

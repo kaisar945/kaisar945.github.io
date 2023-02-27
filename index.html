@@ -153,6 +153,74 @@
     
     
     <article
+  id="post-adb-shell加载termux环境"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/"
+    >adb shell加载termux环境</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time datetime="2023-02-27T07:02:33.664Z" itemprop="datePublished">2023-02-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%B0%8F%E6%8A%80%E5%B7%A7/">Android小技巧</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>通常我们调试应用的时候喜欢使用<code>debug</code>版rom不仅拥有root权限而且附带许多调试工具如<code>sqlite</code>等，但是某些情况下我们可能不得不选择<code>release</code>版rom来调试同时由于该版本特性会缺少很多调试工具使得用起来十分不顺手，因此本文介绍一下如何通过Magisk和termux来增强adb shell的使用体验。</p>
+<h2 id="1-安装Magisk框架"><a href="#1-安装Magisk框架" class="headerlink" title="1. 安装Magisk框架"></a>1. 安装<a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases">Magisk</a>框架</h2><p>该部分不是本文重点请自行搜索对应机型的安装方法。</p>
+<h2 id="2-安装Termux软件"><a href="#2-安装Termux软件" class="headerlink" title="2. 安装Termux软件"></a>2. 安装<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">Termux</a>软件</h2><p>先更新升级一下软件包</p>
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/update_upgrade.png"></p>
+<p>安装常用的软件包如<code>sqlite</code> <code>htop</code>等</p>
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/install_sqlite.png"></p>
+<h2 id="3-adb-shell加载termux环境"><a href="#3-adb-shell加载termux环境" class="headerlink" title="3. adb shell加载termux环境"></a>3. adb shell加载termux环境</h2><p>下载<a href="termux-env">termux-env</a>放置于<code>/data/local/tmp/</code>目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb push termux-env /data/local/tmp</span><br></pre></td></tr></table></figure>
+
+<p>使用adb shell以root用户加载<code>termux-env</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell</span><br><span class="line">$ su</span><br><span class="line"># source /data/local/tmp/termux-env</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ref: <a target="_blank" rel="noopener" href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-奥林巴斯II"
   class="article article-type-post"
   itemscope
@@ -710,71 +778,13 @@
 </article>
 
     
-    <article
-  id="post-Xposed为何对京东无法生效"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/"
-    >Xposed为何对京东无法生效</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/" class="article-date">
-  <time datetime="2020-11-06T10:20:36.000Z" itemprop="datePublished">2020-11-06</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Xposed%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">Xposed模块开发</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>  前一阵子对京东的一个功能比较好奇于是就有了逆向京东的想法,我熟练的拿起了<code>jadx</code>对京东进行反编译居然没有混淆心中狂喜很快就找到入口点,于是又祭出了<code>Xposed</code>大法飞快的写了个插件Hook了<code>Activity</code>的<code>onCreate</code>方法,我迫不及待的跑了起来结果hook貌似没有生效任何Log都没有输出,反复检查后仍不得其解不过此时的我已心中暗暗猜测京东应该有一些反<code>Xposed</code>的机制,因为之前曾见过”酷安”和”知乎”也有这样的功能,于是又Hook了像<code>Class.forName </code>和<code>ClassLoader.loadClass</code>这样的函数来验证一下我的想法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">XposedHelpers.findAndHookMethod(ClassLoader.class, <span class="string">&quot;loadClass&quot;</span>, String.class, <span class="keyword">new</span> <span class="title class_">XC_MethodHook</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">beforeHookedMethod</span><span class="params">(MethodHookParam param)</span> <span class="keyword">throws</span> Throwable</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(((String)param.args[<span class="number">0</span>]).startsWith(<span class="string">&quot;de.robv.android.xposed&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">		Log.d(<span class="string">&quot;Kaisar&quot;</span>, <span class="string">&quot;loadclass:&quot;</span> + Arrays.toString(param.args), <span class="keyword">new</span> <span class="title class_">Throwable</span>());</span><br><span class="line">		param.setThrowable(<span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">XposedHelpers.findAndHookMethod(Class.class, <span class="string">&quot;forName&quot;</span>, String.class, <span class="keyword">new</span> <span class="title class_">XC_MethodHook</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">beforeHookedMethod</span><span class="params">(MethodHookParam param)</span> <span class="keyword">throws</span> Throwable</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(((String)param.args[<span class="number">0</span>]).startsWith(<span class="string">&quot;de.robv.android.xposed&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">		Log.d(<span class="string">&quot;Kaisar&quot;</span>, <span class="string">&quot;forName:&quot;</span> + Arrays.toString(param.args), <span class="keyword">new</span> <span class="title class_">Throwable</span>());</span><br><span class="line">		param.setThrowable(<span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xposed/" rel="tag">Xposed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
