@@ -697,4 +697,24 @@
         <tag>奇思妙想</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ubuntu提升使用体验篇</title>
+    <url>/2023/03/21/ubuntu%E6%8F%90%E5%8D%87%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="使用快捷键打开scrcpy"><a href="#使用快捷键打开scrcpy" class="headerlink" title="使用快捷键打开scrcpy"></a>使用快捷键打开scrcpy</h2><figure class="highlight plaintext"><figcaption><span>-> ```Keyboard``` -> ```View and Customize Shortcuts``` -> ```Custom Shortcuts``` 添加 ```Ctrl+1``` 和 ```Ctrl+2``` 快捷键分别设置为以下命令</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">```bash</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==1 &#123;print $1&#125;&#x27;)&quot; #第一个设备</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==2 &#123;print $1&#125;&#x27;)&quot; #第二个设备</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用KDE-Connect远程操作计算机"><a href="#使用KDE-Connect远程操作计算机" class="headerlink" title="使用KDE Connect远程操作计算机"></a>使用KDE Connect远程操作计算机</h2><p>安装<a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
+<p>可实现以下功能：</p>
+<ul>
+<li><p>远程锁定/解锁屏幕</p>
+<p>设置方式：<code>Mobile Settings</code> -&gt; <code>Connected Device</code> -&gt; <code>Commands</code> 增加以下两项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/gnome-screensaver-command -l //锁定屏幕</span><br><span class="line">/usr/bin/gnome-screensaver-command -d //解锁屏幕</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux相关</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>
