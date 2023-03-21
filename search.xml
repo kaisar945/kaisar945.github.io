@@ -298,6 +298,27 @@
       </tags>
   </entry>
   <entry>
+    <title>ubuntu提升使用体验篇</title>
+    <url>/2023/03/21/ubuntu%E6%8F%90%E5%8D%87%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="使用快捷键打开scrcpy"><a href="#使用快捷键打开scrcpy" class="headerlink" title="使用快捷键打开scrcpy"></a>使用快捷键打开scrcpy</h2><p>设置方式：<code>Settings</code> -&gt; <code>Keyboard</code> -&gt; <code>View and Customize Shortcuts</code> -&gt; <code>Custom Shortcuts</code> 添加 <code>Ctrl+1</code> 和 <code>Ctrl+2</code> 快捷键分别设置为以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash -c <span class="string">&quot;scrcpy -s <span class="subst">$(adb devices | grep -sw <span class="string">&quot;device&quot;</span> | awk &#x27;NR==1 &#123;print $1&#125;&#x27;)</span>&quot;</span> <span class="comment">#第一个设备</span></span><br><span class="line">bash -c <span class="string">&quot;scrcpy -s <span class="subst">$(adb devices | grep -sw <span class="string">&quot;device&quot;</span> | awk &#x27;NR==2 &#123;print $1&#125;&#x27;)</span>&quot;</span> <span class="comment">#第二个设备</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用KDE-Connect远程操作计算机"><a href="#使用KDE-Connect远程操作计算机" class="headerlink" title="使用KDE Connect远程操作计算机"></a>使用KDE Connect远程操作计算机</h2><p>安装<a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
+<p>可实现以下功能：</p>
+<ul>
+<li><p>远程锁定/解锁屏幕</p>
+<p>设置方式：<code>Mobile Settings</code> -&gt; <code>Connected Device</code> -&gt; <code>Commands</code> 增加以下两项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/gnome-screensaver-command -l //锁定屏幕</span><br><span class="line">/usr/bin/gnome-screensaver-command -d //解锁屏幕</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux相关</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>不通过文件转储直接从adb shell读取stdout数据</title>
     <url>/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<p>通常我们从Android设备中捕获当前UI界面信息使用以下命令:</p>
@@ -574,6 +595,20 @@
       </categories>
   </entry>
   <entry>
+    <title>特斯拉-科技与狠活</title>
+    <url>/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="灯光秀"><a href="#灯光秀" class="headerlink" title="灯光秀"></a>灯光秀</h2><ul>
+<li>Michael Jackson: <a href="LightShow.zip">Beat It</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>特斯拉</category>
+      </categories>
+      <tags>
+        <tag>车</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>用 Golang 在 Android 上实现代理的几个问题</title>
     <url>/2020/04/23/%E7%94%A8-Golang-%E5%9C%A8-Android-%E4%B8%8A%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<blockquote>
@@ -695,26 +730,6 @@
       </categories>
       <tags>
         <tag>奇思妙想</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu提升使用体验篇</title>
-    <url>/2023/03/21/ubuntu%E6%8F%90%E5%8D%87%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E7%AF%87/</url>
-    <content><![CDATA[<h2 id="使用快捷键打开scrcpy"><a href="#使用快捷键打开scrcpy" class="headerlink" title="使用快捷键打开scrcpy"></a>使用快捷键打开scrcpy</h2><figure class="highlight plaintext"><figcaption><span>-> ```Keyboard``` -> ```View and Customize Shortcuts``` -> ```Custom Shortcuts``` 添加 ```Ctrl+1``` 和 ```Ctrl+2``` 快捷键分别设置为以下命令</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">```bash</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==1 &#123;print $1&#125;&#x27;)&quot; #第一个设备</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==2 &#123;print $1&#125;&#x27;)&quot; #第二个设备</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用KDE-Connect远程操作计算机"><a href="#使用KDE-Connect远程操作计算机" class="headerlink" title="使用KDE Connect远程操作计算机"></a>使用KDE Connect远程操作计算机</h2><p>安装<a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
-<p>可实现以下功能：</p>
-<ul>
-<li><p>远程锁定/解锁屏幕</p>
-<p>设置方式：<code>Mobile Settings</code> -&gt; <code>Connected Device</code> -&gt; <code>Commands</code> 增加以下两项</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/gnome-screensaver-command -l //锁定屏幕</span><br><span class="line">/usr/bin/gnome-screensaver-command -d //解锁屏幕</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux相关</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
 </search>

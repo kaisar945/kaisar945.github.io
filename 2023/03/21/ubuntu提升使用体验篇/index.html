@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">165</span>
+            <span class="post-count">172</span>
         </span>
     </span>
 
@@ -112,7 +112,8 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="使用快捷键打开scrcpy"><a href="#使用快捷键打开scrcpy" class="headerlink" title="使用快捷键打开scrcpy"></a>使用快捷键打开scrcpy</h2><figure class="highlight plaintext"><figcaption><span>-> ```Keyboard``` -> ```View and Customize Shortcuts``` -> ```Custom Shortcuts``` 添加 ```Ctrl+1``` 和 ```Ctrl+2``` 快捷键分别设置为以下命令</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```bash</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==1 &#123;print $1&#125;&#x27;)&quot; #第一个设备</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==2 &#123;print $1&#125;&#x27;)&quot; #第二个设备</span><br></pre></td></tr></table></figure>
+  <h2 id="使用快捷键打开scrcpy"><a href="#使用快捷键打开scrcpy" class="headerlink" title="使用快捷键打开scrcpy"></a>使用快捷键打开scrcpy</h2><p>设置方式：<code>Settings</code> -&gt; <code>Keyboard</code> -&gt; <code>View and Customize Shortcuts</code> -&gt; <code>Custom Shortcuts</code> 添加 <code>Ctrl+1</code> 和 <code>Ctrl+2</code> 快捷键分别设置为以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash -c <span class="string">&quot;scrcpy -s <span class="subst">$(adb devices | grep -sw <span class="string">&quot;device&quot;</span> | awk &#x27;NR==1 &#123;print $1&#125;&#x27;)</span>&quot;</span> <span class="comment">#第一个设备</span></span><br><span class="line">bash -c <span class="string">&quot;scrcpy -s <span class="subst">$(adb devices | grep -sw <span class="string">&quot;device&quot;</span> | awk &#x27;NR==2 &#123;print $1&#125;&#x27;)</span>&quot;</span> <span class="comment">#第二个设备</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="使用KDE-Connect远程操作计算机"><a href="#使用KDE-Connect远程操作计算机" class="headerlink" title="使用KDE Connect远程操作计算机"></a>使用KDE Connect远程操作计算机</h2><p>安装<a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
 <p>可实现以下功能：</p>
@@ -203,6 +204,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            特斯拉-科技与狠活
+          
+        </div>
+      </a>
     
     
       <a href="/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" class="article-nav-link">
@@ -357,6 +367,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E8%BD%A6/">车</a>
     </li>
     
     <li class="nav-item">

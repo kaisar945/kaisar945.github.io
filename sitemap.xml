@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kaisar.kozow.com/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/</loc>
+    
+    <lastmod>2023-03-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kaisar.kozow.com/tags/%E8%BD%A6.html</loc>
+    
+    <lastmod>2023-03-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kaisar.kozow.com/categories/%E7%89%B9%E6%96%AF%E6%8B%89.html</loc>
+    
+    <lastmod>2023-03-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://kaisar.kozow.com/2023/03/21/ubuntu%E6%8F%90%E5%8D%87%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E7%AF%87/</loc>
     
     <lastmod>2023-03-21</lastmod>
@@ -445,6 +472,13 @@
   </url>
   
   <url>
+    <loc>http://kaisar.kozow.com/tags/%E8%BD%A6/</loc>
+    <lastmod>2023-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://kaisar.kozow.com/tags/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/</loc>
     <lastmod>2023-03-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -489,6 +523,13 @@
   </url>
   
   <url>
+    <loc>http://kaisar.kozow.com/categories/Linux%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2023-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://kaisar.kozow.com/categories/Android%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/</loc>
     <lastmod>2023-03-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -496,7 +537,7 @@
   </url>
   
   <url>
-    <loc>http://kaisar.kozow.com/categories/Linux%E7%9B%B8%E5%85%B3/</loc>
+    <loc>http://kaisar.kozow.com/categories/%E7%89%B9%E6%96%AF%E6%8B%89/</loc>
     <lastmod>2023-03-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

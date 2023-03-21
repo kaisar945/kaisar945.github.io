@@ -153,6 +153,62 @@
     
     
     <article
+  id="post-特斯拉-科技与狠活"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/"
+    >特斯拉-科技与狠活</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/" class="article-date">
+  <time datetime="2023-03-21T07:52:24.000Z" itemprop="datePublished">2023-03-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%89%B9%E6%96%AF%E6%8B%89/">特斯拉</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="灯光秀"><a href="#灯光秀" class="headerlink" title="灯光秀"></a>灯光秀</h2><ul>
+<li>Michael Jackson: <a href="LightShow.zip">Beat It</a></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%A6/" rel="tag">车</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-ubuntu提升使用体验篇"
   class="article article-type-post"
   itemscope
@@ -184,7 +240,8 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="使用快捷键打开scrcpy"><a href="#使用快捷键打开scrcpy" class="headerlink" title="使用快捷键打开scrcpy"></a>使用快捷键打开scrcpy</h2><figure class="highlight plaintext"><figcaption><span>-> ```Keyboard``` -> ```View and Customize Shortcuts``` -> ```Custom Shortcuts``` 添加 ```Ctrl+1``` 和 ```Ctrl+2``` 快捷键分别设置为以下命令</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```bash</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==1 &#123;print $1&#125;&#x27;)&quot; #第一个设备</span><br><span class="line">bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#x27;NR==2 &#123;print $1&#125;&#x27;)&quot; #第二个设备</span><br></pre></td></tr></table></figure>
+  <h2 id="使用快捷键打开scrcpy"><a href="#使用快捷键打开scrcpy" class="headerlink" title="使用快捷键打开scrcpy"></a>使用快捷键打开scrcpy</h2><p>设置方式：<code>Settings</code> -&gt; <code>Keyboard</code> -&gt; <code>View and Customize Shortcuts</code> -&gt; <code>Custom Shortcuts</code> 添加 <code>Ctrl+1</code> 和 <code>Ctrl+2</code> 快捷键分别设置为以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash -c <span class="string">&quot;scrcpy -s <span class="subst">$(adb devices | grep -sw <span class="string">&quot;device&quot;</span> | awk &#x27;NR==1 &#123;print $1&#125;&#x27;)</span>&quot;</span> <span class="comment">#第一个设备</span></span><br><span class="line">bash -c <span class="string">&quot;scrcpy -s <span class="subst">$(adb devices | grep -sw <span class="string">&quot;device&quot;</span> | awk &#x27;NR==2 &#123;print $1&#125;&#x27;)</span>&quot;</span> <span class="comment">#第二个设备</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="使用KDE-Connect远程操作计算机"><a href="#使用KDE-Connect远程操作计算机" class="headerlink" title="使用KDE Connect远程操作计算机"></a>使用KDE Connect远程操作计算机</h2><p>安装<a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
 <p>可实现以下功能：</p>
@@ -701,67 +758,6 @@
 </article>
 
     
-    <article
-  id="post-解决Android-Studio-missing-essential-plugin-org-jetbrains-android"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/"
-    >解决Android Studio missing essential plugin org.jetbrains.android</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/" class="article-date">
-  <time datetime="2020-11-20T07:39:44.000Z" itemprop="datePublished">2020-11-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">Android疑难杂症</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>最近把Android Studio升级到了<code>4.1.1</code>版本之前安装了一个<code>smailidea</code>的插件老是报不兼容于是强迫症的我手贱了一下把插件给禁用了,禁用的时候没注意把依赖的一些东西也给禁用了于是报了下面的错误</p>
-<p><img src="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/picture_02.png"></p>
-<p>这是禁用插件时候的依赖提示</p>
-<p><img src="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/picture_01.png"></p>
-<p>可以看见其实把很多核心的组件都给禁用了那怎么办呢?难不成真的要按提示上说的要重装Android Studio?不要慌问题不大其实还有一种办法就是把被禁用的插件恢复就可以了,大家可以把Android Studio的配置目录的<code>disabled_plugins.txt</code>这个文件删除这样Android Studio就可以正常启动了, 这个文件每个系统存放的位置不太一样一般都在下面这几个目录 如果不在可以在主目录全局搜索一下这个文件</p>
-<p>Windows: <code>C:\Users\%USERNAME%\AndroidStudio4.1\config</code></p>
-<p>Linux: <code>~/.config/Google/AndroidStudio4.1</code></p>
-<p>MacOS: <code>~/Library/Application Support/Google/AndroidStudio4.1</code></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
@@ -865,6 +861,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E8%BD%A6/">车</a>
     </li>
     
     <li class="nav-item">
