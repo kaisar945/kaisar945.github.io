@@ -249,6 +249,27 @@
       </tags>
   </entry>
   <entry>
+    <title>adb shell一些有用的命令</title>
+    <url>/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><h3 id="WIFI相关"><a href="#WIFI相关" class="headerlink" title="WIFI相关"></a>WIFI相关</h3><h4 id="开启WIFI"><a href="#开启WIFI" class="headerlink" title="开启WIFI"></a>开启WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi set-wifi-enabled enabled</span><br></pre></td></tr></table></figure>
+
+<h4 id="扫描WIFI"><a href="#扫描WIFI" class="headerlink" title="扫描WIFI"></a>扫描WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi start-scan</span><br></pre></td></tr></table></figure>
+
+<h4 id="列出WIFI扫描结果"><a href="#列出WIFI扫描结果" class="headerlink" title="列出WIFI扫描结果"></a>列出WIFI扫描结果</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi list-scan-results</span><br></pre></td></tr></table></figure>
+
+<h4 id="列出当前保存的WIFI列表"><a href="#列出当前保存的WIFI列表" class="headerlink" title="列出当前保存的WIFI列表"></a>列出当前保存的WIFI列表</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi list-networks</span><br></pre></td></tr></table></figure>
+
+<h4 id="连接指定的WIFI"><a href="#连接指定的WIFI" class="headerlink" title="连接指定的WIFI"></a>连接指定的WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi connect-network home-wifi wpa2 password</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Android小技巧</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>adb shell加载termux环境</title>
     <url>/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p>通常我们调试应用的时候喜欢使用<code>debug</code>版rom不仅拥有root权限而且附带许多调试工具如<code>sqlite</code>等，但是某些情况下我们可能不得不选择<code>release</code>版rom来调试同时由于该版本特性会缺少很多调试工具使得用起来十分不顺手，因此本文介绍一下如何通过Magisk和termux来增强adb shell的使用体验。</p>
