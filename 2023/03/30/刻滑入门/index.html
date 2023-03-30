@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>InputStream无法与BufferReader同时用 |  狂人日记</title>
+      <title>刻滑入门 |  狂人日记</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -57,7 +57,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-InputStream无法与BufferReader同时用"
+  id="post-刻滑入门"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -68,7 +68,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  InputStream无法与BufferReader同时用
+  刻滑入门
 </h1>
  
 
@@ -76,11 +76,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/" class="article-date">
-  <time datetime="2020-11-05T09:15:35.000Z" itemprop="datePublished">2020-11-05</time>
+      <a href="/2023/03/30/%E5%88%BB%E6%BB%91%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2023-03-30T06:33:04.062Z" itemprop="datePublished">2023-03-30</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E4%B8%AD%E8%B6%9F%E8%BF%87%E7%9A%84%E5%A4%A7%E5%9D%91/">开发中趟过的大坑</a>
+    <a class="article-category-link" href="/categories/%E6%BB%91%E9%9B%AA/">滑雪</a>
   </div>
   
 <div class="word_count">
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">482</span>
+            <span class="post-count">241</span>
         </span>
     </span>
 
@@ -97,27 +97,44 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>​    前两天客户端这边有一块业务一开始想的是用<code>socket</code>直接跟后端传数据,后来后端觉得基于目前的框架改太麻烦于是协商了一下还是改为HTTP协议,我一想HTTP传过来过我把HTTP的头给忽略掉不就可以了于是直接动手撸了个HTTP服务</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> serverSocket.accept();</span><br><span class="line"></span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(socket.getInputStream()));</span><br><span class="line">LinkedHashMap&lt;String, String&gt; headerFields = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;String, String&gt;();</span><br><span class="line"><span class="keyword">for</span>(String header; (header = r.readLine()) != <span class="literal">null</span> &amp;&amp; !header.isEmpty();)&#123;</span><br><span class="line">    <span class="comment">//解析HTTP头</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(header)</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> Integer.parseInt(headerFields.get(<span class="string">&quot;Content-Length&quot;</span>));</span><br><span class="line"><span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[length];</span><br><span class="line">socket.getInputStream().read(buffer);</span><br><span class="line"><span class="comment">//处理业务数据</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">out.write(<span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;fuck you\r\n&quot;</span>).getBytes());</span><br><span class="line">out.flush();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>3分钟撸好信心满满的点了Run按钮,前面HTTP头正确读取出来但是到了<code>socket.getInputStream().read(buffer);</code> 这行就会卡主很奇怪看来看去一脸懵逼反复检查发送的数据和数据长度都没问题,过了很久才怀疑到<code>BufferedReader</code>头上于是跟了一下代码发现这厮会读取超过一行的长度导致之后用原始的<code>InputStream</code>读的时候会超过发送的数据长度导致卡住(其实是在等待客户端发送),后来解析头直接选择一个字节一个字节的读这样就没有问题了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//read header</span></span><br><span class="line">LinkedHashMap&lt;String, String&gt; headerFields = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;String, String&gt;();</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> b; (b = in.read()) != -<span class="number">1</span>; )</span><br><span class="line">&#123;</span><br><span class="line">    baos.write(b);</span><br><span class="line">    <span class="keyword">if</span>(b == <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//解析HTTP头</span></span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//read body</span></span><br><span class="line"><span class="keyword">if</span>(!headerFields.containsKey(<span class="string">&quot;Content-Length&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Exception</span>(<span class="string">&quot;request header not specify body length!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[Integer.parseInt(headerFields.get(<span class="string">&quot;Content-Length&quot;</span>))];</span><br><span class="line"><span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(buffer);</span><br><span class="line"><span class="comment">//处理业务数据</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">out.write(<span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;fuck you\r\n&quot;</span>).getBytes());</span><br><span class="line">out.flush();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure>
-
+  <h2 id="一、滑行姿态"><a href="#一、滑行姿态" class="headerlink" title="一、滑行姿态"></a>一、滑行姿态</h2><p>滑雪是下半身运动，对于初学者首先要保证上半身不动尽量使用下半身的力量去控制雪板。</p>
+<p>这里有个小技巧可以将后手<strong>背于腰部</strong>这样既可以保证上半身不弯曲也可以保证手不会乱动影响重心。</p>
+<p>总结一下几点：</p>
+<ol>
+<li><p>身体站直与雪板平行</p>
+</li>
+<li><p>在滑行阶段视线指向板头前进方向</p>
+</li>
+<li><p>在换刃阶段视线指向板头方向+/-45度方向</p>
+</li>
+</ol>
+<h2 id="二、寻找刃感"><a href="#二、寻找刃感" class="headerlink" title="二、寻找刃感"></a>二、寻找刃感</h2><ol>
+<li><p>横向切坡顺着板刃的方向滑行，<strong>切勿对抗这股力量否则在滑行过程中会很累</strong></p>
+</li>
+<li><p>过弯顺着这股力量做圆弯滑行，<strong>切勿使用后腿力量搓雪转弯</strong></p>
+</li>
+</ol>
+<h2 id="三、稳定滑行"><a href="#三、稳定滑行" class="headerlink" title="三、稳定滑行"></a>三、稳定滑行</h2><ol>
+<li><p>在横切雪道时使用开放站姿同时尽量压低前脚重心</p>
+</li>
+<li><p>加入引申动作：前刃切坡（压）- 换刃（起）- 后刃切坡（压）</p>
+</li>
+</ol>
  
       <!-- reward -->
       
@@ -188,12 +205,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2023/03/30/%E5%88%BB%E6%BB%91%E5%85%A5%E9%97%A8/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E5%8A%A8/" rel="tag">运动</a></li></ul>
 
     </footer>
   </div>
@@ -201,19 +218,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Xposed为何对京东无法生效
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/10/29/%E4%BD%BF%E7%94%A8openstf%E9%83%A8%E7%BD%B2%E4%B8%80%E5%A5%97%E5%86%85%E9%83%A8%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0/" class="article-nav-link">
+      <a href="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">使用openstf部署一套内部测试平台</div>
+        <div class="article-nav-title">特斯拉-科技与狠活</div>
       </a>
     
   </nav>
