@@ -194,27 +194,6 @@
       </tags>
   </entry>
   <entry>
-    <title>TypeScript回调函数this指向问题</title>
-    <url>/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>最近在使用<code>TypeScript</code>开发<code>frida hook</code>时遇到一个问题,当把一个类的函数传给另一个方法作为回调函数时,<code>this</code>指针指向的不是原始类的示例,经过一番搜索发现有很多人也碰到同样的问题所以在此记录一下:<br>出问题的代码:</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SetIntervalTest</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">someNumber</span>: <span class="built_in">number</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="built_in">setInterval</span>(<span class="variable language_">this</span>.<span class="property">setIntervalCallback</span>, <span class="number">400</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">setIntervalCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-<p>改成这样就可以了</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> setIntervalCallback = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>因为只是为了临时解决业务问题所以暂不深究日后有空再来研究研究</p>
-<blockquote>
-<p>相关链接:<a href="https://github.com/microsoft/TypeScript/issues/10285">https://github.com/microsoft/TypeScript/issues/10285</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>开发中趟过的大坑</category>
-      </categories>
-      <tags>
-        <tag>编程中的问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Xposed为何对京东无法生效</title>
     <url>/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/</url>
     <content><![CDATA[<p>  前一阵子对京东的一个功能比较好奇于是就有了逆向京东的想法,我熟练的拿起了<code>jadx</code>对京东进行反编译居然没有混淆心中狂喜很快就找到入口点,于是又祭出了<code>Xposed</code>大法飞快的写了个插件Hook了<code>Activity</code>的<code>onCreate</code>方法,我迫不及待的跑了起来结果hook貌似没有生效任何Log都没有输出,反复检查后仍不得其解不过此时的我已心中暗暗猜测京东应该有一些反<code>Xposed</code>的机制,因为之前曾见过”酷安”和”知乎”也有这样的功能,于是又Hook了像<code>Class.forName </code>和<code>ClassLoader.loadClass</code>这样的函数来验证一下我的想法</p>
@@ -249,17 +228,41 @@
       </tags>
   </entry>
   <entry>
+    <title>TypeScript回调函数this指向问题</title>
+    <url>/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>最近在使用<code>TypeScript</code>开发<code>frida hook</code>时遇到一个问题,当把一个类的函数传给另一个方法作为回调函数时,<code>this</code>指针指向的不是原始类的示例,经过一番搜索发现有很多人也碰到同样的问题所以在此记录一下:<br>出问题的代码:</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SetIntervalTest</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">someNumber</span>: <span class="built_in">number</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="built_in">setInterval</span>(<span class="variable language_">this</span>.<span class="property">setIntervalCallback</span>, <span class="number">400</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">setIntervalCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>改成这样就可以了</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> setIntervalCallback = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>因为只是为了临时解决业务问题所以暂不深究日后有空再来研究研究</p>
+<blockquote>
+<p>相关链接:<a href="https://github.com/microsoft/TypeScript/issues/10285">https://github.com/microsoft/TypeScript/issues/10285</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>开发中趟过的大坑</category>
+      </categories>
+      <tags>
+        <tag>编程中的问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>adb shell一些有用的命令</title>
     <url>/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><h3 id="WIFI相关"><a href="#WIFI相关" class="headerlink" title="WIFI相关"></a>WIFI相关</h3><h4 id="开启WIFI"><a href="#开启WIFI" class="headerlink" title="开启WIFI"></a>开启WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi set-wifi-enabled enabled</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><h3 id="WIFI相关"><a href="#WIFI相关" class="headerlink" title="WIFI相关"></a>WIFI相关</h3><h4 id="开启WIFI"><a href="#开启WIFI" class="headerlink" title="开启WIFI"></a>开启WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ adb shell cmd -w wifi set-wifi-enabled enabled</span><br></pre></td></tr></table></figure>
 
-<h4 id="扫描WIFI"><a href="#扫描WIFI" class="headerlink" title="扫描WIFI"></a>扫描WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi start-scan</span><br></pre></td></tr></table></figure>
+<h4 id="扫描WIFI"><a href="#扫描WIFI" class="headerlink" title="扫描WIFI"></a>扫描WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ adb shell cmd -w wifi start-scan</span><br></pre></td></tr></table></figure>
 
-<h4 id="列出WIFI扫描结果"><a href="#列出WIFI扫描结果" class="headerlink" title="列出WIFI扫描结果"></a>列出WIFI扫描结果</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi list-scan-results</span><br></pre></td></tr></table></figure>
+<h4 id="列出WIFI扫描结果"><a href="#列出WIFI扫描结果" class="headerlink" title="列出WIFI扫描结果"></a>列出WIFI扫描结果</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ adb shell cmd -w wifi list-scan-results</span><br></pre></td></tr></table></figure>
 
-<h4 id="列出当前保存的WIFI列表"><a href="#列出当前保存的WIFI列表" class="headerlink" title="列出当前保存的WIFI列表"></a>列出当前保存的WIFI列表</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi list-networks</span><br></pre></td></tr></table></figure>
+<h4 id="列出当前保存的WIFI列表"><a href="#列出当前保存的WIFI列表" class="headerlink" title="列出当前保存的WIFI列表"></a>列出当前保存的WIFI列表</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ adb shell cmd -w wifi list-networks</span><br></pre></td></tr></table></figure>
 
-<h4 id="连接指定的WIFI"><a href="#连接指定的WIFI" class="headerlink" title="连接指定的WIFI"></a>连接指定的WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell cmd -w wifi connect-network home-wifi wpa2 password</span><br></pre></td></tr></table></figure>
+<h4 id="连接指定的WIFI"><a href="#连接指定的WIFI" class="headerlink" title="连接指定的WIFI"></a>连接指定的WIFI</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ adb shell cmd -w wifi connect-network home-wifi wpa2 password</span><br></pre></td></tr></table></figure>
+
+<h3 id="调试相关"><a href="#调试相关" class="headerlink" title="调试相关"></a>调试相关</h3><h4 id="使用Magisk-root允许所有进程调试"><a href="#使用Magisk-root允许所有进程调试" class="headerlink" title="使用Magisk root允许所有进程调试"></a>使用Magisk root允许所有进程调试</h4><p>参考：<a href="https://danylokos.github.io/0x02/">https://danylokos.github.io/0x02/</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">magisk resetprop ro.debuggable 1</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop; start</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>

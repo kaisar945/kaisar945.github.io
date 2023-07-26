@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2023-07-26</lastmod>
+  </url>
+  <url>
     <loc>http://kaisar.kozow.com/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/</loc>
     <lastmod>2023-05-12</lastmod>
   </url>
@@ -11,10 +15,6 @@
   <url>
     <loc>http://kaisar.kozow.com/2023/03/30/%E5%88%BB%E6%BB%91%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2023-03-30</lastmod>
-  </url>
-  <url>
-    <loc>http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2023-03-21</lastmod>
   </url>
   <url>
     <loc>http://kaisar.kozow.com/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/</loc>
@@ -45,11 +45,11 @@
     <lastmod>2023-01-30</lastmod>
   </url>
   <url>
-    <loc>http://kaisar.kozow.com/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://kaisar.kozow.com/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/</loc>
     <lastmod>2023-01-30</lastmod>
   </url>
   <url>
-    <loc>http://kaisar.kozow.com/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/</loc>
+    <loc>http://kaisar.kozow.com/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2023-01-30</lastmod>
   </url>
   <url>
