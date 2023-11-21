@@ -153,6 +153,63 @@
     
     
     <article
+  id="post-解决gradle无法同步的问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/"
+    >解决gradle无法同步的问题</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-01-14T03:52:36.000Z" itemprop="datePublished">2021-01-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">Android疑难杂症</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not install Gradle distribution from &#x27;http://services.gradle.org/distributions/gradle-6.5-bin.zip&#x27;.</span><br></pre></td></tr></table></figure>
+
+<p>就在刚刚为了观摩一下<code>libgdx</code>引擎创建了一个工程虽然挂了梯子但是死活同步不了 不用说了肯定还是我们的万里长城防火墙搞的鬼了,感谢方校长让我们离西方的”邪恶势力”又远了一步!</p>
+<p>好了 不吐槽了解决办法也很简单打开项目下的<code>gradle/wrapper/gradle-wrapper.properties</code>文件将下载地址改为<code>https</code>就好了</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-找回Ubuntu16.04中nautilus输入文字快速定位文件功能"
   class="article article-type-post"
   itemscope
@@ -740,78 +797,6 @@
     
     <footer class="article-footer">
        
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-如何远程调试一台Android设备"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/"
-    >如何远程调试一台Android设备</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/" class="article-date">
-  <time datetime="2020-05-21T12:18:10.000Z" itemprop="datePublished">2020-05-21</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/">Android奇巧淫技</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>要想跨越公网调试Android设备首先需要解决两个问题:</p>
-<ol>
-<li>如何让adb走tcp通信</li>
-<li>如何从公网连接这台设备</li>
-</ol>
-<h2 id="第一个问题-通过tcp调试Android手机"><a href="#第一个问题-通过tcp调试Android手机" class="headerlink" title="第一个问题:通过tcp调试Android手机"></a>第一个问题:通过tcp调试Android手机</h2><p>其实<code>adb</code>本身是支持通过tcp协议传输数据的只是可能大部分人从来没用过这个功能,大家可以在终端里面输入adb –help查看,里面有这么几个参数:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">networking:</span><br><span class="line"> connect HOST[:PORT]      connect to a device via TCP/IP</span><br><span class="line"> disconnect [[HOST]:PORT] disconnect from given TCP/IP device, or all</span><br><span class="line">...</span><br><span class="line"> usb                      restart adbd listening on USB</span><br><span class="line"> tcpip PORT               restart adbd listening on TCP on PORT</span><br></pre></td></tr></table></figure>
-
-<p>connect和disconnect是用来连接一台远程设备或者断开远程设备的,usb和tcpip选项是用来切换手机端adbd守护进程工作模式的我们要用到的就是tcpip这个参数使adbd服务监听在一个特定的网络端口上</p>
-<p>在电脑端执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell ifconfig wlan0 #先查看一下手机wifi的ip地址后续连接的时候会用到</span><br><span class="line">adb tcpip 5555 #将手机切换到tcp模式并在5555端口上监听</span><br><span class="line">adb connect 192.168.1.8:5555 #连接手机对应的ip地址和端口</span><br></pre></td></tr></table></figure>
-
-<p>或者在已root的设备上使用<code>termux</code>软件设置adbd为tcp模式</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 持久化设置</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop persist.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line">// 一次性设置重启后失效</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop service.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>至此第一个问题已解决</p> 
-      <a class="article-more-link" href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
     </footer>
   </div>
 
