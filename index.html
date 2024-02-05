@@ -581,23 +581,31 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>通常我们调试应用的时候喜欢使用<code>debug</code>版rom不仅拥有root权限而且附带许多调试工具如<code>sqlite</code>等，但是某些情况下我们可能不得不选择<code>release</code>版rom来调试同时由于该版本特性会缺少很多调试工具使得用起来十分不顺手，因此本文介绍一下如何通过Magisk和termux来增强adb shell的使用体验。</p>
+  <h1 id="Let-adb-shell-use-termux-command"><a href="#Let-adb-shell-use-termux-command" class="headerlink" title="Let adb shell use termux command"></a>Let adb shell use termux command</h1><p>通常我们调试应用的时候喜欢使用debug版rom不仅拥有root权限而且附带许多调试工具如curl、sqlite等，但是某些情况下我们可能不得不选择release版rom来调试由于该版本的特性会缺少很多调试工具使得用起来十分不顺手，因此本文介绍一下如何通过Magisk和termux来增强adb shell的使用体验。</p>
 <h2 id="1-安装Magisk框架"><a href="#1-安装Magisk框架" class="headerlink" title="1. 安装Magisk框架"></a>1. 安装<a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases">Magisk</a>框架</h2><p>该部分不是本文重点请自行搜索对应机型的安装方法。</p>
 <h2 id="2-安装Termux软件"><a href="#2-安装Termux软件" class="headerlink" title="2. 安装Termux软件"></a>2. 安装<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">Termux</a>软件</h2><p>先更新升级一下软件包</p>
 <p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/update_upgrade.png"></p>
 <p>安装常用的软件包如<code>sqlite</code> <code>htop</code>等</p>
 <p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/install_sqlite.png"></p>
-<h2 id="3-adb-shell加载termux环境"><a href="#3-adb-shell加载termux环境" class="headerlink" title="3. adb shell加载termux环境"></a>3. adb shell加载termux环境</h2><p>下载<a href="termux-env">termux-env</a>放置于<code>/data/local/tmp/</code>目录下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb push termux-env /data/local/tmp</span><br></pre></td></tr></table></figure>
+<h2 id="3-adb-shell加载termux环境"><a href="#3-adb-shell加载termux环境" class="headerlink" title="3. adb shell加载termux环境"></a>3. adb shell加载termux环境</h2><ul>
+<li><p>方式一：保存到设备上供以后使用</p>
+<p>下载<a href="termux-env">termux-env</a>放置于<code>/data/local/tmp/</code>目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">adb push termux-env /data/local/tmp</span></span><br></pre></td></tr></table></figure>
 
 <p>使用adb shell以root用户加载<code>termux-env</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell</span><br><span class="line">$ su</span><br><span class="line"># sh /data/local/tmp/termux-env</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">adb shell</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">su</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sh /data/local/tmp/termux-env</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 <p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-sqlite.png"></p>
 <p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-htop.png"></p>
-<blockquote>
-<p>ref: <a target="_blank" rel="noopener" href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></p>
-</blockquote>
+<ul>
+<li><p>方式二：直接在命令行中加载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su -l $(su -c stat -c %u /data/data/com.termux) -s /data/data/com.termux/files/usr/bin/bash -c &#x27;export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></li>
+<li><a target="_blank" rel="noopener" href="https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device">https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/issues/77">https://github.com/termux/termux-app/issues/77</a></li>
+</ol>
  
       <!-- reward -->
       
@@ -875,7 +883,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2023
+        2015-2024
         <i class="ri-heart-fill heart_icon"></i> Kaisar
       </li>
     </ul>
