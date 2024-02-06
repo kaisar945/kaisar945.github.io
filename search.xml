@@ -141,7 +141,7 @@
 <h2 id="逆向工程进阶"><a href="#逆向工程进阶" class="headerlink" title="逆向工程进阶"></a>逆向工程进阶</h2><h3 id="Objection-手术刀级别的神器"><a href="#Objection-手术刀级别的神器" class="headerlink" title="Objection 手术刀级别的神器"></a>Objection 手术刀级别的神器</h3><p>具体用法参考:<a href="https://github.com/sensepost/objection">https://github.com/sensepost/objection</a></p>
 <h3 id="打印方法调用堆栈"><a href="#打印方法调用堆栈" class="headerlink" title="打印方法调用堆栈"></a>打印方法调用堆栈</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Log</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;android.util.Log&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Exception</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;java.lang.Exception&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Log</span>.<span class="title function_">getStackTraceString</span>(<span class="title class_">Exception</span>.$new()));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一行解决</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;android.util.Log&#x27;</span>).<span class="title function_">getStackTraceString</span>(<span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;java.lang.Exception&#x27;</span>).$new()));</span><br></pre></td></tr></table></figure>
 
-<h3 id="查找类加载器"><a href="#查找类加载器" class="headerlink" title="查找类加载器"></a>查找类加载器</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> classLoaders = <span class="title class_">Java</span>.<span class="title function_">enumerateClassLoadersSync</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; classLoaders.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> loader = classLoaders[i]</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        loader.<span class="title function_">findClass</span>(<span class="string">&quot;com.amap.api.location.AMapLocationClient&quot;</span>)</span><br><span class="line">        <span class="title class_">Java</span>.<span class="property">classFactory</span>.<span class="property">loader</span> = loader;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;found class loader:\n&quot;</span> + loader)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="keyword">if</span> (error.<span class="property">message</span>.<span class="title function_">includes</span>(<span class="string">&quot;ClassNotFoundException&quot;</span>)) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;\n You are trying to load encrypted class, trying next loader&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="查找类加载器"><a href="#查找类加载器" class="headerlink" title="查找类加载器"></a>查找类加载器</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> searchClass = <span class="string">&quot;com.example.Main&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> classLoaders = <span class="title class_">Java</span>.<span class="title function_">enumerateClassLoadersSync</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; classLoaders.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> loader = classLoaders[i]</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        loader.<span class="title function_">findClass</span>(searchClass);</span><br><span class="line">        <span class="title class_">Java</span>.<span class="property">classFactory</span>.<span class="property">loader</span> = loader;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;found class loader:\n&quot;</span> + loader)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="keyword">if</span> (error.<span class="property">message</span>.<span class="title function_">includes</span>(<span class="string">&quot;ClassNotFoundException&quot;</span>)) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;\n You are trying to load encrypted class, trying next loader&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="Hook不生效"><a href="#Hook不生效" class="headerlink" title="Hook不生效"></a>Hook不生效</h3><p>尝试禁止优化，相关信息:<a href="https://github.com/frida/frida/issues/1395">https://github.com/frida/frida/issues/1395</a></p>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">deoptimizeEverything</span>();</span><br></pre></td></tr></table></figure>
@@ -166,6 +166,167 @@
       <tags>
         <tag>Android</tag>
         <tag>移动安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDA-Pro入门知识</title>
+    <url>/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h2 id="快捷键指南"><a href="#快捷键指南" class="headerlink" title="快捷键指南"></a>快捷键指南</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Tab</code></td>
+<td>在反汇编视图和伪代码视图之间切换</td>
+</tr>
+<tr>
+<td><code>F5</code></td>
+<td>转换为伪代码</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>对函数或变量进行重命名</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>取消数据定义</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>将数据解析为代码</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>将当前数据类型转成为枚举成员</td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>对函数或变量进行类型定义</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>跳转函数地址</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>对代码进行注释</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>查找函数交叉引用/查找变量的本地引用</td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>列表视图与图形视图切换</td>
+</tr>
+<tr>
+<td><code>Shift</code> + <code>F12</code></td>
+<td>打开字符串表</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Alt</code> + <code>X</code></td>
+<td>查找变量全局引用</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>W</code></td>
+<td>调出数据库快照</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>T</code></td>
+<td>调出数据库快照管理器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="数据类型定义"><a href="#数据类型定义" class="headerlink" title="数据类型定义"></a>数据类型定义</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">byte / char / uint8 / int8    -&gt; db 1个字节</span><br><span class="line">word / short / uint16 / int16 -&gt; dw 2个字节</span><br><span class="line">dword / int / uint …         -&gt; dd 4个字节 （32位指针）</span><br><span class="line">qword / int64 …              -&gt; dq 8个字节 （64位指针）</span><br></pre></td></tr></table></figure>
+
+<p>大部分情况下，整数以小端序存储在内存</p>
+<p>0xA1B2C3D4 存储到内存的顺序为 D4 C3 B2 A1</p>
+<h2 id="前缀说明"><a href="#前缀说明" class="headerlink" title="前缀说明"></a>前缀说明</h2><table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sub_</td>
+<td>指令和子函数起点</td>
+</tr>
+<tr>
+<td>locret_</td>
+<td>返回指令</td>
+</tr>
+<tr>
+<td>loc_</td>
+<td>指令</td>
+</tr>
+<tr>
+<td>off_</td>
+<td>数据，包含偏移量</td>
+</tr>
+<tr>
+<td>seg_</td>
+<td>数据，包含段地址值</td>
+</tr>
+<tr>
+<td>asc_</td>
+<td>数据，ASCII字符串</td>
+</tr>
+<tr>
+<td>byte_</td>
+<td>数据，字节（或字节数组）</td>
+</tr>
+<tr>
+<td>word_</td>
+<td>数据，16位数据（或字数组）</td>
+</tr>
+<tr>
+<td>dword_</td>
+<td>数据，32位数据（或双字数组）</td>
+</tr>
+<tr>
+<td>qword_</td>
+<td>数据，64位数据（或4字数组）</td>
+</tr>
+<tr>
+<td>flt_</td>
+<td>浮点数据，32位（或浮点数组）</td>
+</tr>
+<tr>
+<td>dbl_</td>
+<td>浮点数，64位（或双精度数组）</td>
+</tr>
+<tr>
+<td>tbyte_</td>
+<td>浮点数，80位（或扩展精度浮点数）</td>
+</tr>
+<tr>
+<td>stru_</td>
+<td>结构体(或结构体数组)</td>
+</tr>
+<tr>
+<td>algn_</td>
+<td>对齐指示</td>
+</tr>
+<tr>
+<td>unk_</td>
+<td>未处理字</td>
+</tr>
+</tbody></table>
+<h2 id="查找函数地址偏移量"><a href="#查找函数地址偏移量" class="headerlink" title="查找函数地址偏移量"></a>查找函数地址偏移量</h2><p>打开<code>Pseudocode</code>窗口在左下角可以找到函数位于文件的地址偏移量</p>
+<p><img src="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/image-20231227110658934.png" alt="image-20231227110658934"></p>
+]]></content>
+      <categories>
+        <category>Android开发实战</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -271,30 +432,18 @@
     <title>adb shell加载termux环境</title>
     <url>/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h1 id="Let-adb-shell-use-termux-command"><a href="#Let-adb-shell-use-termux-command" class="headerlink" title="Let adb shell use termux command"></a>Let adb shell use termux command</h1><p>通常我们调试应用的时候喜欢使用debug版rom不仅拥有root权限而且附带许多调试工具如curl、sqlite等，但是某些情况下我们可能不得不选择release版rom来调试由于该版本的特性会缺少很多调试工具使得用起来十分不顺手，因此本文介绍一下如何通过Magisk和termux来增强adb shell的使用体验。</p>
-<h2 id="1-安装Magisk框架"><a href="#1-安装Magisk框架" class="headerlink" title="1. 安装Magisk框架"></a>1. 安装<a href="https://github.com/topjohnwu/Magisk/releases">Magisk</a>框架</h2><p>该部分不是本文重点请自行搜索对应机型的安装方法。</p>
-<h2 id="2-安装Termux软件"><a href="#2-安装Termux软件" class="headerlink" title="2. 安装Termux软件"></a>2. 安装<a href="https://f-droid.org/en/packages/com.termux/">Termux</a>软件</h2><p>先更新升级一下软件包</p>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/update_upgrade.png"></p>
-<p>安装常用的软件包如<code>sqlite</code> <code>htop</code>等</p>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/install_sqlite.png"></p>
-<h2 id="3-adb-shell加载termux环境"><a href="#3-adb-shell加载termux环境" class="headerlink" title="3. adb shell加载termux环境"></a>3. adb shell加载termux环境</h2><ul>
-<li><p>方式一：保存到设备上供以后使用</p>
-<p>下载<a href="termux-env">termux-env</a>放置于<code>/data/local/tmp/</code>目录下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">adb push termux-env /data/local/tmp</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-Unlock-root-解锁Root权限"><a href="#1-Unlock-root-解锁Root权限" class="headerlink" title="1. Unlock root/解锁Root权限"></a>1. Unlock root/解锁Root权限</h2><p>本篇文章以<a href="https://github.com/topjohnwu/Magisk/releases">Magisk</a> Root为例，但该部分不是本文重点请自行搜索对应机型的安装方法。</p>
+<p>另外提一下其他root软件没有经过测试也许有用。</p>
+<h2 id="2-Install-termux-terminal-安装Termux终端"><a href="#2-Install-termux-terminal-安装Termux终端" class="headerlink" title="2. Install termux terminal/安装Termux终端"></a>2. Install termux terminal/安装Termux终端</h2><p><a href="https://f-droid.org/en/packages/com.termux/">https://f-droid.org/en/packages/com.termux/</a></p>
+<h2 id="3-Let’s-work-adb-shell加载termux环境"><a href="#3-Let’s-work-adb-shell加载termux环境" class="headerlink" title="3. Let’s work/adb shell加载termux环境"></a>3. Let’s work/adb shell加载termux环境</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su -c &quot;sed -i &#x27;s/\\(com\\.termux [0-9][0-9]* \\)0/\\11/&#x27; /data/system/packages.list&quot;</span><br><span class="line">run-as com.termux files/usr/bin/bash -c &#x27;export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i&#x27;</span><br></pre></td></tr></table></figure>
 
-<p>使用adb shell以root用户加载<code>termux-env</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">adb shell</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">su</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sh /data/local/tmp/termux-env</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-sqlite.png"></p>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-htop.png"></p>
-<ul>
-<li><p>方式二：直接在命令行中加载</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su -l $(su -c stat -c %u /data/data/com.termux) -s /data/data/com.termux/files/usr/bin/bash -c &#x27;export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></li>
-<li><a href="https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device">https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device</a></li>
-<li><a href="https://github.com/termux/termux-app/issues/77">https://github.com/termux/termux-app/issues/77</a></li>
-</ol>
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/image-20240206144911168.png" alt="image-20240206144911168"></p>
+<blockquote>
+<p> Reference|引用资料</p>
+<p> 1.<a href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></p>
+<p> 2.<a href="https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device">https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device</a></p>
+<p> 3.<a href="https://github.com/termux/termux-app/issues/77">https://github.com/termux/termux-app/issues/77</a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Android小技巧</category>

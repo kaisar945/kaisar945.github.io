@@ -153,6 +153,209 @@
     
     
     <article
+  id="post-IDA-Pro入门知识"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/"
+    >IDA-Pro入门知识</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/" class="article-date">
+  <time datetime="2023-12-27T03:13:28.000Z" itemprop="datePublished">2023-12-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android开发实战</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="快捷键指南"><a href="#快捷键指南" class="headerlink" title="快捷键指南"></a>快捷键指南</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Tab</code></td>
+<td>在反汇编视图和伪代码视图之间切换</td>
+</tr>
+<tr>
+<td><code>F5</code></td>
+<td>转换为伪代码</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>对函数或变量进行重命名</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>取消数据定义</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>将数据解析为代码</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>将当前数据类型转成为枚举成员</td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>对函数或变量进行类型定义</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>跳转函数地址</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>对代码进行注释</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>查找函数交叉引用/查找变量的本地引用</td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>列表视图与图形视图切换</td>
+</tr>
+<tr>
+<td><code>Shift</code> + <code>F12</code></td>
+<td>打开字符串表</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Alt</code> + <code>X</code></td>
+<td>查找变量全局引用</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>W</code></td>
+<td>调出数据库快照</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>T</code></td>
+<td>调出数据库快照管理器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="数据类型定义"><a href="#数据类型定义" class="headerlink" title="数据类型定义"></a>数据类型定义</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">byte / char / uint8 / int8    -&gt; db 1个字节</span><br><span class="line">word / short / uint16 / int16 -&gt; dw 2个字节</span><br><span class="line">dword / int / uint …         -&gt; dd 4个字节 （32位指针）</span><br><span class="line">qword / int64 …              -&gt; dq 8个字节 （64位指针）</span><br></pre></td></tr></table></figure>
+
+<p>大部分情况下，整数以小端序存储在内存</p>
+<p>0xA1B2C3D4 存储到内存的顺序为 D4 C3 B2 A1</p>
+<h2 id="前缀说明"><a href="#前缀说明" class="headerlink" title="前缀说明"></a>前缀说明</h2><table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sub_</td>
+<td>指令和子函数起点</td>
+</tr>
+<tr>
+<td>locret_</td>
+<td>返回指令</td>
+</tr>
+<tr>
+<td>loc_</td>
+<td>指令</td>
+</tr>
+<tr>
+<td>off_</td>
+<td>数据，包含偏移量</td>
+</tr>
+<tr>
+<td>seg_</td>
+<td>数据，包含段地址值</td>
+</tr>
+<tr>
+<td>asc_</td>
+<td>数据，ASCII字符串</td>
+</tr>
+<tr>
+<td>byte_</td>
+<td>数据，字节（或字节数组）</td>
+</tr>
+<tr>
+<td>word_</td>
+<td>数据，16位数据（或字数组）</td>
+</tr>
+<tr>
+<td>dword_</td>
+<td>数据，32位数据（或双字数组）</td>
+</tr>
+<tr>
+<td>qword_</td>
+<td>数据，64位数据（或4字数组）</td>
+</tr>
+<tr>
+<td>flt_</td>
+<td>浮点数据，32位（或浮点数组）</td>
+</tr>
+<tr>
+<td>dbl_</td>
+<td>浮点数，64位（或双精度数组）</td>
+</tr>
+<tr>
+<td>tbyte_</td>
+<td>浮点数，80位（或扩展精度浮点数）</td>
+</tr>
+<tr>
+<td>stru_</td>
+<td>结构体(或结构体数组)</td>
+</tr>
+<tr>
+<td>algn_</td>
+<td>对齐指示</td>
+</tr>
+<tr>
+<td>unk_</td>
+<td>未处理字</td>
+</tr>
+</tbody></table>
+<h2 id="查找函数地址偏移量"><a href="#查找函数地址偏移量" class="headerlink" title="查找函数地址偏移量"></a>查找函数地址偏移量</h2><p>打开<code>Pseudocode</code>窗口在左下角可以找到函数位于文件的地址偏移量</p>
+<p><img src="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/image-20231227110658934.png" alt="image-20231227110658934"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-aosp源码漫游"
   class="article article-type-post"
   itemscope
@@ -582,30 +785,18 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h1 id="Let-adb-shell-use-termux-command"><a href="#Let-adb-shell-use-termux-command" class="headerlink" title="Let adb shell use termux command"></a>Let adb shell use termux command</h1><p>通常我们调试应用的时候喜欢使用debug版rom不仅拥有root权限而且附带许多调试工具如curl、sqlite等，但是某些情况下我们可能不得不选择release版rom来调试由于该版本的特性会缺少很多调试工具使得用起来十分不顺手，因此本文介绍一下如何通过Magisk和termux来增强adb shell的使用体验。</p>
-<h2 id="1-安装Magisk框架"><a href="#1-安装Magisk框架" class="headerlink" title="1. 安装Magisk框架"></a>1. 安装<a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases">Magisk</a>框架</h2><p>该部分不是本文重点请自行搜索对应机型的安装方法。</p>
-<h2 id="2-安装Termux软件"><a href="#2-安装Termux软件" class="headerlink" title="2. 安装Termux软件"></a>2. 安装<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">Termux</a>软件</h2><p>先更新升级一下软件包</p>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/update_upgrade.png"></p>
-<p>安装常用的软件包如<code>sqlite</code> <code>htop</code>等</p>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/install_sqlite.png"></p>
-<h2 id="3-adb-shell加载termux环境"><a href="#3-adb-shell加载termux环境" class="headerlink" title="3. adb shell加载termux环境"></a>3. adb shell加载termux环境</h2><ul>
-<li><p>方式一：保存到设备上供以后使用</p>
-<p>下载<a href="termux-env">termux-env</a>放置于<code>/data/local/tmp/</code>目录下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">adb push termux-env /data/local/tmp</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-Unlock-root-解锁Root权限"><a href="#1-Unlock-root-解锁Root权限" class="headerlink" title="1. Unlock root/解锁Root权限"></a>1. Unlock root/解锁Root权限</h2><p>本篇文章以<a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases">Magisk</a> Root为例，但该部分不是本文重点请自行搜索对应机型的安装方法。</p>
+<p>另外提一下其他root软件没有经过测试也许有用。</p>
+<h2 id="2-Install-termux-terminal-安装Termux终端"><a href="#2-Install-termux-terminal-安装Termux终端" class="headerlink" title="2. Install termux terminal/安装Termux终端"></a>2. Install termux terminal/安装Termux终端</h2><p><a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">https://f-droid.org/en/packages/com.termux/</a></p>
+<h2 id="3-Let’s-work-adb-shell加载termux环境"><a href="#3-Let’s-work-adb-shell加载termux环境" class="headerlink" title="3. Let’s work/adb shell加载termux环境"></a>3. Let’s work/adb shell加载termux环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su -c &quot;sed -i &#x27;s/\\(com\\.termux [0-9][0-9]* \\)0/\\11/&#x27; /data/system/packages.list&quot;</span><br><span class="line">run-as com.termux files/usr/bin/bash -c &#x27;export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i&#x27;</span><br></pre></td></tr></table></figure>
 
-<p>使用adb shell以root用户加载<code>termux-env</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">adb shell</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">su</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sh /data/local/tmp/termux-env</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-sqlite.png"></p>
-<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/demo-htop.png"></p>
-<ul>
-<li><p>方式二：直接在命令行中加载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su -l $(su -c stat -c %u /data/data/com.termux) -s /data/data/com.termux/files/usr/bin/bash -c &#x27;export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></li>
-<li><a target="_blank" rel="noopener" href="https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device">https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/issues/77">https://github.com/termux/termux-app/issues/77</a></li>
-</ol>
+<p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/image-20240206144911168.png" alt="image-20240206144911168"></p>
+<blockquote>
+<p> Reference|引用资料</p>
+<p> 1.<a target="_blank" rel="noopener" href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></p>
+<p> 2.<a target="_blank" rel="noopener" href="https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device">https://android.stackexchange.com/questions/225260/termux-running-termux-via-adb-without-any-direct-interaction-with-the-device</a></p>
+<p> 3.<a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/issues/77">https://github.com/termux/termux-app/issues/77</a></p>
+</blockquote>
  
       <!-- reward -->
       
@@ -793,69 +984,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-TypeScript回调函数this指向问题"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/"
-    >TypeScript回调函数this指向问题</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2021-03-01T11:49:46.000Z" itemprop="datePublished">2021-03-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E4%B8%AD%E8%B6%9F%E8%BF%87%E7%9A%84%E5%A4%A7%E5%9D%91/">开发中趟过的大坑</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>最近在使用<code>TypeScript</code>开发<code>frida hook</code>时遇到一个问题,当把一个类的函数传给另一个方法作为回调函数时,<code>this</code>指针指向的不是原始类的示例,经过一番搜索发现有很多人也碰到同样的问题所以在此记录一下:<br>出问题的代码:</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SetIntervalTest</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">someNumber</span>: <span class="built_in">number</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="built_in">setInterval</span>(<span class="variable language_">this</span>.<span class="property">setIntervalCallback</span>, <span class="number">400</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">setIntervalCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-<p>改成这样就可以了</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> setIntervalCallback = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>因为只是为了临时解决业务问题所以暂不深究日后有空再来研究研究</p>
-<blockquote>
-<p>相关链接:<a target="_blank" rel="noopener" href="https://github.com/microsoft/TypeScript/issues/10285">https://github.com/microsoft/TypeScript/issues/10285</a></p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">编程中的问题</a></li></ul>
 
     </footer>
   </div>
