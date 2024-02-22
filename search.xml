@@ -25,11 +25,10 @@
 <p>看到这里的注释我想大家应该的都明白了，对于apk文件处理方式有些特殊会优先在同级目录查找odex文件，所以我需要做的仅仅是把dex文件改为apk文件然后通过反射调用<a href="http://androidxref.com/4.2.2_r1/xref/libcore/dalvik/src/main/java/dalvik/system/DexFile.java#139">DexFile#loadDex函数</a>指定第二个参数odex文件名称提前把odex文件生成出来再使用app_process去运行apk文件就可以了，不过为什么在Android5.0以上可以直接加载dex文件呢，于是我在8.0系统上又试了一下发现在运行dex文件的同时系统会自动在同级目录创建一个oat目录里面存放的正是odex文件，所以由此可以猜测当在高版本的系统上运行app_process命令如果没有权限写入<code>/data/dalvik-cache</code>则会在同级目录自动创建odex文件，这只是我个人的猜想并没有详细的研究源码怎么实现的感兴趣的话可以自己研究一下。</p>
 ]]></content>
       <categories>
-        <category>Android疑难杂症</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-        <tag>编程中的问题</tag>
+        <tag>疑难杂症</tag>
       </tags>
   </entry>
   <entry>
@@ -56,14 +55,15 @@
 </ul>
 <p>这几个数据中，除了array是用于保存数据的以外，这里最终的主要是position，limit和capacity三个属性，因为对于写入和读取模式，这三个属性的表示的含义大不一样。</p>
 <span id="more"></span></li>
-<li><p>1 <strong>写入模式</strong><br> 如下图所示为初始状态和写入3个字节之后position，limit和capacity三个属性的状态：</p>
-<p> <img src="https://pic3.zhimg.com/80/v2-7c322e5d80e7ff2300d037c5b8b3f9de_720w.jpg"></p>
-<p> 从图中可以看出，在写入模式下，limit指向的始终是当前可最多写入的数组索引下标，position指向的则是下一个可以写入的数据的索引位置，而capacity则始终不会变化，即为数组大小。</p>
-<p> 1.2 <strong>读取模式</strong></p>
-<p> 假设我们按照上述方式在初始长度为6的ByteBuffer中写入了三个字节的数据，此时我们将模式切换为读取模式，那么这里的position，limit和capacity则变为如下形式：</p>
-<p> <img src="https://pic4.zhimg.com/80/v2-30b16959027ab4dbbc8252557e22c717_720w.jpg"></p>
-<p> 可以看到，当切换为读取模式之后，limit则指向了最后一个可读取数据的下一个位置，表示最多可读取的数据；position则指向了数组的初始位置，表示下一个可读取的数据的位置；capacity还是表示数组的最大容量。这里当我们一个一个读取数据的时候，position就会依次往下切换，当期与limit重合时，就表示当前ByteBuffer中已没有可读取的数据了。</p>
-</li>
+</ol>
+<p>1.1 <strong>写入模式</strong><br>   如下图所示为初始状态和写入3个字节之后position，limit和capacity三个属性的状态：</p>
+<p>   <img src="https://pic3.zhimg.com/80/v2-7c322e5d80e7ff2300d037c5b8b3f9de_720w.jpg"></p>
+<p>   从图中可以看出，在写入模式下，limit指向的始终是当前可最多写入的数组索引下标，position指向的则是下一个可以写入的数据的索引位置，而capacity则始终不会变化，即为数组大小。</p>
+<p>   1.2 <strong>读取模式</strong></p>
+<p>   假设我们按照上述方式在初始长度为6的ByteBuffer中写入了三个字节的数据，此时我们将模式切换为读取模式，那么这里的position，limit和capacity则变为如下形式：</p>
+<p>   <img src="https://pic4.zhimg.com/80/v2-30b16959027ab4dbbc8252557e22c717_720w.jpg"></p>
+<p>   可以看到，当切换为读取模式之后，limit则指向了最后一个可读取数据的下一个位置，表示最多可读取的数据；position则指向了数组的初始位置，表示下一个可读取的数据的位置；capacity还是表示数组的最大容量。这里当我们一个一个读取数据的时候，position就会依次往下切换，当期与limit重合时，就表示当前ByteBuffer中已没有可读取的数据了。</p>
+<ol start="2">
 <li><p><strong>使用实例</strong></p>
 <p>对于ByteBuffer的基本使用方式，从上面的演示中就可以看出，其主要有初始化，写入，切换和读取几个基本操作。如下是ByteBuffer的一个基本使用示例：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ByteBufferApp</span> &#123;</span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testBuffer</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 初始化一个大小为6的ByteBuffer</span></span><br><span class="line">    <span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">6</span>);</span><br><span class="line">    print(buffer);  <span class="comment">// 初始状态：position: 0, limit: 6, capacity: 6</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 往buffer中写入3个字节的数据</span></span><br><span class="line">    buffer.put((<span class="type">byte</span>) <span class="number">1</span>);</span><br><span class="line">    buffer.put((<span class="type">byte</span>) <span class="number">2</span>);</span><br><span class="line">    buffer.put((<span class="type">byte</span>) <span class="number">3</span>);</span><br><span class="line">    print(buffer);  <span class="comment">// 写入之后的状态：position: 3, limit: 6, capacity: 6</span></span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;************** after flip **************&quot;</span>);</span><br><span class="line">    buffer.flip();</span><br><span class="line">    print(buffer);  <span class="comment">// 切换为读取模式之后的状态：position: 0, limit: 3, capacity: 6</span></span><br><span class="line"></span><br><span class="line">    buffer.get();</span><br><span class="line">    buffer.get();</span><br><span class="line">    print(buffer);  <span class="comment">// 读取两个数据之后的状态：position: 2, limit: 3, capacity: 6</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(ByteBuffer buffer)</span> &#123;</span><br><span class="line">    System.out.printf(<span class="string">&quot;position: %d, limit: %d, capacity: %d\n&quot;</span>,</span><br><span class="line">      buffer.position(), buffer.limit(), buffer.capacity());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -84,11 +84,11 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>编程中的问题</tag>
         <tag>Java</tag>
+        <tag>开发实战</tag>
       </tags>
   </entry>
   <entry>
@@ -161,10 +161,9 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>移动安全</tag>
       </tags>
   </entry>
@@ -323,10 +322,10 @@
 <p><img src="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/image-20231227110658934.png" alt="image-20231227110658934"></p>
 ]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>移动安全</tag>
       </tags>
   </entry>
   <entry>
@@ -342,10 +341,10 @@
 
 ]]></content>
       <categories>
-        <category>开发中趟过的大坑</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>编程中的问题</tag>
+        <tag>疑难杂症</tag>
         <tag>Java</tag>
       </tags>
   </entry>
@@ -364,10 +363,10 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>开发中趟过的大坑</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>编程中的问题</tag>
+        <tag>疑难杂症</tag>
       </tags>
   </entry>
   <entry>
@@ -395,12 +394,11 @@
 <p>大佬说:<strong>狗东把log给吃了…</strong>  (划重点此题必考) 于是我把打log的地方换成了写文件 果然log有了 WTF 就这么简单? 这你敢信? 我以为用了什么宇宙无敌黑科技 结果就这搞了我几个小时?   卒…</p>
 ]]></content>
       <categories>
-        <category>Xposed模块开发</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-        <tag>编程中的问题</tag>
         <tag>移动安全</tag>
+        <tag>疑难杂症</tag>
         <tag>Xposed</tag>
       </tags>
   </entry>
@@ -426,10 +424,10 @@
 
 ]]></content>
       <categories>
-        <category>Android小技巧</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
@@ -451,10 +449,10 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>Android小技巧</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
@@ -464,10 +462,10 @@
 
 <h2 id="系统应用源码位置"><a href="#系统应用源码位置" class="headerlink" title="系统应用源码位置"></a>系统应用源码位置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">packages/apps/</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>开发实战</tag>
       </tags>
   </entry>
   <entry>
@@ -522,10 +520,10 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Linux相关</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
@@ -548,10 +546,10 @@
 <p>所以只需要将命令改成这样即可:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">adb exec-out uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Android小技巧</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
@@ -604,16 +602,15 @@
 <p>部署好后访问安装OpenSTF管理平台机器的ip地址加端口7100,如<a href="http://192.168.1.1:7100/">http://192.168.1.1:7100</a></p>
 ]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-        <tag>Linux</tag>
+        <tag>开发实战</tag>
       </tags>
   </entry>
   <entry>
     <title>刻滑入门</title>
-    <url>/2023/03/30/%E5%88%BB%E6%BB%91%E5%85%A5%E9%97%A8/</url>
+    <url>/2023/10/29/%E5%88%BB%E6%BB%91%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h2 id="一、滑行姿态"><a href="#一、滑行姿态" class="headerlink" title="一、滑行姿态"></a>一、滑行姿态</h2><p>滑雪是下半身运动，对于初学者首先要保证上半身不动尽量使用下半身的力量去控制雪板。</p>
 <p>这里有个小技巧可以将后手<strong>背于腰部</strong>这样既可以保证上半身不弯曲也可以保证手不会乱动影响重心。</p>
 <p>总结一下几点：</p>
@@ -639,7 +636,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>滑雪</category>
+        <category>生活</category>
       </categories>
       <tags>
         <tag>运动</tag>
@@ -650,7 +647,7 @@
     <url>/2023/01/31/%E5%A5%A5%E6%9E%97%E5%B7%B4%E6%96%AFII/</url>
     <content><![CDATA[<h2 id="我的第一台微单奥林巴斯II"><a href="#我的第一台微单奥林巴斯II" class="headerlink" title="我的第一台微单奥林巴斯II"></a>我的第一台微单奥林巴斯II</h2>]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>生活</category>
       </categories>
       <tags>
         <tag>旅行</tag>
@@ -679,10 +676,10 @@
 </ol>
 <h2 id="或者可以使用下面的脚本自动安装"><a href="#或者可以使用下面的脚本自动安装" class="headerlink" title="或者可以使用下面的脚本自动安装"></a>或者可以使用下面的脚本自动安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/system/bin/sh</span><br><span class="line"></span><br><span class="line"># get the total size in byte</span><br><span class="line">total=0</span><br><span class="line">for apk in *.apk</span><br><span class="line">do</span><br><span class="line">    o=( $(ls -l $apk) )</span><br><span class="line">    let total=$total+$&#123;o[3]&#125;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;pm install-create total size $total&quot;</span><br><span class="line"></span><br><span class="line">create=$(pm install-create -S $total)</span><br><span class="line">sid=$(echo $create |grep -E -o &#x27;[0-9]+&#x27;)</span><br><span class="line"></span><br><span class="line">echo &quot;pm install-create session id $sid&quot;</span><br><span class="line"></span><br><span class="line">for apk in *.apk</span><br><span class="line">do</span><br><span class="line">    _ls_out=( $(ls -l $apk) )</span><br><span class="line">    echo &quot;write $apk to $sid&quot;</span><br><span class="line">    cat $apk | pm install-write -S $&#123;_ls_out[3]&#125; $sid $apk -</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">pm install-commit $sid</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>开发实战</tag>
       </tags>
   </entry>
   <entry>
@@ -696,7 +693,7 @@
 <p>那为什么有两种呢让我们来分别分析一下这两个方案的优缺点:</p>
 <ul>
 <li><p>第一种使用原生的<code>SeekBar</code>最简单但是旋转后的宽高就不对了,实际上的宽是旋转后的高这也导致如果我们要增加<code>SeekBar</code>的高度就需要修改宽度但是会导致布局错乱以下是旋转前后对比:</p>
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SeekBar</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:id</span>=<span class="string">&quot;@+id/seekbar1&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_width</span>=<span class="string">&quot;120dp&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:clickable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layoutDirection</span>=<span class="string">&quot;rtl&quot;</span>/&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">SeekBar</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:id</span>=<span class="string">&quot;@+id/seekbar2&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_width</span>=<span class="string">&quot;120dp&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:clickable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layoutDirection</span>=<span class="string">&quot;rtl&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:rotation</span>=<span class="string">&quot;90&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SeekBar</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/seekbar1&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;120dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:clickable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layoutDirection</span>=<span class="string">&quot;rtl&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">SeekBar</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/seekbar2&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;120dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:clickable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layoutDirection</span>=<span class="string">&quot;rtl&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:rotation</span>=<span class="string">&quot;90&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <span id="more"></span>
@@ -721,10 +718,10 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求知若渴遇到不懂的多研究研究源码总能在里面找到惊喜</p>
 ]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>开发实战</tag>
       </tags>
   </entry>
   <entry>
@@ -744,10 +741,9 @@
 
 ]]></content>
       <categories>
-        <category>Xposed模块开发</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>移动安全</tag>
         <tag>Xposed</tag>
       </tags>
@@ -806,10 +802,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Android奇巧淫技</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
@@ -822,10 +818,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Linux相关</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
@@ -835,8 +831,11 @@
 
 ]]></content>
       <categories>
-        <category>Android小技巧</category>
+        <category>Android</category>
       </categories>
+      <tags>
+        <tag>奇巧淫技</tag>
+      </tags>
   </entry>
   <entry>
     <title>特斯拉-科技与狠活</title>
@@ -890,10 +889,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>特斯拉</category>
+        <category>车</category>
       </categories>
       <tags>
-        <tag>车</tag>
+        <tag>Tesla</tag>
       </tags>
   </entry>
   <entry>
@@ -929,11 +928,10 @@
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://fqrouter.tumblr.com/post/51474945203/socks%E4%BB%A3%E7%90%86%E8%BD%ACvpn">socks代理转VPN</a></p>
 ]]></content>
       <categories>
-        <category>Android开发实战</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-        <tag>编程中的问题</tag>
+        <tag>开发实战</tag>
       </tags>
   </entry>
   <entry>
@@ -949,10 +947,10 @@
 <p>MacOS: <code>~/Library/Application Support/Google/AndroidStudio4.1</code></p>
 ]]></content>
       <categories>
-        <category>Android疑难杂症</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>编程中的问题</tag>
+        <tag>疑难杂症</tag>
       </tags>
   </entry>
   <entry>
@@ -971,10 +969,10 @@
 <p><img src="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/2.png" alt="Screenshot from 2021-12-15 15-29-57"></p>
 ]]></content>
       <categories>
-        <category>Linux相关</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>疑难杂症</tag>
       </tags>
   </entry>
   <entry>
@@ -986,10 +984,10 @@
 <p>好了 不吐槽了解决办法也很简单打开项目下的<code>gradle/wrapper/gradle-wrapper.properties</code>文件将下载地址改为<code>https</code>就好了</p>
 ]]></content>
       <categories>
-        <category>Android疑难杂症</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>编程中的问题</tag>
+        <tag>疑难杂症</tag>
       </tags>
   </entry>
   <entry>
@@ -1014,9 +1012,10 @@
 <h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>至此你已经拥有一个流畅的触摸板鼠标了,当然相比于Mac的触摸板鼠标还差很远但是已经有了几分的样子,用手机当触摸板想想也是蛮炫酷的当然有个不好的地方就是手机的画面是和电脑同步的要是有个黑屏只支持操作的模式就好了.</p>
 ]]></content>
       <categories>
-        <category>Android奇巧淫技</category>
+        <category>Android</category>
       </categories>
       <tags>
+        <tag>奇巧淫技</tag>
         <tag>奇思妙想</tag>
       </tags>
   </entry>
