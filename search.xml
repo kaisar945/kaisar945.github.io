@@ -370,6 +370,25 @@
       </tags>
   </entry>
   <entry>
+    <title>Typora预览hexo文章图片</title>
+    <url>/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/</url>
+    <content><![CDATA[<ol>
+<li><p>在Typora中设置正确的图片复制路径</p>
+<p><img src="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/image-20240222122541351.png" alt="image-20240222122541351"></p>
+</li>
+<li><p>在hexo文章中设置根目录路径</p>
+<p><img src="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/image-20240222122744064.png" alt="image-20240222122744064"></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Xposed为何对京东无法生效</title>
     <url>/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/</url>
     <content><![CDATA[<p>  前一阵子对京东的一个功能比较好奇于是就有了逆向京东的想法,我熟练的拿起了<code>jadx</code>对京东进行反编译居然没有混淆心中狂喜很快就找到入口点,于是又祭出了<code>Xposed</code>大法飞快的写了个插件Hook了<code>Activity</code>的<code>onCreate</code>方法,我迫不及待的跑了起来结果hook貌似没有生效任何Log都没有输出,反复检查后仍不得其解不过此时的我已心中暗暗猜测京东应该有一些反<code>Xposed</code>的机制,因为之前曾见过”酷安”和”知乎”也有这样的功能,于是又Hook了像<code>Class.forName </code>和<code>ClassLoader.loadClass</code>这样的函数来验证一下我的想法</p>

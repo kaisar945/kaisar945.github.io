@@ -153,6 +153,67 @@
     
     
     <article
+  id="post-Typora预览hexo文章图片"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/"
+    >Typora预览hexo文章图片</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/" class="article-date">
+  <time datetime="2024-02-22T04:29:59.000Z" itemprop="datePublished">2024-02-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ol>
+<li><p>在Typora中设置正确的图片复制路径</p>
+<p><img src="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/image-20240222122541351.png" alt="image-20240222122541351"></p>
+</li>
+<li><p>在hexo文章中设置根目录路径</p>
+<p><img src="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/image-20240222122744064.png" alt="image-20240222122744064"></p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-IDA-Pro入门知识"
   class="article article-type-post"
   itemscope
@@ -930,65 +991,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Frida开发手册"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
-    >Frida开发手册</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" class="article-date">
-  <time datetime="2021-04-08T06:14:14.000Z" itemprop="datePublished">2021-04-08</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下是在使用<code>python</code>开发<code>frida</code>脚本过程中收集到的一些用法, 这里将学习的知识点做个归纳总结</p>
-<h2 id="劫持函数"><a href="#劫持函数" class="headerlink" title="劫持函数"></a>劫持函数</h2><h3 id="Java普通函数"><a href="#Java普通函数" class="headerlink" title="Java普通函数"></a>Java普通函数</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Context</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;android.content.Context&#x27;</span>);</span><br><span class="line"><span class="title class_">Context</span>.<span class="property">checkCallingOrSelfPermission</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">permission: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="comment">// 以下两种写法都可以</span></span><br><span class="line">    <span class="comment">// return Context.checkCallingOrSelfPermission.call(this, permission)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">checkCallingOrSelfPermission</span>(permission);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果没有同名的重载函数则直接调用函数的<code>implementation</code>来重写即可</p> 
-      <a class="article-more-link" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
 
     </footer>
   </div>

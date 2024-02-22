@@ -153,6 +153,65 @@
     
     
     <article
+  id="post-Frida开发手册"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
+    >Frida开发手册</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" class="article-date">
+  <time datetime="2021-04-08T06:14:14.000Z" itemprop="datePublished">2021-04-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下是在使用<code>python</code>开发<code>frida</code>脚本过程中收集到的一些用法, 这里将学习的知识点做个归纳总结</p>
+<h2 id="劫持函数"><a href="#劫持函数" class="headerlink" title="劫持函数"></a>劫持函数</h2><h3 id="Java普通函数"><a href="#Java普通函数" class="headerlink" title="Java普通函数"></a>Java普通函数</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Context</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;android.content.Context&#x27;</span>);</span><br><span class="line"><span class="title class_">Context</span>.<span class="property">checkCallingOrSelfPermission</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">permission: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="comment">// 以下两种写法都可以</span></span><br><span class="line">    <span class="comment">// return Context.checkCallingOrSelfPermission.call(this, permission)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">checkCallingOrSelfPermission</span>(permission);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有同名的重载函数则直接调用函数的<code>implementation</code>来重写即可</p> 
+      <a class="article-more-link" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-TypeScript回调函数this指向问题"
   class="article article-type-post"
   itemscope
@@ -738,74 +797,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/" rel="tag">开发实战</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-不通过文件转储直接从adb-shell读取stdout数据"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/"
-    >不通过文件转储直接从adb shell读取stdout数据</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/" class="article-date">
-  <time datetime="2020-08-04T08:20:56.000Z" itemprop="datePublished">2020-08-04</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>通常我们从Android设备中捕获当前UI界面信息使用以下命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell uiautomator dump /sdcard/screen.xml</span><br><span class="line">adb pull /sdcard/screen.xml</span><br></pre></td></tr></table></figure>
-<p>在上面的代码块中我们经历了两个步骤</p>
-<ol>
-<li><p>执行命令结果输出到<code>/sdcard/screen.xml</code></p>
-</li>
-<li><p>拉取设备上的文件</p>
-</li>
-</ol>
-<p>从效率上来看是很慢的那有没有比较快的办法呢? 答案是有的!<br>我们可以利用<code>/dev/tty</code>设备让它直接输出到<code>stdout</code>上这样就省去文件转储了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure>
-<p>你满怀期待着等着结果只看到</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI hierchary dumped to: /dev/tty</span><br></pre></td></tr></table></figure>
-<p>WTF? 这是什么鬼dump出来的信息去哪了?眉头一紧事情好像貌似没有这么简单…<br>经过一番研究发现我们使用的<code>adb shell</code>会将命令输出发给<code>pty</code>经过一顿骚操作<code>pty</code>把数据搞丢了,所以在新版的<code>adb</code>中引入了一个新的功能<code>exec-out</code>该参数可以将二进制数据直接原封不动的输出。详情请参考<a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/system/core/+/5d9d434efadf1c535c7fea634d5306e18c68ef1f"></a></p>
-<p>所以只需要将命令改成这样即可:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb exec-out uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/" rel="tag">奇巧淫技</a></li></ul>
 
     </footer>
   </div>
