@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android Nearby Share快速分享至Linux</title>
+    <url>/2024/04/02/Android-Nearby-Share%E5%BF%AB%E9%80%9F%E5%88%86%E4%BA%AB%E8%87%B3Linux/</url>
+    <content><![CDATA[<p>一直以来原生的Android手机和Linux设备之间共享文字/文件等信息有诸多不便，之前也试过KDE Connect和AirDroid等软件尽管有诸多的第三方软件支持但是总觉得安装app太麻烦而且效果也不尽人意，直到我发现了一个软件 <a href="https://github.com/Martichou/rquickshare">RQuickShare</a> 这款软件支持Google原生的的Nearby Share快速分享用起来十分舒服这里推荐给大家。</p>
+<p><img src="https://github.com/Martichou/rquickshare/raw/master/.github/demo.png" alt="演示图片"></p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>奇巧淫技</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android低版本(4.x)无法通过app_process启动java进程问题详解</title>
     <url>/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>最近遇到一个奇怪的事情，公司有一块业务需要在Android上通过启动一个普通的java进程，但是从后台统计数据上来看在Android4.x上进程无法启动所以找台Nexux4 4.2.2的手机来试果然会崩溃，崩溃日志如下</p>

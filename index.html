@@ -153,6 +153,61 @@
     
     
     <article
+  id="post-Android-Nearby-Share快速分享至Linux"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/04/02/Android-Nearby-Share%E5%BF%AB%E9%80%9F%E5%88%86%E4%BA%AB%E8%87%B3Linux/"
+    >Android Nearby Share快速分享至Linux</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/04/02/Android-Nearby-Share%E5%BF%AB%E9%80%9F%E5%88%86%E4%BA%AB%E8%87%B3Linux/" class="article-date">
+  <time datetime="2024-04-02T10:00:15.000Z" itemprop="datePublished">2024-04-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>一直以来原生的Android手机和Linux设备之间共享文字/文件等信息有诸多不便，之前也试过KDE Connect和AirDroid等软件尽管有诸多的第三方软件支持但是总觉得安装app太麻烦而且效果也不尽人意，直到我发现了一个软件 <a target="_blank" rel="noopener" href="https://github.com/Martichou/rquickshare">RQuickShare</a> 这款软件支持Google原生的的Nearby Share快速分享用起来十分舒服这里推荐给大家。</p>
+<p><img src="https://github.com/Martichou/rquickshare/raw/master/.github/demo.png" alt="演示图片"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/" rel="tag">奇巧淫技</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-Typora预览hexo文章图片"
   class="article article-type-post"
   itemscope
@@ -927,70 +982,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/" rel="tag">摄影剪辑</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-解决Ubuntu-20-04无法导入Charles证书"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/"
-    >解决Ubuntu 20.04无法导入Charles证书</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/" class="article-date">
-  <time datetime="2021-12-15T07:49:22.000Z" itemprop="datePublished">2021-12-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>之前在Ubuntu 16.04中使用Charles进行抓https的包一切都正常,但是最近在家里那台Ubuntu 20.04却始终装不上证书,会出现下面提示</p>
-<p><img src="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/1.png" alt="Screenshot from 2021-12-15 15-10-52"></p>
-<p>每次导入证书右下角<code>Import</code>都不可点击,在Google找了很多资料都认为是一个Bug,毕竟在16.04上这么导入是没有问题的.</p>
-<p>下面记录一下解决方案:</p>
-<ol>
-<li><p>用命令行安装证书,首先导出<code>Charles</code>证书: Help<code>-&gt;</code>SSL Proxying<code>-&gt;</code>Save Charles Root Certificate, 再执行以下命令将证书导入系统</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv charles.pem /usr/local/share/ca-certificates/charles.crt</span><br><span class="line">sudo update-ca-certificates</span><br></pre></td></tr></table></figure></li>
-<li><p>在Charles中开启SSL Proxying: Proxy<code>-&gt;</code>SSL Proxying Settings<code>-&gt;</code>SSL Proxying<code>-&gt;</code>Enable SSL Proxying, 点击Include下的<code>Add</code>按钮<code>Host</code>和<code>Port</code>设置为*, 点击确定即可.</p>
-</li>
-</ol>
-<p><img src="/2021/12/15/%E8%A7%A3%E5%86%B3Ubuntu-20-04%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5Charles%E8%AF%81%E4%B9%A6/2.png" alt="Screenshot from 2021-12-15 15-29-57"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
 
     </footer>
   </div>
