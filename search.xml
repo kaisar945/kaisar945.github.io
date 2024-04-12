@@ -1023,6 +1023,23 @@
       </tags>
   </entry>
   <entry>
+    <title>记录一下解决Google Voice网页版拨打电话一闪而过的问题</title>
+    <url>/2024/04/12/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E8%A7%A3%E5%86%B3Google-Voice%E7%BD%91%E9%A1%B5%E7%89%88%E6%8B%A8%E6%89%93%E7%94%B5%E8%AF%9D%E4%B8%80%E9%97%AA%E8%80%8C%E8%BF%87%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>我的电脑环境是Ubuntu 22.04连接了一个无线蓝牙耳机，当使用Google Voice网页版拨打电话时拨号界面总是一闪而过，后来网上查询各种方法也未解决，经过自己的一番折腾搞明白了原来是音频设置的问题</p>
+<p>先检查一下音频设置有没有问题，麦克风、响铃、扬声器这三个框中都应该能看到你目前连接的设备才对</p>
+<p><img src="/2024/04/12/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E8%A7%A3%E5%86%B3Google-Voice%E7%BD%91%E9%A1%B5%E7%89%88%E6%8B%A8%E6%89%93%E7%94%B5%E8%AF%9D%E4%B8%80%E9%97%AA%E8%80%8C%E8%BF%87%E7%9A%84%E9%97%AE%E9%A2%98/image-20240412114843186.png" alt="image-20240412114843186"></p>
+<p><img src="/2024/04/12/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E8%A7%A3%E5%86%B3Google-Voice%E7%BD%91%E9%A1%B5%E7%89%88%E6%8B%A8%E6%89%93%E7%94%B5%E8%AF%9D%E4%B8%80%E9%97%AA%E8%80%8C%E8%BF%87%E7%9A%84%E9%97%AE%E9%A2%98/image-20240412115030371.png" alt="image-20240412115030371"></p>
+<p>如果不能看见到系统设置中把相对应的输入、输出设备都打开就可以了</p>
+<p><img src="/2024/04/12/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E8%A7%A3%E5%86%B3Google-Voice%E7%BD%91%E9%A1%B5%E7%89%88%E6%8B%A8%E6%89%93%E7%94%B5%E8%AF%9D%E4%B8%80%E9%97%AA%E8%80%8C%E8%BF%87%E7%9A%84%E9%97%AE%E9%A2%98/image-20240412115304805.png" alt="image-20240412115304805"></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>疑难杂症</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>零成本让你拥有Mac触摸板鼠标</title>
     <url>/2020/04/30/%E9%9B%B6%E6%88%90%E6%9C%AC%E8%AE%A9%E4%BD%A0%E6%8B%A5%E6%9C%89Mac%E8%A7%A6%E6%91%B8%E6%9D%BF%E9%BC%A0%E6%A0%87/</url>
     <content><![CDATA[<h2 id="序章"><a href="#序章" class="headerlink" title="序章"></a>序章</h2><p>相信用过Mac触摸板鼠标的都被它的丝滑流畅给惊艳过,但是作为一个IT穷屌丝怎么买得起那样高大上的玩意,不过前几天玩<code>VNC</code>的时候倒是有一个很意外发现用起来简直跟Mac鼠标有得一拼.</p>
