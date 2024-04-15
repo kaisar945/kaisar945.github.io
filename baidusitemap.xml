@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://kaisar.kozow.com/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/</loc>
+    <lastmod>2024-04-15</lastmod>
+  </url>
+  <url>
     <loc>http://kaisar.kozow.com/2023/03/21/ubuntu%E6%8F%90%E5%8D%87%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E7%AF%87/</loc>
     <lastmod>2024-04-15</lastmod>
   </url>
@@ -19,10 +23,6 @@
   <url>
     <loc>http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2024-02-23</lastmod>
-  </url>
-  <url>
-    <loc>http://kaisar.kozow.com/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/</loc>
-    <lastmod>2024-02-22</lastmod>
   </url>
   <url>
     <loc>http://kaisar.kozow.com/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/</loc>

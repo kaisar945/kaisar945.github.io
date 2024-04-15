@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">26</span>
+            <span class="post-count">96</span>
         </span>
     </span>
 
@@ -114,8 +114,10 @@
 <li><p>在Typora中设置正确的图片复制路径</p>
 <p><img src="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/image-20240222122541351.png" alt="image-20240222122541351"></p>
 </li>
-<li><p>在hexo文章中设置根目录路径</p>
-<p><img src="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/image-20240222122744064.png" alt="image-20240222122744064"></p>
+<li><p>在scaffolds/draft.md和scaffolds/post.md中添加<code>typora-root-url</code>这样每次生成的文章中都会自动添加预览目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br><span class="line">typora-root-url: &#123;&#123; title &#125;&#125;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：如果文章标题中包含空格hexo默认会使用<code>-</code>替换，但是在<code>typora-root-url</code>需要手动替换。</p>
 </li>
 </ol>
  
