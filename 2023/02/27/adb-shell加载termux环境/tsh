@@ -9,20 +9,15 @@ loge() { printf "\033[0;31m%s\033[0m\n" "$1"; }
 logi() { printf "\033[0;32m%s\033[0m\n" "$1"; }
 logw() { printf "\033[0;33m%s\033[0m\n" "$1"; }
 
-install_if_not_exist() {
-    fname=$(basename "$0")
-    fpath=/system/bin/$fname
-    if [ ! -f "$fpath" ]; then
-        su -c "mount -o remount,rw /system/bin && ln -s $0 $fpath && mount -o remount,ro /system/bin" &&
-        logi "$fpath Installed, You can run \"$fname\" directly until the device reboot."
+tsh() {
+    if [ "$(su -c id -u)" -eq 0 ]; then
+        # Make the termux debugable
+        su -c "sed -i 's/\\(com\\.termux [0-9][0-9]* \\)0/\\11/' /data/system/packages.list"
+        # shellcheck disable=SC2016
+        run-as com.termux files/usr/bin/bash -c 'export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i'
+    else
+        logw "su permission denyed"
     fi
 }
 
-if [ "$(su -c id -u)" -eq 0 ]; then
-    install_if_not_exist
-    su -c "sed -i 's/\\(com\\.termux [0-9][0-9]* \\)0/\\11/' /data/system/packages.list"
-    # shellcheck disable=SC2016
-    run-as com.termux files/usr/bin/bash -c 'export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i'
-else
-    logw "rootless"
-fi
+logi "tsh command installed to current shell session."

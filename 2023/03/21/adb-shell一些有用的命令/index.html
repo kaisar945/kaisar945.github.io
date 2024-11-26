@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">140</span>
+            <span class="post-count">666</span>
         </span>
     </span>
 
@@ -97,7 +97,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -112,7 +112,14 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><h3 id="WIFI相关"><a href="#WIFI相关" class="headerlink" title="WIFI相关"></a>WIFI相关</h3><h4 id="开启WIFI"><a href="#开启WIFI" class="headerlink" title="开启WIFI"></a>开启WIFI</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cmd -w wifi set-wifi-enabled enabled</span><br></pre></td></tr></table></figure>
+  <h2 id="Activity相关"><a href="#Activity相关" class="headerlink" title="Activity相关"></a>Activity相关</h2><h3 id="启动Activity前停止app"><a href="#启动Activity前停止app" class="headerlink" title="启动Activity前停止app"></a>启动Activity前停止app</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity -S -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动activity并等待打开"><a href="#启动activity并等待打开" class="headerlink" title="启动activity并等待打开"></a>启动activity并等待打开</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity -W -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统属性"><a href="#系统属性" class="headerlink" title="系统属性"></a>系统属性</h2><p>列出存在的属性</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings list system</span><br><span class="line">adb shell settings list global</span><br><span class="line">adb shell settings list secure</span><br><span class="line">adb shell getprop</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><h3 id="WIFI相关"><a href="#WIFI相关" class="headerlink" title="WIFI相关"></a>WIFI相关</h3><h4 id="开启WIFI"><a href="#开启WIFI" class="headerlink" title="开启WIFI"></a>开启WIFI</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cmd -w wifi set-wifi-enabled enabled</span><br></pre></td></tr></table></figure>
 
 <h4 id="扫描WIFI"><a href="#扫描WIFI" class="headerlink" title="扫描WIFI"></a>扫描WIFI</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cmd -w wifi start-scan</span><br></pre></td></tr></table></figure>
 
@@ -122,12 +129,40 @@
 
 <h4 id="连接指定的WIFI"><a href="#连接指定的WIFI" class="headerlink" title="连接指定的WIFI"></a>连接指定的WIFI</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cmd -w wifi connect-network home-wifi wpa2 password</span><br></pre></td></tr></table></figure>
 
+<h4 id="nc命令"><a href="#nc命令" class="headerlink" title="nc命令"></a>nc命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell nc -l -p 8888 # 监听客户端连接</span><br><span class="line">adb shell nc 127.0.0.1 8888 # 连接服务端</span><br></pre></td></tr></table></figure>
 
+<h2 id="设备安全"><a href="#设备安全" class="headerlink" title="设备安全"></a>设备安全</h2><h4 id="设置不锁屏"><a href="#设置不锁屏" class="headerlink" title="设置不锁屏"></a>设置不锁屏</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell locksettings set-disabled true</span><br></pre></td></tr></table></figure>
+
+<h4 id="恢复出厂设置"><a href="#恢复出厂设置" class="headerlink" title="恢复出厂设置"></a>恢复出厂设置</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am broadcast -a android.intent.action.FACTORY_RESET -n android/com.android.server.MasterClearReceiver</span><br></pre></td></tr></table></figure>
 
 <h2 id="移动安全相关"><a href="#移动安全相关" class="headerlink" title="移动安全相关"></a>移动安全相关</h2><h3 id="监控目录下文件事件"><a href="#监控目录下文件事件" class="headerlink" title="监控目录下文件事件"></a>监控目录下文件事件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">inotifywait -r -m /path/to/directory # 监控所有事件</span><br><span class="line">inotifywait -r -m -e create /path/to/directory # 监控特定事件</span><br></pre></td></tr></table></figure>
 
+<h3 id="另辟蹊径检测app是否安装"><a href="#另辟蹊径检测app是否安装" class="headerlink" title="另辟蹊径检测app是否安装"></a>另辟蹊径检测app是否安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stat -c %u /data/data/com.example # 测试在Android11上可用</span><br></pre></td></tr></table></figure>
+
 <h3 id="使用Magisk-root允许所有进程调试"><a href="#使用Magisk-root允许所有进程调试" class="headerlink" title="使用Magisk root允许所有进程调试"></a>使用Magisk root允许所有进程调试</h3><p>参考：<a target="_blank" rel="noopener" href="https://danylokos.github.io/0x02/">https://danylokos.github.io/0x02/</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">magisk resetprop ro.debuggable 1</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop; start</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">magisk resetprop ro.debuggable 1</span><br><span class="line">stop; start</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统启动状态"><a href="#系统启动状态" class="headerlink" title="系统启动状态"></a>系统启动状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell getprop sys.boot_completed # 等于1时启动完成</span><br><span class="line">adb shell getprop init.svc.bootanim # 等于stopped时开机动画完成</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启zygote进程"><a href="#重启zygote进程" class="headerlink" title="重启zygote进程"></a>重启zygote进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell setprop ctl.restart zygote</span><br></pre></td></tr></table></figure>
+
+<h2 id="屏幕相关"><a href="#屏幕相关" class="headerlink" title="屏幕相关"></a>屏幕相关</h2><h3 id="检查是否亮屏"><a href="#检查是否亮屏" class="headerlink" title="检查是否亮屏"></a>检查是否亮屏</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys deviceidle | grep mScreenOn</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys power | grep &quot;Display Power&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示触摸点"><a href="#显示触摸点" class="headerlink" title="显示触摸点"></a>显示触摸点</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put system show_touches 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示触摸位置"><a href="#显示触摸位置" class="headerlink" title="显示触摸位置"></a>显示触摸位置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put system pointer_location 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="录制触屏轨迹"><a href="#录制触屏轨迹" class="headerlink" title="录制触屏轨迹"></a>录制触屏轨迹</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell getevent | grep --line-buffered ^/ | tee /tmp/android-touch-events.log # 录制</span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;printf &quot;%s %d %d %d\n&quot;, substr($1, 1, length($1) -1), strtonum(&quot;0x&quot;$2), strtonum(&quot;0x&quot;$3), strtonum(&quot;0x&quot;$4)&#125;&#x27; /tmp/android-touch-events.log | xargs -l adb shell sendevent # 重放</span><br></pre></td></tr></table></figure>
+
+<h2 id="语言相关"><a href="#语言相关" class="headerlink" title="语言相关"></a>语言相关</h2><h3 id="设置系统语言"><a href="#设置系统语言" class="headerlink" title="设置系统语言"></a>设置系统语言</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb shell content query --uri content://settings/system --where &quot;name=\&#x27;system_locales\&#x27;&quot;</span><br><span class="line"></span><br><span class="line">adb shell content delete --uri content://settings/system --where &quot;name=\&#x27;system_locales\&#x27;&quot;</span><br><span class="line"></span><br><span class="line">adb shell content insert --uri content://settings/system --bind name:s:system_locales --bind value:s:en-US</span><br><span class="line">adb shell content insert --uri content://settings/system --bind name:s:system_locales --bind value:s:zh-Hant-TW</span><br><span class="line">adb shell content insert --uri content://settings/system --bind name:s:system_locales --bind value:s:zh-Hant-TW,en-US,ja-JP</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示相关"><a href="#显示相关" class="headerlink" title="显示相关"></a>显示相关</h2><h3 id="字体缩放"><a href="#字体缩放" class="headerlink" title="字体缩放"></a>字体缩放</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put system font_scale 0.85 # (small)</span><br><span class="line">adb shell settings put system font_scale 1.0 # (default)</span><br><span class="line">adb shell settings put system font_scale 1.15 # (large)</span><br><span class="line">adb shell settings put system font_scale 1.30 # (largest)</span><br><span class="line">adb shell settings put system font_scale 2.0 # (sizes like this can only be achieved with custom adb setting, not from ui)</span><br></pre></td></tr></table></figure>
+
+<h2 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h2><h3 id="分屏模式Split-screen"><a href="#分屏模式Split-screen" class="headerlink" title="分屏模式Split screen"></a>分屏模式Split screen</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity -n com.whatsapp/.Main --windowingMode 3</span><br><span class="line">adb shell am start-activity -n org.telegram.messenger/.DefaultIcon --windowingMode 4</span><br></pre></td></tr></table></figure>
+
+<h3 id="悬浮窗模式Flating-window"><a href="#悬浮窗模式Flating-window" class="headerlink" title="悬浮窗模式Flating window"></a>悬浮窗模式Flating window</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity -n com.whatsapp/.Main --windowingMode 5</span><br><span class="line">adb shell am start-activity -n org.telegram.messenger/.DefaultIcon --windowingMode 5</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->

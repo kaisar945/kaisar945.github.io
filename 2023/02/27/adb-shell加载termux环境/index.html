@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">369</span>
+            <span class="post-count">367</span>
         </span>
     </span>
 
@@ -119,7 +119,9 @@
 <h2 id="3-Let’s-work-adb-shell加载termux环境"><a href="#3-Let’s-work-adb-shell加载termux环境" class="headerlink" title="3. Let’s work/adb shell加载termux环境"></a>3. Let’s work/adb shell加载termux环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su -c &quot;sed -i &#x27;s/\\(com\\.termux [0-9][0-9]* \\)0/\\11/&#x27; /data/system/packages.list&quot;</span><br><span class="line">run-as com.termux files/usr/bin/bash -c &#x27;export PATH=/data/data/com.termux/files/usr/bin:$PATH; export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so; bash -i&#x27;</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/image-20240206144911168.png" alt="image-20240206144911168"></p>
-<h2 id="4-Let’s-be-lazy-再懒一些使用tsh脚本"><a href="#4-Let’s-be-lazy-再懒一些使用tsh脚本" class="headerlink" title="4. Let’s be lazy/再懒一些使用tsh脚本"></a>4. Let’s be lazy/再懒一些使用tsh脚本</h2><p>将<a href="tsh">tsh</a>脚本push到<code>/data/local/tmp</code>目录，进入到adb shell中执行<code>/data/local/tmp/tsh</code>脚本，在进入termux terminal终端的同时会将<code>tsh</code>命令符号链接到/system/bin目录这样直到设备重启前输入<code>tsh</code>即可使用。</p>
+<h2 id="4-Let’s-be-lazy-再懒一些使用tsh脚本"><a href="#4-Let’s-be-lazy-再懒一些使用tsh脚本" class="headerlink" title="4. Let’s be lazy/再懒一些使用tsh脚本"></a>4. Let’s be lazy/再懒一些使用tsh脚本</h2><p>这样一个好处就是在同一个shell会话中可以直接使用<code>tsh</code>进入termux环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">curl -L -o /data/local/tmp/tsh https://kaisar.kozow.com/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/tsh</span><br><span class="line">. /data/local/tmp/tsh</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p> Reference|引用资料</p>
 <p> 1.<a target="_blank" rel="noopener" href="https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4">https://gist.github.com/rewida17/f8564bee5a196a8f51b98cd2e53813e4</a></p>

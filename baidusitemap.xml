@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://kaisar.kozow.com/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2024-11-26</lastmod>
+  </url>
+  <url>
+    <loc>http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2024-11-22</lastmod>
+  </url>
+  <url>
+    <loc>http://kaisar.kozow.com/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/</loc>
+    <lastmod>2024-11-08</lastmod>
+  </url>
+  <url>
+    <loc>http://kaisar.kozow.com/2023/11/21/aosp%E6%BA%90%E7%A0%81%E6%BC%AB%E6%B8%B8/</loc>
+    <lastmod>2024-09-10</lastmod>
+  </url>
+  <url>
     <loc>http://kaisar.kozow.com/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/</loc>
     <lastmod>2024-04-15</lastmod>
   </url>
@@ -18,10 +34,6 @@
   </url>
   <url>
     <loc>http://kaisar.kozow.com/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2024-02-23</lastmod>
-  </url>
-  <url>
-    <loc>http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2024-02-23</lastmod>
   </url>
   <url>
@@ -45,23 +57,11 @@
     <lastmod>2024-02-22</lastmod>
   </url>
   <url>
-    <loc>http://kaisar.kozow.com/2023/11/21/aosp%E6%BA%90%E7%A0%81%E6%BC%AB%E6%B8%B8/</loc>
-    <lastmod>2024-02-22</lastmod>
-  </url>
-  <url>
     <loc>http://kaisar.kozow.com/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2024-02-22</lastmod>
   </url>
   <url>
-    <loc>http://kaisar.kozow.com/2023/02/27/adb-shell%E5%8A%A0%E8%BD%BDtermux%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2024-02-22</lastmod>
-  </url>
-  <url>
     <loc>http://kaisar.kozow.com/2023/01/31/%E5%A5%A5%E6%9E%97%E5%B7%B4%E6%96%AFII/</loc>
-    <lastmod>2024-02-22</lastmod>
-  </url>
-  <url>
-    <loc>http://kaisar.kozow.com/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/</loc>
     <lastmod>2024-02-22</lastmod>
   </url>
   <url>
