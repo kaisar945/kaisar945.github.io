@@ -2,9 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kaisar.kozow.com/2024/12/06/%E4%BF%AE%E5%A4%8Dflatpak%E7%89%88jadx%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9B%AE%E5%BD%95/</loc>
+    
+    <lastmod>2024-12-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</loc>
     
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kaisar.kozow.com/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/</loc>
+    
+    <lastmod>2024-11-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -272,15 +290,6 @@
   </url>
   
   <url>
-    <loc>http://kaisar.kozow.com/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/</loc>
-    
-    <lastmod>2024-02-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://kaisar.kozow.com/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/</loc>
     
     <lastmod>2024-02-21</lastmod>
@@ -445,7 +454,7 @@
 
   <url>
     <loc>http://kaisar.kozow.com/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -453,84 +462,84 @@
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/Xposed/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/Java/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/Markdown/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E8%BF%90%E5%8A%A8/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E6%97%85%E8%A1%8C/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E6%91%84%E5%BD%B1%E5%89%AA%E8%BE%91/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/Tesla/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/tags/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -539,28 +548,28 @@
   
   <url>
     <loc>http://kaisar.kozow.com/categories/Android/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/categories/Linux/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/categories/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kaisar.kozow.com/categories/%E8%BD%A6/</loc>
-    <lastmod>2024-11-26</lastmod>
+    <lastmod>2024-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">281</span>
+            <span class="post-count">287</span>
         </span>
     </span>
 
@@ -125,7 +125,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI hierchary dumped to: /dev/tty</span><br></pre></td></tr></table></figure>
 <p>WTF? 这是什么鬼dump出来的信息去哪了?眉头一紧事情好像貌似没有这么简单…<br>经过一番研究发现我们使用的<code>adb shell</code>会将命令输出发给<code>pty</code>经过一顿骚操作<code>pty</code>把数据搞丢了,所以在新版的<code>adb</code>中引入了一个新的功能<code>exec-out</code>该参数可以将二进制数据直接原封不动的输出。详情请参考<a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/system/core/+/5d9d434efadf1c535c7fea634d5306e18c68ef1f"></a></p>
 <p>所以只需要将命令改成这样即可:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb exec-out uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure> 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb exec-out &#x27;uiautomator dump /dev/tty 1&gt;/dev/null&#x27;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
       <div id="reword-out">

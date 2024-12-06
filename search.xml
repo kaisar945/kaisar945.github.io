@@ -529,7 +529,8 @@
 
 <h3 id="悬浮窗模式Flating-window"><a href="#悬浮窗模式Flating-window" class="headerlink" title="悬浮窗模式Flating window"></a>悬浮窗模式Flating window</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell am start-activity -n com.whatsapp/.Main --windowingMode 5</span><br><span class="line">adb shell am start-activity -n org.telegram.messenger/.DefaultIcon --windowingMode 5</span><br></pre></td></tr></table></figure>
 
-<p>未完待续</p>
+<h2 id="账户相关"><a href="#账户相关" class="headerlink" title="账户相关"></a>账户相关</h2><h3 id="请求同步"><a href="#请求同步" class="headerlink" title="请求同步"></a>请求同步</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">requestsync</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>Android</category>
@@ -681,7 +682,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">UI hierchary dumped to: /dev/tty</span><br></pre></td></tr></table></figure>
 <p>WTF? 这是什么鬼dump出来的信息去哪了?眉头一紧事情好像貌似没有这么简单…<br>经过一番研究发现我们使用的<code>adb shell</code>会将命令输出发给<code>pty</code>经过一顿骚操作<code>pty</code>把数据搞丢了,所以在新版的<code>adb</code>中引入了一个新的功能<code>exec-out</code>该参数可以将二进制数据直接原封不动的输出。详情请参考<a href="https://android.googlesource.com/platform/system/core/+/5d9d434efadf1c535c7fea634d5306e18c68ef1f"></a></p>
 <p>所以只需要将命令改成这样即可:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">adb exec-out uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">adb exec-out &#x27;uiautomator dump /dev/tty 1&gt;/dev/null&#x27;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -743,6 +744,24 @@
       </categories>
       <tags>
         <tag>开发实战</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>修复flatpak版jadx文件无法访问宿主机目录</title>
+    <url>/2024/12/06/%E4%BF%AE%E5%A4%8Dflatpak%E7%89%88jadx%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9B%AE%E5%BD%95/</url>
+    <content><![CDATA[<ol>
+<li><p>安装flatpak权限管理软件<code>Flatseal</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">flatpak install flathub com.github.tchx84.Flatseal</span><br></pre></td></tr></table></figure></li>
+<li><p>开启All system files访问权限</p>
+<p><img src="/2024/12/06/%E4%BF%AE%E5%A4%8Dflatpak%E7%89%88jadx%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9B%AE%E5%BD%95/image-20241206140656066.png" alt="image-20241206140656066"></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
