@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>分类 |  狂人日记</title>
+      <title>Linux上支持拆分窗口的终端 |  狂人日记</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -56,12 +56,232 @@
       
     <main class="content on">
       <section class="outer">
+  <article
+  id="post-Linux上支持拆分窗口的终端"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linux上支持拆分窗口的终端
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/02/19/Linux%E4%B8%8A%E6%94%AF%E6%8C%81%E6%8B%86%E5%88%86%E7%AA%97%E5%8F%A3%E7%9A%84%E7%BB%88%E7%AB%AF/" class="article-date">
+  <time datetime="2025-02-19T06:42:57.000Z" itemprop="datePublished">2025-02-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
   
-    <h1 class="page-type-title">Categories</h1>
-    <div class="categories-box">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%A6/">车</a><span class="category-list-count">1</span></li></ul>
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">433</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
+      
+
+
+
   
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>在Ubuntu中，有几个终端模拟器支持窗口拆分功能，允许你在一个终端窗口内同时显示多个会话。以下是一些常见的支持窗口拆分的终端模拟器：</p>
+<ol>
+<li><strong>GNOME Terminal</strong>：<ul>
+<li>GNOME Terminal本身不直接支持窗口拆分，但你可以使用<code>tmux</code>或<code>screen</code>等终端复用工具来实现窗口拆分功能。</li>
+</ul>
+</li>
+<li><strong>Tilix</strong>：<ul>
+<li>Tilix是一个非常强大的终端模拟器，支持平铺式布局和窗口拆分。你可以同时在同一窗口中垂直或水平拆分多个终端会话，非常适合进行多任务操作。</li>
+</ul>
+</li>
+<li><strong>Terminator</strong>：<ul>
+<li>Terminator也是一个支持窗口拆分的终端模拟器，它允许你将终端拆分成多个窗格，可以水平或垂直拆分，十分方便进行多任务操作。</li>
+</ul>
+</li>
+<li><strong>Konsole</strong>：<ul>
+<li>如果你使用的是KDE桌面环境，Konsole是一个非常好的选择，它也支持窗口拆分功能，用户可以在一个窗口内分屏显示多个终端会话。</li>
+</ul>
+</li>
+<li><strong>Alacritty</strong>：<ul>
+<li>Alacritty本身不内置窗口拆分功能，但可以与<code>tmux</code>结合使用，达到类似的效果。Alacritty本身强调速度和简洁性，因此没有过多的图形化界面。</li>
+</ul>
+</li>
+<li><strong>Xterm + tmux/screen</strong>：<ul>
+<li>Xterm 是一个轻量级的终端模拟器，虽然它没有直接的窗口拆分功能，但可以与<code>tmux</code>或<code>screen</code>等工具结合使用，提供类似的终端拆分体验。</li>
+</ul>
+</li>
+</ol>
+<p>如果你需要一个图形化界面的终端模拟器，<strong>Tilix</strong>和<strong>Terminator</strong>都是非常好的选择。如果你不介意使用命令行工具，结合<code>tmux</code>的任何终端模拟器都能满足拆分窗口的需求。</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2025/02/19/Linux%E4%B8%8A%E6%94%AF%E6%8C%81%E6%8B%86%E5%88%86%E7%AA%97%E5%8F%A3%E7%9A%84%E7%BB%88%E7%AB%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/" rel="tag">奇巧淫技</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2025/02/18/Hexo%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Hexo写作指南</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "wzGK4U2ABF7dnC2fpU0rMY4c-9Nh9j0Va",
+    app_key: "xwX7ayGotkpPKwssQO2AeS77",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -216,6 +436,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link

@@ -1228,4 +1228,43 @@
         <tag>奇思妙想</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Linux上支持拆分窗口的终端</title>
+    <url>/2025/02/19/Linux%E4%B8%8A%E6%94%AF%E6%8C%81%E6%8B%86%E5%88%86%E7%AA%97%E5%8F%A3%E7%9A%84%E7%BB%88%E7%AB%AF/</url>
+    <content><![CDATA[<p>在Ubuntu中，有几个终端模拟器支持窗口拆分功能，允许你在一个终端窗口内同时显示多个会话。以下是一些常见的支持窗口拆分的终端模拟器：</p>
+<ol>
+<li><strong>GNOME Terminal</strong>：<ul>
+<li>GNOME Terminal本身不直接支持窗口拆分，但你可以使用<code>tmux</code>或<code>screen</code>等终端复用工具来实现窗口拆分功能。</li>
+</ul>
+</li>
+<li><strong>Tilix</strong>：<ul>
+<li>Tilix是一个非常强大的终端模拟器，支持平铺式布局和窗口拆分。你可以同时在同一窗口中垂直或水平拆分多个终端会话，非常适合进行多任务操作。</li>
+</ul>
+</li>
+<li><strong>Terminator</strong>：<ul>
+<li>Terminator也是一个支持窗口拆分的终端模拟器，它允许你将终端拆分成多个窗格，可以水平或垂直拆分，十分方便进行多任务操作。</li>
+</ul>
+</li>
+<li><strong>Konsole</strong>：<ul>
+<li>如果你使用的是KDE桌面环境，Konsole是一个非常好的选择，它也支持窗口拆分功能，用户可以在一个窗口内分屏显示多个终端会话。</li>
+</ul>
+</li>
+<li><strong>Alacritty</strong>：<ul>
+<li>Alacritty本身不内置窗口拆分功能，但可以与<code>tmux</code>结合使用，达到类似的效果。Alacritty本身强调速度和简洁性，因此没有过多的图形化界面。</li>
+</ul>
+</li>
+<li><strong>Xterm + tmux/screen</strong>：<ul>
+<li>Xterm 是一个轻量级的终端模拟器，虽然它没有直接的窗口拆分功能，但可以与<code>tmux</code>或<code>screen</code>等工具结合使用，提供类似的终端拆分体验。</li>
+</ul>
+</li>
+</ol>
+<p>如果你需要一个图形化界面的终端模拟器，<strong>Tilix</strong>和<strong>Terminator</strong>都是非常好的选择。如果你不介意使用命令行工具，结合<code>tmux</code>的任何终端模拟器都能满足拆分窗口的需求。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>奇巧淫技</tag>
+      </tags>
+  </entry>
 </search>
