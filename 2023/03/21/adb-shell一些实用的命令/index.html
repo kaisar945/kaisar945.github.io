@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>adb shell一些有用的命令 |  狂人日记</title>
+      <title>adb shell一些实用的命令 |  狂人日记</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -57,7 +57,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-adb-shell一些有用的命令"
+  id="post-adb-shell一些实用的命令"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -68,7 +68,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  adb shell一些有用的命令
+  adb shell一些实用的命令
 </h1>
  
 
@@ -76,7 +76,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" class="article-date">
+      <a href="/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" class="article-date">
   <time datetime="2023-03-21T03:52:12.000Z" itemprop="datePublished">2023-03-21</time>
 </a> 
   <div class="article-category">
@@ -141,6 +141,14 @@
 
 <h4 id="移除代理"><a href="#移除代理" class="headerlink" title="移除代理"></a>移除代理</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings delete global http_proxy</span><br><span class="line">adb shell settings delete global global_http_proxy_host</span><br><span class="line">adb shell settings delete global global_http_proxy_port</span><br><span class="line">adb shell settings delete global global_http_proxy_username</span><br><span class="line">adb shell settings delete global global_http_proxy_password</span><br><span class="line">adb shell settings delete global global_http_proxy_exclusion_list</span><br><span class="line">adb shell settings delete global global_proxy_pac_url</span><br><span class="line">adb shell reboot</span><br></pre></td></tr></table></figure>
 
+<h2 id="时间相关"><a href="#时间相关" class="headerlink" title="时间相关"></a>时间相关</h2><h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell service call alarm 3 s16 America/Phoenix</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置时间"><a href="#设置时间" class="headerlink" title="设置时间"></a>设置时间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell &quot;su -c date $(date +%m%d%H%M%Y.%S)&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>需要root权限</p>
+</blockquote>
 <h2 id="设备安全"><a href="#设备安全" class="headerlink" title="设备安全"></a>设备安全</h2><h4 id="设置不锁屏"><a href="#设置不锁屏" class="headerlink" title="设置不锁屏"></a>设置不锁屏</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell locksettings set-disabled true</span><br></pre></td></tr></table></figure>
 
 <h4 id="恢复出厂设置"><a href="#恢复出厂设置" class="headerlink" title="恢复出厂设置"></a>恢复出厂设置</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am broadcast -a android.intent.action.FACTORY_RESET -n android/com.android.server.MasterClearReceiver</span><br></pre></td></tr></table></figure>
@@ -255,7 +263,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2023/03/21/adb-shell%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
     </div>
 </div>
 
