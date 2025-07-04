@@ -614,6 +614,8 @@
 <p>使用here-doc的机制来避免复杂的命令增加多层转义,<code>EOF</code>前加<code>-</code>号可以确保文本内容使用<code>tab</code>来对齐代码</p>
 <h2 id="将aar文件转换成dex文件"><a href="#将aar文件转换成dex文件" class="headerlink" title="将aar文件转换成dex文件"></a>将aar文件转换成dex文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">~/Android/Sdk/build-tools/35.0.0/d8 --release demo.aar</span><br></pre></td></tr></table></figure>
 
+<h2 id="查询WebView相关信息"><a href="#查询WebView相关信息" class="headerlink" title="查询WebView相关信息"></a>查询WebView相关信息</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell dumpsys webviewupdate</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>Android</category>
@@ -664,6 +666,21 @@
       </categories>
       <tags>
         <tag>开发实战</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ip查询网站</title>
+    <url>/2025/07/04/ip%E6%9F%A5%E8%AF%A2%E7%BD%91%E7%AB%99/</url>
+    <content><![CDATA[<h2 id="ipinfo-io"><a href="#ipinfo-io" class="headerlink" title="ipinfo.io"></a>ipinfo.io</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl ipinfo.io</span><br></pre></td></tr></table></figure>
+
+<h2 id="cpi-cc"><a href="#cpi-cc" class="headerlink" title="cpi.cc"></a>cpi.cc</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl cip.cc</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>

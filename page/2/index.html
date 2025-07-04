@@ -153,6 +153,106 @@
     
     
     <article
+  id="post-特斯拉-科技与狠活"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/"
+    >特斯拉-科技与狠活</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/" class="article-date">
+  <time datetime="2023-03-21T07:52:24.000Z" itemprop="datePublished">2023-03-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%BD%A6/">车</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="灯光秀资源"><a href="#灯光秀资源" class="headerlink" title="灯光秀资源"></a>灯光秀资源</h2><ul>
+<li>Michael Jackson: <a href="LightShow.zip">Beat It</a></li>
+</ul>
+<h2 id="手机屏幕串流至特斯拉-Tesla-Mirror-Android-screen-stream-to-tesla"><a href="#手机屏幕串流至特斯拉-Tesla-Mirror-Android-screen-stream-to-tesla" class="headerlink" title="手机屏幕串流至特斯拉|Tesla Mirror|Android screen stream to tesla"></a>手机屏幕串流至特斯拉|Tesla Mirror|Android screen stream to tesla</h2><p>之前使用过各种投屏软件在特斯拉上均无法成功投屏，后来意外知道特斯拉有个限制就是不允许直接访问内网IP，知道这个特点后我们就可以轻松绕过～</p>
+<blockquote>
+<p>前提条件：手机已root方法请自行查找</p>
+</blockquote>
+<ol>
+<li><p>安装<a target="_blank" rel="noopener" href="https://f-droid.org/zh_Hans/packages/com.termux/">Termux</a>终端应用和<a target="_blank" rel="noopener" href="https://f-droid.org/packages/com.termux.boot/">Termux:Boot</a>插件</p>
+<ol>
+<li><p>使用<code>pkg install tsu</code>命令安装提权包</p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro.png"></p>
+</li>
+<li><p>执行命令将自动设置脚本添加至开机启动项方便以后使用</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.termux/boot/</span><br><span class="line">cat &lt;&lt;EOT&gt;&gt; ~/.termux/boot/add-tesla-support</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/data/data/com.termux/files/usr/bin/sh</span></span><br><span class="line">sudo ip link add tesla type dummy</span><br><span class="line">sudo ifconfig tesla 11.11.11.11 netmask 255.255.255.0 up</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro2.png"></p>
+</li>
+<li><p>将Termux:Boot的“电池优化选项”关闭，并打开应用一次以允许开机自启动</p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro3.png"></p>
+</li>
+<li><p>执行脚本添加一块虚拟网卡并设置公网IP</p>
+<p> <code>sudo sh ~/.termux/boot/add-tesla-support</code></p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro4.png"></p>
+</li>
+</ol>
+</li>
+<li><p>开启手机5GHz热点并将特斯拉连接到这个热点</p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro5.png"></p>
+</li>
+<li><p>安装<a target="_blank" rel="noopener" href="https://f-droid.org/zh_Hans/packages/info.dvkr.screenstream/">Screen steam over HTTP</a>屏幕串流应用进行如下配置</p>
+<ol>
+<li><p>勾选“设置”-&gt;“保持设备唤醒”和“自动开始/停止视频流”</p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro6.png"></p>
+</li>
+<li><p>取消勾选“设置”-&gt;”高级”-&gt;”只用WIFI”</p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro7.png"></p>
+</li>
+</ol>
+</li>
+<li><p>在“视频流”页确认能否看到新加的虚拟网卡和IP</p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro8.png"></p>
+</li>
+<li><p>在特斯拉车机上访问<a target="_blank" rel="noopener" href="http://11.11.11.11:8080/">http://11.11.11.11:8080</a>即可串流屏幕内容至特斯拉车机上，首次访问需要在手机上允许投射内容，收藏一下这个网址方便下次使用。</p>
+<p> <img src="/2023/03/21/%E7%89%B9%E6%96%AF%E6%8B%89-%E7%A7%91%E6%8A%80%E4%B8%8E%E7%8B%A0%E6%B4%BB/ScreenSteam-intro9.png"></p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tesla/" rel="tag">Tesla</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-ubuntu提升使用体验篇"
   class="article article-type-post"
   itemscope
@@ -387,6 +487,8 @@
 
 <p>使用here-doc的机制来避免复杂的命令增加多层转义,<code>EOF</code>前加<code>-</code>号可以确保文本内容使用<code>tab</code>来对齐代码</p>
 <h2 id="将aar文件转换成dex文件"><a href="#将aar文件转换成dex文件" class="headerlink" title="将aar文件转换成dex文件"></a>将aar文件转换成dex文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Android/Sdk/build-tools/35.0.0/d8 --release demo.aar</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询WebView相关信息"><a href="#查询WebView相关信息" class="headerlink" title="查询WebView相关信息"></a>查询WebView相关信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys webviewupdate</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -822,67 +924,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/" rel="tag">奇巧淫技</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-解决Android-Studio-missing-essential-plugin-org-jetbrains-android"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/"
-    >解决Android Studio missing essential plugin org.jetbrains.android</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/" class="article-date">
-  <time datetime="2020-11-20T07:39:44.000Z" itemprop="datePublished">2020-11-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>最近把Android Studio升级到了<code>4.1.1</code>版本之前安装了一个<code>smailidea</code>的插件老是报不兼容于是强迫症的我手贱了一下把插件给禁用了,禁用的时候没注意把依赖的一些东西也给禁用了于是报了下面的错误</p>
-<p><img src="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/picture_02.png"></p>
-<p>这是禁用插件时候的依赖提示</p>
-<p><img src="/2020/11/20/%E8%A7%A3%E5%86%B3Android-Studio-missing-essential-plugin-org-jetbrains-android/picture_01.png"></p>
-<p>可以看见其实把很多核心的组件都给禁用了那怎么办呢?难不成真的要按提示上说的要重装Android Studio?不要慌问题不大其实还有一种办法就是把被禁用的插件恢复就可以了,大家可以把Android Studio的配置目录的<code>disabled_plugins.txt</code>这个文件删除这样Android Studio就可以正常启动了, 这个文件每个系统存放的位置不太一样一般都在下面这几个目录 如果不在可以在主目录全局搜索一下这个文件</p>
-<p>Windows: <code>C:\Users\%USERNAME%\AndroidStudio4.1\config</code></p>
-<p>Linux: <code>~/.config/Google/AndroidStudio4.1</code></p>
-<p>MacOS: <code>~/Library/Application Support/Google/AndroidStudio4.1</code></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
 
     </footer>
   </div>
