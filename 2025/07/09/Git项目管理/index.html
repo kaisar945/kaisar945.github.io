@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>ip查询网站 |  狂人日记</title>
+      <title>Git项目管理 |  狂人日记</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -57,7 +57,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-ip查询网站"
+  id="post-Git项目管理"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -68,7 +68,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  ip查询网站
+  Git项目管理
 </h1>
  
 
@@ -76,8 +76,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/07/04/ip%E6%9F%A5%E8%AF%A2%E7%BD%91%E7%AB%99/" class="article-date">
-  <time datetime="2025-07-04T09:52:02.000Z" itemprop="datePublished">2025-07-04</time>
+      <a href="/2025/07/09/Git%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" class="article-date">
+  <time datetime="2025-07-09T11:50:36.000Z" itemprop="datePublished">2025-07-09</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">8</span>
+            <span class="post-count">339</span>
         </span>
     </span>
 
@@ -112,10 +112,16 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="ipinfo-io"><a href="#ipinfo-io" class="headerlink" title="ipinfo.io"></a>ipinfo.io</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl ipinfo.io</span><br></pre></td></tr></table></figure>
-
-<h2 id="cpi-cc"><a href="#cpi-cc" class="headerlink" title="cpi.cc"></a>cpi.cc</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl cip.cc</span><br></pre></td></tr></table></figure>
-
+  <h2 id="使用Git提交模板"><a href="#使用Git提交模板" class="headerlink" title="使用Git提交模板"></a>使用Git提交模板</h2><ol>
+<li><p>项目根目录下创建提交模板</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; .gitmessage &lt;&lt; &#x27;EOF&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">============= Git 提交信息模板 =============</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">类型（必填）: feat | fix | docs | style | refactor | perf | <span class="built_in">test</span> | chore | ci | build | revert</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">影响范围（可选）: 例如模块、组件或功能（如 <span class="string">&quot;user-auth&quot;</span>, <span class="string">&quot;payment-api&quot;</span>）</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">描述（必填）: 简洁说明本次提交的更改</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--------------------------------------------</span></span><br><span class="line"></span><br><span class="line">&lt;类型&gt;(&lt;影响范围&gt;): &lt;简短描述&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">详细说明（可选）:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">- 为什么进行这次更改？</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">- 解决了什么问题？</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">- 是否有副作用或注意事项？</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">关联 Issue 或 Task（可选）:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Fixes <span class="comment">#123</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Closes <span class="comment">#456</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Related to <span class="comment">#789</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-------------------- 示例 --------------------</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">feat(user-auth): 添加 OAuth2 登录支持</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># - 集成 Google 和 GitHub OAuth2 登录</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">- 更新用户模型以存储第三方登录信息</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Fixes #42</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Related to <span class="comment">#56</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">=============================================</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></li>
+<li><p>配置当前项目使用模板提交(项目成员都需配置)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --local git commit.template=.gitmessage</span><br></pre></td></tr></table></figure></li>
+<li><p>创建强制检查脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mkdir .githooks</span><br><span class="line">cat &gt; commit-msg &lt;&lt; &#x27;EOF&#x27;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">MSG_FILE=&quot;$1&quot;</span><br><span class="line">MSG=$(cat &quot;$MSG_FILE&quot;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否包含类型和描述</span></span><br><span class="line">if ! echo &quot;$MSG&quot; | grep -qE &quot;^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)\(.*\): .+&quot;; then</span><br><span class="line">    echo &quot;错误：提交信息不符合规范！&quot;</span><br><span class="line">    echo &quot;示例: feat(user-auth): 添加登录功能&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line">EOF</span><br><span class="line">chmod +x .githooks/commit-msg</span><br></pre></td></tr></table></figure></li>
+<li><p>配置强制检查提交格式(项目成员都需配置)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --local git core.hookspath=.githooks</span><br></pre></td></tr></table></figure></li>
+</ol>
  
       <!-- reward -->
       
@@ -186,7 +192,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2025/07/04/ip%E6%9F%A5%E8%AF%A2%E7%BD%91%E7%AB%99/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2025/07/09/Git%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -199,19 +205,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2025/07/09/Git%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Git项目管理
-          
-        </div>
-      </a>
     
-    
-      <a href="/2025/02/19/Linux%E4%B8%8A%E6%94%AF%E6%8C%81%E6%8B%86%E5%88%86%E7%AA%97%E5%8F%A3%E7%9A%84%E7%BB%88%E7%AB%AF/" class="article-nav-link">
+      <a href="/2025/07/04/ip%E6%9F%A5%E8%AF%A2%E7%BD%91%E7%AB%99/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Linux上支持拆分窗口的终端</div>
+        <div class="article-nav-title">ip查询网站</div>
       </a>
     
   </nav>
