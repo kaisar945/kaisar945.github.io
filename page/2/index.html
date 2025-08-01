@@ -403,9 +403,17 @@
 <p> Command: <code>bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#39;NR==2 &#123;print $1&#125;&#39;)&quot;</code></p>
 <p> Shortcut: <code>Ctrl</code> + <code>2</code></p>
 </li>
+<li><p>添加自动检测快捷键</p>
+<p> Name: <code>Scrcpy#~</code></p>
+<p> Command: <code>/usr/bin/scrcpy-auto-detect</code></p>
+<p> Shortcut: <code>Ctrl + ~</code></p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有已连接的设备（状态为 <span class="string">&quot;device&quot;</span> 的）</span></span><br><span class="line">devices=$(adb devices | grep -sw &quot;device&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices&quot; ]; then</span><br><span class="line">    zenity --error --text=&quot;没有找到已连接的 Android 设备！&quot; --width=200</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果只有一个设备，直接连接</span></span><br><span class="line">if [ $(echo &quot;$devices&quot; | wc -l) -eq 1 ]; then</span><br><span class="line">    scrcpy -s &quot;$devices&quot;</span><br><span class="line">else</span><br><span class="line">    # 如果有多个设备，使用 zenity 弹出选择对话框</span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; $devices)</span><br><span class="line"></span><br><span class="line">    # 如果用户选择了设备，则连接</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        scrcpy -s &quot;$selected_device&quot;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p> 将以上脚本内容保存到<code>/usr/bin/scrcpy-auto-detect</code></p>
+</li>
 </ol>
 </li>
-<li><p>将已打开的<code>terminal</code>显示在前台（避免打开过多的窗口导致桌面混乱）</p>
+<li><p>将最近使用的<code>terminal</code>显示在前台（避免打开过多的窗口导致桌面混乱）</p>
 <ol>
 <li><p>执行<code>sudo apt install xdotool</code>安装软件包</p>
 </li>
@@ -426,6 +434,20 @@
 <p> Name: <code>Take a screenshot interactively plus</code></p>
 <p> Command: <code>/usr/bin/flameshot gui</code></p>
 <p> Shortcut:<code>Shift</code> + <code>Ctrl</code> + <code>Alt</code> + <code>T</code></p>
+</li>
+</ol>
+</li>
+<li><p>扫描屏幕二维码</p>
+<ol>
+<li><p>安装软件包<code>sudo apt install flameshot</code></p>
+</li>
+<li><p>添加自定义快捷键</p>
+<p>Name: <code>Scan QR Code</code></p>
+<p>Command: <code>bash -c &#39;qrcode_content=$(flameshot gui -r | zbarimg -1q --raw - 2&gt;/dev/null); if [ -n &quot;$qrcode_content&quot; ]; then echo &quot;$qrcode_content&quot; | xclip -selection clipboard &amp;&amp; notify-send -i &quot;dialog-information&quot; &quot;二维码识别成功&quot; &quot;已复制到剪贴板：\n$qrcode_content&quot;; else notify-send -i &quot;dialog-error&quot; &quot;二维码识别失败&quot; &quot;未检测到二维码！&quot;; fi&#39;</code></p>
+<p>Shortcut: <code>Ctrl</code> + <code>Alt</code> + <code>Q</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">qrcode_content=$(flameshot gui -r | zbarimg -1q --raw - 2&gt;/dev/null)</span><br><span class="line">if [ -n &quot;$qrcode_content&quot; ]; then</span><br><span class="line">    echo &quot;$qrcode_content&quot; | xclip -selection clipboard</span><br><span class="line">    notify-send -i &quot;dialog-information&quot; &quot;二维码识别成功&quot; &quot;已复制到剪贴板：\n$qrcode_content&quot;</span><br><span class="line">else</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;二维码识别失败&quot; &quot;未检测到二维码！&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>或者保存以上内容到<code>/usr/bin/qrscan</code>然后替换快捷键命令路径</p>
 </li>
 </ol>
 </li>
