@@ -97,7 +97,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">7 min</span>
+            <span class="post-count">8 min</span>
         </span>
     </span>
 </div>
@@ -194,6 +194,8 @@
 <h2 id="将aar文件转换成dex文件"><a href="#将aar文件转换成dex文件" class="headerlink" title="将aar文件转换成dex文件"></a>将aar文件转换成dex文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Android/Sdk/build-tools/35.0.0/d8 --release demo.aar</span><br></pre></td></tr></table></figure>
 
 <h2 id="查询WebView相关信息"><a href="#查询WebView相关信息" class="headerlink" title="查询WebView相关信息"></a>查询WebView相关信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys webviewupdate</span><br></pre></td></tr></table></figure>
+
+<h2 id="电量相关"><a href="#电量相关" class="headerlink" title="电量相关"></a>电量相关</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys battery set [ac|usb|wireless|status|level|temp|present|invalid]</span><br><span class="line">adb shell dumpsys battery unplug # 模拟未插电</span><br><span class="line">adb shell dumpsys battery reset # 恢复实际状态</span><br><span class="line">adb shell dumpsys battery -h # 查看更多用法</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->

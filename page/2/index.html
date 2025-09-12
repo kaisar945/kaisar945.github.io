@@ -361,26 +361,38 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h2 id="Gnome自用插件"><a href="#Gnome自用插件" class="headerlink" title="Gnome自用插件"></a>Gnome自用插件</h2><ul>
-<li><p>Bing壁纸</p>
+<li><p><strong>Bing壁纸</strong></p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/">https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/</a></p>
 </li>
-<li><p>Window动画效果</p>
+<li><p><strong>Wallpaper Slideshow</strong></p>
+<p>自动更换壁纸类似于上面插件的功能</p>
+<p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/6281/wallpaper-slideshow/">https://extensions.gnome.org/extension/6281/wallpaper-slideshow/</a></p>
+</li>
+<li><p><strong>Window动画效果</strong></p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/4679/burn-my-windows/">https://extensions.gnome.org/extension/4679/burn-my-windows/</a></p>
 </li>
-<li><p>窗口最小化神灯效果</p>
+<li><p><strong>窗口最小化神灯效果</strong></p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/3740/compiz-alike-magic-lamp-effect/">https://extensions.gnome.org/extension/3740/compiz-alike-magic-lamp-effect/</a></p>
 </li>
-<li><p>显示桌面图标</p>
+<li><p><strong>显示桌面图标</strong></p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/">https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/</a></p>
 </li>
-<li><p>GSConnect多设备同步</p>
+<li><p><strong>GSConnect多设备同步</strong></p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1319/gsconnect/">https://extensions.gnome.org/extension/1319/gsconnect/</a></p>
 </li>
-<li><p>fcitx5输入法美化</p>
+<li><p><strong>fcitx5输入法美化</strong></p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/261/kimpanel/">https://extensions.gnome.org/extension/261/kimpanel/</a></p>
 </li>
-<li><p>开启程序坞</p>
+<li><p><strong>开启程序坞</strong></p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1300/ubuntu-dock/">https://extensions.gnome.org/extension/1300/ubuntu-dock/</a></p>
+</li>
+<li><p><strong>Resource Monitor</strong></p>
+<p>任务栏资源监视器</p>
+<p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1634/resource-monitor/">https://extensions.gnome.org/extension/1634/resource-monitor/</a></p>
+</li>
+<li><p><strong>Astra Monitor</strong></p>
+<p>更好看的任务栏资源监视器</p>
+<p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/6682/astra-monitor/">https://extensions.gnome.org/extension/6682/astra-monitor/</a></p>
 </li>
 </ul>
 <h2 id="KDE配置相关"><a href="#KDE配置相关" class="headerlink" title="KDE配置相关"></a>KDE配置相关</h2><p>安装<a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
@@ -393,23 +405,13 @@
 <ul>
 <li><p>快速打开<code>scrcpy</code></p>
 <ol>
-<li><p>添加打开第一台设备快捷键</p>
-<p> Name: <code>Scrcpy#1</code></p>
-<p> Command: <code>bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#39;NR==1 &#123;print $1&#125;&#39;)&quot;</code></p>
-<p> Shortcut: <code>Ctrl</code> + <code>1</code></p>
-</li>
-<li><p>添加打开第二台设备快捷键</p>
-<p> Name: <code>Scrcpy#2</code></p>
-<p> Command: <code>bash -c &quot;scrcpy -s $(adb devices | grep -sw &quot;device&quot; | awk &#39;NR==2 &#123;print $1&#125;&#39;)&quot;</code></p>
-<p> Shortcut: <code>Ctrl</code> + <code>2</code></p>
-</li>
 <li><p>添加自动检测快捷键</p>
 <p> Name: <code>Scrcpy#~</code></p>
 <p> Command: <code>/usr/bin/scrcpy-auto-detect</code></p>
 <p> Shortcut: <code>Ctrl + ~</code></p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有已连接的设备（状态为 <span class="string">&quot;device&quot;</span> 的）</span></span><br><span class="line">devices=$(adb devices | grep -sw &quot;device&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到已连接的 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果只有一个设备，直接连接</span></span><br><span class="line">if [ $(echo &quot;$devices&quot; | wc -l) -eq 1 ]; then</span><br><span class="line">    scrcpy -s &quot;$devices&quot;</span><br><span class="line">else</span><br><span class="line">    # 如果有多个设备，使用 zenity 弹出选择对话框</span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; $devices)</span><br><span class="line"></span><br><span class="line">    # 如果用户选择了设备，则连接</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        scrcpy -s &quot;$selected_device&quot;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有设备及其状态（排除标题行和空行）</span></span><br><span class="line">devices_info=$(adb devices | sed 1d | grep -v &#x27;^$&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices_info&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到任何 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取设备总数</span></span><br><span class="line">device_count=$(echo &quot;$devices_info&quot; | wc -l)</span><br><span class="line"></span><br><span class="line">if [ &quot;$device_count&quot; -eq 1 ]; then</span><br><span class="line">    # 只有一个设备，直接连接</span><br><span class="line">    device_id=$(echo &quot;$devices_info&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    scrcpy -s &quot;$device_id&quot;</span><br><span class="line">else</span><br><span class="line">    # 多个设备，显示选择界面</span><br><span class="line">    device_list=()</span><br><span class="line">    while IFS= read -r line; do</span><br><span class="line">        id=$(echo &quot;$line&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        status=$(echo &quot;$line&quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">        device_list+=(&quot;$id&quot; &quot;$status&quot;)</span><br><span class="line">    done &lt;&lt;&lt; &quot;$devices_info&quot;</span><br><span class="line"></span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; --column=&quot;状态&quot; \</span><br><span class="line">        &quot;$&#123;device_list[@]&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    # 提取选择的设备 ID（选中的整行内容是&quot;设备ID|状态&quot;）</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        selected_id=$(echo &quot;$selected_device&quot; | awk -F&#x27;|&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        scrcpy -s &quot;$selected_id&quot;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 
-<p> 将以上脚本内容保存到<code>/usr/bin/scrcpy-auto-detect</code></p>
+<p> 将以上脚本内容保存到<code>/usr/bin/scrcpy-auto-detect</code> <strong>记得将文件设置为可执行权限</strong></p>
 </li>
 </ol>
 </li>
@@ -587,6 +589,8 @@
 <h2 id="将aar文件转换成dex文件"><a href="#将aar文件转换成dex文件" class="headerlink" title="将aar文件转换成dex文件"></a>将aar文件转换成dex文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Android/Sdk/build-tools/35.0.0/d8 --release demo.aar</span><br></pre></td></tr></table></figure>
 
 <h2 id="查询WebView相关信息"><a href="#查询WebView相关信息" class="headerlink" title="查询WebView相关信息"></a>查询WebView相关信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys webviewupdate</span><br></pre></td></tr></table></figure>
+
+<h2 id="电量相关"><a href="#电量相关" class="headerlink" title="电量相关"></a>电量相关</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys battery set [ac|usb|wireless|status|level|temp|present|invalid]</span><br><span class="line">adb shell dumpsys battery unplug # 模拟未插电</span><br><span class="line">adb shell dumpsys battery reset # 恢复实际状态</span><br><span class="line">adb shell dumpsys battery -h # 查看更多用法</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
