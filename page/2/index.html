@@ -153,6 +153,331 @@
     
     
     <article
+  id="post-Typora预览hexo文章图片"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/"
+    >Typora预览hexo文章图片</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/" class="article-date">
+  <time datetime="2024-02-22T04:29:59.000Z" itemprop="datePublished">2024-02-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ol>
+<li><p>在Typora中设置正确的图片复制路径</p>
+<p><img src="/2024/02/22/Typora%E9%A2%84%E8%A7%88hexo%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/image-20240222122541351.png" alt="image-20240222122541351"></p>
+</li>
+<li><p>在scaffolds/draft.md和scaffolds/post.md中添加<code>typora-root-url</code>这样每次生成的文章中都会自动添加预览目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br><span class="line">typora-root-url: &#123;&#123; title &#125;&#125;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：如果文章标题中包含空格hexo默认会使用<code>-</code>替换，但是在<code>typora-root-url</code>需要手动替换。</p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-IDA-Pro入门知识"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/"
+    >IDA-Pro入门知识</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/" class="article-date">
+  <time datetime="2023-12-27T03:13:28.000Z" itemprop="datePublished">2023-12-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="快捷键指南"><a href="#快捷键指南" class="headerlink" title="快捷键指南"></a>快捷键指南</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Tab</code></td>
+<td>在反汇编视图和伪代码视图之间切换</td>
+</tr>
+<tr>
+<td><code>F5</code></td>
+<td>转换为伪代码</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>对函数或变量进行重命名</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>取消数据定义</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>将数据解析为代码</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>将当前数据类型转成为枚举成员</td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>对函数或变量进行类型定义</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>跳转函数地址</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>对代码进行注释</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>查找函数交叉引用/查找变量的本地引用</td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>列表视图与图形视图切换</td>
+</tr>
+<tr>
+<td><code>Shift</code> + <code>F12</code></td>
+<td>打开字符串表</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Alt</code> + <code>X</code></td>
+<td>查找变量全局引用</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>W</code></td>
+<td>调出数据库快照</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>T</code></td>
+<td>调出数据库快照管理器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="数据类型定义"><a href="#数据类型定义" class="headerlink" title="数据类型定义"></a>数据类型定义</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">byte / char / uint8 / int8    -&gt; db 1个字节</span><br><span class="line">word / short / uint16 / int16 -&gt; dw 2个字节</span><br><span class="line">dword / int / uint …         -&gt; dd 4个字节 （32位指针）</span><br><span class="line">qword / int64 …              -&gt; dq 8个字节 （64位指针）</span><br></pre></td></tr></table></figure>
+
+<p>大部分情况下，整数以小端序存储在内存</p>
+<p>0xA1B2C3D4 存储到内存的顺序为 D4 C3 B2 A1</p>
+<h2 id="前缀说明"><a href="#前缀说明" class="headerlink" title="前缀说明"></a>前缀说明</h2><table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sub_</td>
+<td>指令和子函数起点</td>
+</tr>
+<tr>
+<td>locret_</td>
+<td>返回指令</td>
+</tr>
+<tr>
+<td>loc_</td>
+<td>指令</td>
+</tr>
+<tr>
+<td>off_</td>
+<td>数据，包含偏移量</td>
+</tr>
+<tr>
+<td>seg_</td>
+<td>数据，包含段地址值</td>
+</tr>
+<tr>
+<td>asc_</td>
+<td>数据，ASCII字符串</td>
+</tr>
+<tr>
+<td>byte_</td>
+<td>数据，字节（或字节数组）</td>
+</tr>
+<tr>
+<td>word_</td>
+<td>数据，16位数据（或字数组）</td>
+</tr>
+<tr>
+<td>dword_</td>
+<td>数据，32位数据（或双字数组）</td>
+</tr>
+<tr>
+<td>qword_</td>
+<td>数据，64位数据（或4字数组）</td>
+</tr>
+<tr>
+<td>flt_</td>
+<td>浮点数据，32位（或浮点数组）</td>
+</tr>
+<tr>
+<td>dbl_</td>
+<td>浮点数，64位（或双精度数组）</td>
+</tr>
+<tr>
+<td>tbyte_</td>
+<td>浮点数，80位（或扩展精度浮点数）</td>
+</tr>
+<tr>
+<td>stru_</td>
+<td>结构体(或结构体数组)</td>
+</tr>
+<tr>
+<td>algn_</td>
+<td>对齐指示</td>
+</tr>
+<tr>
+<td>unk_</td>
+<td>未处理字</td>
+</tr>
+</tbody></table>
+<h2 id="查找函数地址偏移量"><a href="#查找函数地址偏移量" class="headerlink" title="查找函数地址偏移量"></a>查找函数地址偏移量</h2><p>打开<code>Pseudocode</code>窗口在左下角可以找到函数位于文件的地址偏移量</p>
+<p><img src="/2023/12/27/IDA-Pro%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/image-20231227110658934.png" alt="image-20231227110658934"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-aosp源码漫游"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/11/21/aosp%E6%BA%90%E7%A0%81%E6%BC%AB%E6%B8%B8/"
+    >aosp源码漫游</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/11/21/aosp%E6%BA%90%E7%A0%81%E6%BC%AB%E6%B8%B8/" class="article-date">
+  <time datetime="2023-11-21T08:32:03.000Z" itemprop="datePublished">2023-11-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="系统权限定义文件"><a href="#系统权限定义文件" class="headerlink" title="系统权限定义文件"></a>系统权限定义文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frameworks/base/core/res/AndroidManifest.xml</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统应用源码位置"><a href="#系统应用源码位置" class="headerlink" title="系统应用源码位置"></a>系统应用源码位置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">packages/apps/</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统常用命令源码位置"><a href="#系统常用命令源码位置" class="headerlink" title="系统常用命令源码位置"></a>系统常用命令源码位置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frameworks/base/cmds/</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/" rel="tag">开发实战</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-刻滑入门"
   class="article article-type-post"
   itemscope
@@ -394,6 +719,10 @@
 <p>更好看的任务栏资源监视器</p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/6682/astra-monitor/">https://extensions.gnome.org/extension/6682/astra-monitor/</a></p>
 </li>
+<li><p><strong>Tiling Shell</strong></p>
+<p>平铺窗口类似于windows</p>
+<p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/7065/tiling-shell/">https://extensions.gnome.org/extension/7065/tiling-shell/</a></p>
+</li>
 </ul>
 <h2 id="KDE配置相关"><a href="#KDE配置相关" class="headerlink" title="KDE配置相关"></a>KDE配置相关</h2><p>安装<a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
 <ul>
@@ -409,7 +738,7 @@
 <p> Name: <code>Scrcpy#~</code></p>
 <p> Command: <code>/usr/bin/scrcpy-auto-detect</code></p>
 <p> Shortcut: <code>Ctrl + ~</code></p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有设备及其状态（排除标题行和空行）</span></span><br><span class="line">devices_info=$(adb devices | sed 1d | grep -v &#x27;^$&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices_info&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到任何 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取设备总数</span></span><br><span class="line">device_count=$(echo &quot;$devices_info&quot; | wc -l)</span><br><span class="line"></span><br><span class="line">if [ &quot;$device_count&quot; -eq 1 ]; then</span><br><span class="line">    # 只有一个设备，直接连接</span><br><span class="line">    device_id=$(echo &quot;$devices_info&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    scrcpy -s &quot;$device_id&quot;</span><br><span class="line">else</span><br><span class="line">    # 多个设备，显示选择界面</span><br><span class="line">    device_list=()</span><br><span class="line">    while IFS= read -r line; do</span><br><span class="line">        id=$(echo &quot;$line&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        status=$(echo &quot;$line&quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">        device_list+=(&quot;$id&quot; &quot;$status&quot;)</span><br><span class="line">    done &lt;&lt;&lt; &quot;$devices_info&quot;</span><br><span class="line"></span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; --column=&quot;状态&quot; \</span><br><span class="line">        &quot;$&#123;device_list[@]&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    # 提取选择的设备 ID（选中的整行内容是&quot;设备ID|状态&quot;）</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        selected_id=$(echo &quot;$selected_device&quot; | awk -F&#x27;|&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        scrcpy -s &quot;$selected_id&quot;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有设备及其状态（排除标题行和空行）</span></span><br><span class="line">devices_info=$(adb devices | sed 1d | grep -v &#x27;^$&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices_info&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到任何 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取设备总数</span></span><br><span class="line">device_count=$(echo &quot;$devices_info&quot; | wc -l)</span><br><span class="line"></span><br><span class="line">if [ &quot;$device_count&quot; -eq 1 ]; then</span><br><span class="line">    # 只有一个设备，直接连接</span><br><span class="line">    device_id=$(echo &quot;$devices_info&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    nohup scrcpy -s &quot;$device_id&quot; &gt; /tmp/auto_scrcpy.log 2&gt;&amp;1 &amp;</span><br><span class="line">else</span><br><span class="line">    # 多个设备，显示选择界面</span><br><span class="line">    device_list=()</span><br><span class="line">    while IFS= read -r line; do</span><br><span class="line">        id=$(echo &quot;$line&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        status=$(echo &quot;$line&quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">        device_list+=(&quot;$id&quot; &quot;$status&quot;)</span><br><span class="line">    done &lt;&lt;&lt; &quot;$devices_info&quot;</span><br><span class="line"></span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; --column=&quot;状态&quot; \</span><br><span class="line">        &quot;$&#123;device_list[@]&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    # 提取选择的设备 ID（选中的整行内容是&quot;设备ID|状态&quot;）</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        selected_id=$(echo &quot;$selected_device&quot; | awk -F&#x27;|&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        nohup scrcpy -s &quot;$selected_id&quot; &gt; /tmp/auto_scrcpy.log 2&gt;&amp;1 &amp;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 
 <p> 将以上脚本内容保存到<code>/usr/bin/scrcpy-auto-detect</code> <strong>记得将文件设置为可执行权限</strong></p>
 </li>
@@ -513,7 +842,9 @@
 
 <h3 id="获取当前window的view元素"><a href="#获取当前window的view元素" class="headerlink" title="获取当前window的view元素"></a>获取当前window的view元素</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wm dump-visible-window-views # 获取更详细的控件数据可以研究android.view.View#encode源码进行手动解析实现类似于uiautomator功能</span><br></pre></td></tr></table></figure>
 
-<h2 id="Activity相关"><a href="#Activity相关" class="headerlink" title="Activity相关"></a>Activity相关</h2><h3 id="启动Activity前停止app"><a href="#启动Activity前停止app" class="headerlink" title="启动Activity前停止app"></a>启动Activity前停止app</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity -S -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
+<h2 id="Activity相关"><a href="#Activity相关" class="headerlink" title="Activity相关"></a>Activity相关</h2><h3 id="查询当前显示Activity"><a href="#查询当前显示Activity" class="headerlink" title="查询当前显示Activity"></a>查询当前显示Activity</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys activity top | grep &quot;ACTIVITY&quot; | tail -n 1</span><br><span class="line"></span><br><span class="line">adb shell &quot;dumpsys activity activities | grep -E &#x27;mCurrentFocus|mFocusedApp&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动Activity前停止app"><a href="#启动Activity前停止app" class="headerlink" title="启动Activity前停止app"></a>启动Activity前停止app</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity -S -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
 
 <h3 id="启动activity并等待打开"><a href="#启动activity并等待打开" class="headerlink" title="启动activity并等待打开"></a>启动activity并等待打开</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity -W -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
 
@@ -591,6 +922,39 @@
 <h2 id="查询WebView相关信息"><a href="#查询WebView相关信息" class="headerlink" title="查询WebView相关信息"></a>查询WebView相关信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys webviewupdate</span><br></pre></td></tr></table></figure>
 
 <h2 id="电量相关"><a href="#电量相关" class="headerlink" title="电量相关"></a>电量相关</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys battery set [ac|usb|wireless|status|level|temp|present|invalid]</span><br><span class="line">adb shell dumpsys battery unplug # 模拟未插电</span><br><span class="line">adb shell dumpsys battery reset # 恢复实际状态</span><br><span class="line">adb shell dumpsys battery -h # 查看更多用法</span><br></pre></td></tr></table></figure>
+
+<h2 id="多用户相关"><a href="#多用户相关" class="headerlink" title="多用户相关"></a>多用户相关</h2><h3 id="查询最大允许创建的用户数量"><a href="#查询最大允许创建的用户数量" class="headerlink" title="查询最大允许创建的用户数量"></a>查询最大允许创建的用户数量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm get-max-users</span><br></pre></td></tr></table></figure>
+
+<h3 id="为指定用户安装卸载软件包"><a href="#为指定用户安装卸载软件包" class="headerlink" title="为指定用户安装卸载软件包"></a>为指定用户安装卸载软件包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb install --user &lt;userId&gt;</span><br><span class="line">adb install --user &lt;userId&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取当前用户ID"><a href="#获取当前用户ID" class="headerlink" title="获取当前用户ID"></a>获取当前用户ID</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am get-current-user</span><br></pre></td></tr></table></figure>
+
+<h3 id="列出所有用户列表"><a href="#列出所有用户列表" class="headerlink" title="列出所有用户列表"></a>列出所有用户列表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list users</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm create-user [options] &lt;USER_NAME&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>&lt;USER_NAME&gt;</code></strong>: 一个用于命名新用户的 string(字符串)。</li>
+<li>**<code>[options]</code>**：可以包含各种 flags 来定义用户类型：<ul>
+<li><code>--profileOf USER_ID</code>：创建与特定父用户ID关联的托管配置文件（例如，用户0通常是主要用户）。</li>
+<li><code>--managed</code>：创建一个 managed(托管的) 配置文件（工作配置文件）。</li>
+<li><code>--restricted</code>：创建一个具有受限配置文件的 user。</li>
+<li><code>--ephemeral</code>: 创建一个临时的 user。</li>
+<li><code>--guest</code>：创建访客用户配置文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm remove-user &lt;USER_ID&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="前台切换用户"><a href="#前台切换用户" class="headerlink" title="前台切换用户"></a>前台切换用户</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am switch-user &lt;USER_ID&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="后台启动用户"><a href="#后台启动用户" class="headerlink" title="后台启动用户"></a>后台启动用户</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-user &lt;USER_ID&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="为指定用户停用或启用软件包"><a href="#为指定用户停用或启用软件包" class="headerlink" title="为指定用户停用或启用软件包"></a>为指定用户停用或启用软件包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm disable --user</span><br><span class="line">adb shell pm enable --user</span><br></pre></td></tr></table></figure>
+
+<h3 id="列出指定用户安装的软件包列表"><a href="#列出指定用户安装的软件包列表" class="headerlink" title="列出指定用户安装的软件包列表"></a>列出指定用户安装的软件包列表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages --user &lt;userId&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询用户相关信息"><a href="#查询用户相关信息" class="headerlink" title="查询用户相关信息"></a>查询用户相关信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys user</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -799,185 +1163,6 @@
 </article>
 
     
-    <article
-  id="post-Frida开发手册"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
-    >Frida开发手册</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" class="article-date">
-  <time datetime="2021-04-08T06:14:14.000Z" itemprop="datePublished">2021-04-08</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下是在使用<code>python</code>开发<code>frida</code>脚本过程中收集到的一些用法, 这里将学习的知识点做个归纳总结</p>
-<h2 id="Hook函数"><a href="#Hook函数" class="headerlink" title="Hook函数"></a>Hook函数</h2><h3 id="Java普通函数"><a href="#Java普通函数" class="headerlink" title="Java普通函数"></a>Java普通函数</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Context</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;android.content.Context&#x27;</span>);</span><br><span class="line"><span class="title class_">Context</span>.<span class="property">checkCallingOrSelfPermission</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">permission: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="comment">// 以下两种写法都可以</span></span><br><span class="line">    <span class="comment">// return Context.checkCallingOrSelfPermission.call(this, permission)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">checkCallingOrSelfPermission</span>(permission);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果没有同名的重载函数则直接调用函数的<code>implementation</code>来重写即可</p> 
-      <a class="article-more-link" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-TypeScript回调函数this指向问题"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/"
-    >TypeScript回调函数this指向问题</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2021-03-01T11:49:46.000Z" itemprop="datePublished">2021-03-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>最近在使用<code>TypeScript</code>开发<code>frida hook</code>时遇到一个问题,当把一个类的函数传给另一个方法作为回调函数时,<code>this</code>指针指向的不是原始类的示例,经过一番搜索发现有很多人也碰到同样的问题所以在此记录一下:<br>出问题的代码:</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SetIntervalTest</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">someNumber</span>: <span class="built_in">number</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="built_in">setInterval</span>(<span class="variable language_">this</span>.<span class="property">setIntervalCallback</span>, <span class="number">400</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">setIntervalCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-<p>改成这样就可以了</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> setIntervalCallback = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>因为只是为了临时解决业务问题所以暂不深究日后有空再来研究研究</p>
-<blockquote>
-<p>相关链接:<a target="_blank" rel="noopener" href="https://github.com/microsoft/TypeScript/issues/10285">https://github.com/microsoft/TypeScript/issues/10285</a></p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-解决gradle无法同步的问题"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/"
-    >解决gradle无法同步的问题</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2021-01-14T03:52:36.000Z" itemprop="datePublished">2021-01-14</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not install Gradle distribution from &#x27;http://services.gradle.org/distributions/gradle-6.5-bin.zip&#x27;.</span><br></pre></td></tr></table></figure>
-
-<p>就在刚刚为了观摩一下<code>libgdx</code>引擎创建了一个工程虽然挂了梯子但是死活同步不了 不用说了肯定还是我们的万里长城防火墙搞的鬼了,感谢方校长让我们离西方的”邪恶势力”又远了一步!</p>
-<p>好了 不吐槽了解决办法也很简单打开项目下的<code>gradle/wrapper/gradle-wrapper.properties</code>文件将下载地址改为<code>https</code>就好了</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
@@ -995,7 +1180,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2025
+        2015-2026
         <i class="ri-heart-fill heart_icon"></i> Kaisar
       </li>
     </ul>
@@ -1073,6 +1258,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
     </li>
     
     <li class="nav-item">

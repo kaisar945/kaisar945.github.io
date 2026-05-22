@@ -153,6 +153,185 @@
     
     
     <article
+  id="post-Frida开发手册"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
+    >Frida开发手册</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" class="article-date">
+  <time datetime="2021-04-08T06:14:14.000Z" itemprop="datePublished">2021-04-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下是在使用<code>python</code>开发<code>frida</code>脚本过程中收集到的一些用法, 这里将学习的知识点做个归纳总结</p>
+<h2 id="Hook函数"><a href="#Hook函数" class="headerlink" title="Hook函数"></a>Hook函数</h2><h3 id="Java普通函数"><a href="#Java普通函数" class="headerlink" title="Java普通函数"></a>Java普通函数</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Context</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;android.content.Context&#x27;</span>);</span><br><span class="line"><span class="title class_">Context</span>.<span class="property">checkCallingOrSelfPermission</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">permission: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="comment">// 以下两种写法都可以</span></span><br><span class="line">    <span class="comment">// return Context.checkCallingOrSelfPermission.call(this, permission)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">checkCallingOrSelfPermission</span>(permission);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有同名的重载函数则直接调用函数的<code>implementation</code>来重写即可</p> 
+      <a class="article-more-link" href="/2021/04/08/Frida%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-TypeScript回调函数this指向问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/"
+    >TypeScript回调函数this指向问题</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/01/TypeScript%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-03-01T11:49:46.000Z" itemprop="datePublished">2021-03-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近在使用<code>TypeScript</code>开发<code>frida hook</code>时遇到一个问题,当把一个类的函数传给另一个方法作为回调函数时,<code>this</code>指针指向的不是原始类的示例,经过一番搜索发现有很多人也碰到同样的问题所以在此记录一下:<br>出问题的代码:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SetIntervalTest</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">someNumber</span>: <span class="built_in">number</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">trigger</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="built_in">setInterval</span>(<span class="variable language_">this</span>.<span class="property">setIntervalCallback</span>, <span class="number">400</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">setIntervalCallback</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>改成这样就可以了</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> setIntervalCallback = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someNumber</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>因为只是为了临时解决业务问题所以暂不深究日后有空再来研究研究</p>
+<blockquote>
+<p>相关链接:<a target="_blank" rel="noopener" href="https://github.com/microsoft/TypeScript/issues/10285">https://github.com/microsoft/TypeScript/issues/10285</a></p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-解决gradle无法同步的问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/"
+    >解决gradle无法同步的问题</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/14/%E8%A7%A3%E5%86%B3gradle%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-01-14T03:52:36.000Z" itemprop="datePublished">2021-01-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not install Gradle distribution from &#x27;http://services.gradle.org/distributions/gradle-6.5-bin.zip&#x27;.</span><br></pre></td></tr></table></figure>
+
+<p>就在刚刚为了观摩一下<code>libgdx</code>引擎创建了一个工程虽然挂了梯子但是死活同步不了 不用说了肯定还是我们的万里长城防火墙搞的鬼了,感谢方校长让我们离西方的”邪恶势力”又远了一步!</p>
+<p>好了 不吐槽了解决办法也很简单打开项目下的<code>gradle/wrapper/gradle-wrapper.properties</code>文件将下载地址改为<code>https</code>就好了</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-找回Ubuntu16.04中nautilus输入文字快速定位文件功能"
   class="article article-type-post"
   itemscope
@@ -628,201 +807,6 @@
 </article>
 
     
-    <article
-  id="post-不通过文件转储直接从adb-shell读取stdout数据"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/"
-    >不通过文件转储直接从adb shell读取stdout数据</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/08/04/%E4%B8%8D%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%BD%AC%E5%82%A8%E7%9B%B4%E6%8E%A5%E4%BB%8Eadb-shell%E8%AF%BB%E5%8F%96stdout%E6%95%B0%E6%8D%AE/" class="article-date">
-  <time datetime="2020-08-04T08:20:56.000Z" itemprop="datePublished">2020-08-04</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>通常我们从Android设备中捕获当前UI界面信息使用以下命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell uiautomator dump /sdcard/screen.xml</span><br><span class="line">adb pull /sdcard/screen.xml</span><br></pre></td></tr></table></figure>
-<p>在上面的代码块中我们经历了两个步骤</p>
-<ol>
-<li><p>执行命令结果输出到<code>/sdcard/screen.xml</code></p>
-</li>
-<li><p>拉取设备上的文件</p>
-</li>
-</ol>
-<p>从效率上来看是很慢的那有没有比较快的办法呢? 答案是有的!<br>我们可以利用<code>/dev/tty</code>设备让它直接输出到<code>stdout</code>上这样就省去文件转储了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell uiautomator dump /dev/tty</span><br></pre></td></tr></table></figure>
-<p>你满怀期待着等着结果只看到</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI hierchary dumped to: /dev/tty</span><br></pre></td></tr></table></figure>
-<p>WTF? 这是什么鬼dump出来的信息去哪了?眉头一紧事情好像貌似没有这么简单…<br>经过一番研究发现我们使用的<code>adb shell</code>会将命令输出发给<code>pty</code>经过一顿骚操作<code>pty</code>把数据搞丢了,所以在新版的<code>adb</code>中引入了一个新的功能<code>exec-out</code>该参数可以将二进制数据直接原封不动的输出。详情请参考<a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/system/core/+/5d9d434efadf1c535c7fea634d5306e18c68ef1f"></a></p>
-<p>所以只需要将命令改成这样即可:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb exec-out &#x27;uiautomator dump /dev/tty 1&gt;/dev/null&#x27;</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/" rel="tag">奇巧淫技</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-查看apk签名信息"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/08/03/%E6%9F%A5%E7%9C%8Bapk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/"
-    >查看apk签名信息</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/08/03/%E6%9F%A5%E7%9C%8Bapk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" class="article-date">
-  <time datetime="2020-08-03T07:12:27.000Z" itemprop="datePublished">2020-08-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -jarfile sample.apk</span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/" rel="tag">奇巧淫技</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-如何远程调试一台Android设备"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/"
-    >如何远程调试一台Android设备</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/" class="article-date">
-  <time datetime="2020-05-21T12:18:10.000Z" itemprop="datePublished">2020-05-21</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>要想跨越公网调试Android设备首先需要解决两个问题:</p>
-<ol>
-<li>如何让adb走tcp通信</li>
-<li>如何从公网连接这台设备</li>
-</ol>
-<h2 id="第一个问题-通过tcp调试Android手机"><a href="#第一个问题-通过tcp调试Android手机" class="headerlink" title="第一个问题:通过tcp调试Android手机"></a>第一个问题:通过tcp调试Android手机</h2><p>其实<code>adb</code>本身是支持通过tcp协议传输数据的只是可能大部分人从来没用过这个功能,大家可以在终端里面输入adb –help查看,里面有这么几个参数:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">networking:</span><br><span class="line"> connect HOST[:PORT]      connect to a device via TCP/IP</span><br><span class="line"> disconnect [[HOST]:PORT] disconnect from given TCP/IP device, or all</span><br><span class="line">...</span><br><span class="line"> usb                      restart adbd listening on USB</span><br><span class="line"> tcpip PORT               restart adbd listening on TCP on PORT</span><br></pre></td></tr></table></figure>
-
-<p>connect和disconnect是用来连接一台远程设备或者断开远程设备的,usb和tcpip选项是用来切换手机端adbd守护进程工作模式的我们要用到的就是tcpip这个参数使adbd服务监听在一个特定的网络端口上</p>
-<p>在电脑端执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell ifconfig wlan0 #先查看一下手机wifi的ip地址后续连接的时候会用到</span><br><span class="line">adb tcpip 5555 #将手机切换到tcp模式并在5555端口上监听</span><br><span class="line">adb connect 192.168.1.8:5555 #连接手机对应的ip地址和端口</span><br></pre></td></tr></table></figure>
-
-<p>或者在已root的设备上使用<code>termux</code>软件设置adbd为tcp模式</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 持久化设置</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop persist.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line">// 一次性设置重启后失效</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setprop service.adb.tcp.port 5555</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop adbd; start adbd</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>至此第一个问题已解决</p> 
-      <a class="article-more-link" href="/2020/05/21/%E5%A6%82%E4%BD%95%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%B8%80%E5%8F%B0Android%E8%AE%BE%E5%A4%87/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A5%87%E5%B7%A7%E6%B7%AB%E6%8A%80/" rel="tag">奇巧淫技</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
@@ -840,7 +824,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2025
+        2015-2026
         <i class="ri-heart-fill heart_icon"></i> Kaisar
       </li>
     </ul>
@@ -918,6 +902,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
     </li>
     
     <li class="nav-item">

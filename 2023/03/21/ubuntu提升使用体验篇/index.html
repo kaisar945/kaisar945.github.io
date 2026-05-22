@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">980</span>
+            <span class="post-count">1k</span>
         </span>
     </span>
 
@@ -97,7 +97,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -146,6 +146,10 @@
 <p>更好看的任务栏资源监视器</p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/6682/astra-monitor/">https://extensions.gnome.org/extension/6682/astra-monitor/</a></p>
 </li>
+<li><p><strong>Tiling Shell</strong></p>
+<p>平铺窗口类似于windows</p>
+<p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/7065/tiling-shell/">https://extensions.gnome.org/extension/7065/tiling-shell/</a></p>
+</li>
 </ul>
 <h2 id="KDE配置相关"><a href="#KDE配置相关" class="headerlink" title="KDE配置相关"></a>KDE配置相关</h2><p>安装<a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
 <ul>
@@ -161,7 +165,7 @@
 <p> Name: <code>Scrcpy#~</code></p>
 <p> Command: <code>/usr/bin/scrcpy-auto-detect</code></p>
 <p> Shortcut: <code>Ctrl + ~</code></p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有设备及其状态（排除标题行和空行）</span></span><br><span class="line">devices_info=$(adb devices | sed 1d | grep -v &#x27;^$&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices_info&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到任何 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取设备总数</span></span><br><span class="line">device_count=$(echo &quot;$devices_info&quot; | wc -l)</span><br><span class="line"></span><br><span class="line">if [ &quot;$device_count&quot; -eq 1 ]; then</span><br><span class="line">    # 只有一个设备，直接连接</span><br><span class="line">    device_id=$(echo &quot;$devices_info&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    scrcpy -s &quot;$device_id&quot;</span><br><span class="line">else</span><br><span class="line">    # 多个设备，显示选择界面</span><br><span class="line">    device_list=()</span><br><span class="line">    while IFS= read -r line; do</span><br><span class="line">        id=$(echo &quot;$line&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        status=$(echo &quot;$line&quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">        device_list+=(&quot;$id&quot; &quot;$status&quot;)</span><br><span class="line">    done &lt;&lt;&lt; &quot;$devices_info&quot;</span><br><span class="line"></span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; --column=&quot;状态&quot; \</span><br><span class="line">        &quot;$&#123;device_list[@]&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    # 提取选择的设备 ID（选中的整行内容是&quot;设备ID|状态&quot;）</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        selected_id=$(echo &quot;$selected_device&quot; | awk -F&#x27;|&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        scrcpy -s &quot;$selected_id&quot;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有设备及其状态（排除标题行和空行）</span></span><br><span class="line">devices_info=$(adb devices | sed 1d | grep -v &#x27;^$&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices_info&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到任何 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取设备总数</span></span><br><span class="line">device_count=$(echo &quot;$devices_info&quot; | wc -l)</span><br><span class="line"></span><br><span class="line">if [ &quot;$device_count&quot; -eq 1 ]; then</span><br><span class="line">    # 只有一个设备，直接连接</span><br><span class="line">    device_id=$(echo &quot;$devices_info&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    nohup scrcpy -s &quot;$device_id&quot; &gt; /tmp/auto_scrcpy.log 2&gt;&amp;1 &amp;</span><br><span class="line">else</span><br><span class="line">    # 多个设备，显示选择界面</span><br><span class="line">    device_list=()</span><br><span class="line">    while IFS= read -r line; do</span><br><span class="line">        id=$(echo &quot;$line&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        status=$(echo &quot;$line&quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">        device_list+=(&quot;$id&quot; &quot;$status&quot;)</span><br><span class="line">    done &lt;&lt;&lt; &quot;$devices_info&quot;</span><br><span class="line"></span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; --column=&quot;状态&quot; \</span><br><span class="line">        &quot;$&#123;device_list[@]&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    # 提取选择的设备 ID（选中的整行内容是&quot;设备ID|状态&quot;）</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        selected_id=$(echo &quot;$selected_device&quot; | awk -F&#x27;|&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        nohup scrcpy -s &quot;$selected_id&quot; &gt; /tmp/auto_scrcpy.log 2&gt;&amp;1 &amp;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 
 <p> 将以上脚本内容保存到<code>/usr/bin/scrcpy-auto-detect</code> <strong>记得将文件设置为可执行权限</strong></p>
 </li>
@@ -365,7 +369,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2025
+        2015-2026
         <i class="ri-heart-fill heart_icon"></i> Kaisar
       </li>
     </ul>
@@ -443,6 +447,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
     </li>
     
     <li class="nav-item">

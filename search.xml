@@ -1,6 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AI流量审计</title>
+    <url>/2026/01/08/AI%E6%B5%81%E9%87%8F%E5%AE%A1%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="Langfuse-简介"><a href="#Langfuse-简介" class="headerlink" title="Langfuse 简介"></a>Langfuse 简介</h2><p>Langfuse 是一个开源的 LLM 工程平台（Open Source LLM Engineering Platform），为大语言模型应用提供全面的开发和运维工具。它帮助开发团队监控、调试和优化生产环境中的 LLM 应用。</p>
+<h3 id="Langfuse-是干什么的？"><a href="#Langfuse-是干什么的？" class="headerlink" title="Langfuse 是干什么的？"></a>Langfuse 是干什么的？</h3><p>当你在做 Chatbot / RAG / Agent / 多步推理应用 时，常见问题是：</p>
+<p>模型为什么这次回答这么差？<br>Prompt 改了到底有没有变好？<br>用户问了什么？模型是怎么一步步走的？<br>Token 花在哪里了？成本多少？<br>不同模型 / Prompt 哪个更好？</p>
+<p>👉 Langfuse 就是用来解决这些问题的。</p>
+<h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><h4 id="1-可观测性（Observability）"><a href="#1-可观测性（Observability）" class="headerlink" title="1. 可观测性（Observability）"></a>1. 可观测性（Observability）</h4><ul>
+<li><strong>完整的应用追踪</strong>：基于 OpenTelemetry 标准，提供嵌套追踪能力</li>
+<li><strong>性能监控</strong>：显示每个调用的延迟和成本</li>
+<li><strong>简单集成</strong>：通过 <code>@observe()</code> 装饰器即可集成</li>
+</ul>
+<h4 id="2-评估系统（Evaluation）"><a href="#2-评估系统（Evaluation）" class="headerlink" title="2. 评估系统（Evaluation）"></a>2. 评估系统（Evaluation）</h4><ul>
+<li>自动化评估框架</li>
+<li>人工标注功能</li>
+<li>数据集管理和版本控制</li>
+</ul>
+<h4 id="3-提示词管理（Prompt-Management）"><a href="#3-提示词管理（Prompt-Management）" class="headerlink" title="3. 提示词管理（Prompt Management）"></a>3. 提示词管理（Prompt Management）</h4><ul>
+<li>集中管理提示词模板</li>
+<li>版本控制和回滚</li>
+<li>Playground 测试环境</li>
+</ul>
+<h4 id="4-指标分析（Metrics）"><a href="#4-指标分析（Metrics）" class="headerlink" title="4. 指标分析（Metrics）"></a>4. 指标分析（Metrics）</h4><ul>
+<li>实时性能监控和分析</li>
+<li>详细的成本追踪</li>
+<li>自定义指标统计</li>
+</ul>
+<h3 id="集成生态"><a href="#集成生态" class="headerlink" title="集成生态"></a>集成生态</h3><p>Langfuse 支持主流的 LLM 开发框架和工具：</p>
+<ul>
+<li><strong>SDK</strong>：Python、JavaScript/TypeScript</li>
+<li><strong>模型提供商</strong>：OpenAI、Anthropic 等</li>
+<li><strong>框架</strong>：LangChain、LlamaIndex、Vercel AI SDK、Instructor</li>
+<li><strong>网关</strong>：LiteLLM</li>
+<li><strong>无代码工具</strong>：Dify、Flowise、Langflow</li>
+</ul>
+<h3 id="主要优势"><a href="#主要优势" class="headerlink" title="主要优势"></a>主要优势</h3><ol>
+<li><strong>易于集成</strong>：提供 drop-in wrapper，最小化代码改动</li>
+<li><strong>开源透明</strong>：支持自托管部署，符合多项安全认证（SOC 2 Type II、ISO 27001、GDPR、HIPAA）</li>
+<li><strong>全栈覆盖</strong>：从开发到生产的完整工具链</li>
+<li><strong>调试友好</strong>：详细的追踪信息帮助快速定位问题</li>
+</ol>
+<h2 id="Langfuse-自托管部署"><a href="#Langfuse-自托管部署" class="headerlink" title="Langfuse 自托管部署"></a>Langfuse 自托管部署</h2><p>本部署方案采用 <strong>Langfuse + LiteLLM</strong> 的组合架构，实现对 LLM 应用流量的完整审计和可观测性。</p>
+<h3 id="架构说明"><a href="#架构说明" class="headerlink" title="架构说明"></a>架构说明</h3><p>这个部署方案包含三个核心服务：</p>
+<ol>
+<li><p><strong>PostgreSQL 数据库（db）</strong></p>
+<ul>
+<li>存储 Langfuse 的所有数据</li>
+<li>包括 traces、用户数据、配置等</li>
+</ul>
+</li>
+<li><p><strong>Langfuse Web 服务（langfuse-web）</strong></p>
+<ul>
+<li>提供可视化界面和 API</li>
+<li>用于查看追踪数据、管理提示词等</li>
+<li>访问地址：<a href="http://localhost:3000/">http://localhost:3000</a></li>
+</ul>
+</li>
+<li><p><strong>LiteLLM 代理层（litellm-proxy）</strong></p>
+<ul>
+<li>统一的 LLM 网关，支持多个模型提供商</li>
+<li>自动将所有 LLM 调用发送到 Langfuse 进行追踪</li>
+<li>访问地址：<a href="http://localhost:4000/">http://localhost:4000</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">你的应用 → LiteLLM 代理 → 各种 LLM API (OpenAI/Claude/等)</span><br><span class="line">              ↓</span><br><span class="line">         Langfuse 追踪和分析</span><br></pre></td></tr></table></figure>
+
+<p>通过这种架构，你的应用只需要配置 LiteLLM 的地址，所有 LLM 调用都会被自动记录和分析。</p>
+<hr>
+<h3 id="快速部署"><a href="#快速部署" class="headerlink" title="快速部署"></a>快速部署</h3><h4 id="步骤-1：准备配置文件"><a href="#步骤-1：准备配置文件" class="headerlink" title="步骤 1：准备配置文件"></a>步骤 1：准备配置文件</h4><p>创建 <code>docker-compose.yml</code> 文件：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.9&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="comment"># --- Langfuse 数据库 ---</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">postgres:16</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POSTGRES_USER=postgres</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POSTGRES_PASSWORD=postgres</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">POSTGRES_DB=langfuse</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">pgdata:/var/lib/postgresql/data</span></span><br><span class="line">    <span class="attr">healthcheck:</span></span><br><span class="line">      <span class="attr">test:</span> [<span class="string">&quot;CMD-SHELL&quot;</span>, <span class="string">&quot;pg_isready -U postgres&quot;</span>]</span><br><span class="line">      <span class="attr">interval:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">timeout:</span> <span class="string">5s</span></span><br><span class="line">      <span class="attr">retries:</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># --- Langfuse 服务端 (http://localhost:3000) ---</span></span><br><span class="line">  <span class="attr">langfuse-web:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">langfuse/langfuse:2</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="attr">db:</span></span><br><span class="line">        <span class="attr">condition:</span> <span class="string">service_healthy</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3000:3000&quot;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DATABASE_URL=postgresql://postgres:postgres@db:5432/langfuse</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">NEXTAUTH_SECRET=mysecret</span>  <span class="comment"># 生产环境请修改</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">SALT=mysalt</span>  <span class="comment"># 生产环境请修改</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">NEXTAUTH_URL=http://localhost:3000</span></span><br><span class="line">    <span class="attr">healthcheck:</span></span><br><span class="line">      <span class="attr">test:</span> [<span class="string">&quot;CMD&quot;</span>, <span class="string">&quot;curl&quot;</span>, <span class="string">&quot;-f&quot;</span>, <span class="string">&quot;http://localhost:3000/api/public/health&quot;</span>]</span><br><span class="line">      <span class="attr">interval:</span> <span class="string">30s</span></span><br><span class="line">      <span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">retries:</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># --- LiteLLM 代理层 (http://localhost:4000) ---</span></span><br><span class="line">  <span class="attr">litellm-proxy:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">ghcr.io/berriai/litellm:main-latest</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="attr">langfuse-web:</span></span><br><span class="line">        <span class="attr">condition:</span> <span class="string">service_healthy</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;4000:4000&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./litellm-config.yaml:/app/config.yaml</span></span><br><span class="line">    <span class="attr">command:</span> [<span class="string">&quot;--config&quot;</span>, <span class="string">&quot;/app/config.yaml&quot;</span>]</span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="comment"># 注意：这些密钥需要在 Langfuse 启动后从后台获取</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">LANGFUSE_PUBLIC_KEY=pk-lf-your-public-key</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">LANGFUSE_SECRET_KEY=sk-lf-your-secret-key</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">LANGFUSE_HOST=http://langfuse-web:3000</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">pgdata:</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="步骤-2：创建-LiteLLM-配置文件"><a href="#步骤-2：创建-LiteLLM-配置文件" class="headerlink" title="步骤 2：创建 LiteLLM 配置文件"></a>步骤 2：创建 LiteLLM 配置文件</h4><p>创建 <code>litellm-config.yaml</code> 文件：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">model_list:</span></span><br><span class="line">  <span class="comment"># OpenAI 模型配置</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">model_name:</span> <span class="string">gpt-4</span></span><br><span class="line">    <span class="attr">litellm_params:</span></span><br><span class="line">      <span class="attr">model:</span> <span class="string">openai/gpt-4</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">os.environ/OPENAI_API_KEY</span></span><br><span class="line"></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">model_name:</span> <span class="string">gpt-3.5-turbo</span></span><br><span class="line">    <span class="attr">litellm_params:</span></span><br><span class="line">      <span class="attr">model:</span> <span class="string">openai/gpt-3.5-turbo</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">os.environ/OPENAI_API_KEY</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Anthropic Claude 配置</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">model_name:</span> <span class="string">claude-3-opus</span></span><br><span class="line">    <span class="attr">litellm_params:</span></span><br><span class="line">      <span class="attr">model:</span> <span class="string">anthropic/claude-3-opus-20240229</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">os.environ/ANTHROPIC_API_KEY</span></span><br><span class="line"></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">model_name:</span> <span class="string">claude-3-sonnet</span></span><br><span class="line">    <span class="attr">litellm_params:</span></span><br><span class="line">      <span class="attr">model:</span> <span class="string">anthropic/claude-3-sonnet-20240229</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">os.environ/ANTHROPIC_API_KEY</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># LM Studio / vllm / ollama</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">model_name:</span> <span class="string">qwen3-vl-32b-thinking</span>  <span class="comment"># 你在 Agent 中调用的模型名</span></span><br><span class="line">    <span class="attr">litellm_params:</span></span><br><span class="line">      <span class="attr">model:</span> <span class="string">openai/qwen3-vl-32b-thinking</span>       <span class="comment"># 格式为 openai/任意名</span></span><br><span class="line">      <span class="attr">api_base:</span> <span class="string">http://127.0.0.1:1234/v1</span> <span class="comment"># 填写你现有的 vLLM 地址</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">&quot;not-needed&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Langfuse 集成配置（自动追踪所有请求）</span></span><br><span class="line"><span class="attr">litellm_settings:</span></span><br><span class="line">  <span class="attr">success_callback:</span> [<span class="string">&quot;langfuse&quot;</span>]</span><br><span class="line">  <span class="attr">failure_callback:</span> [<span class="string">&quot;langfuse&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：启用缓存</span></span><br><span class="line"><span class="attr">cache:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">cache_params:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&quot;redis&quot;</span>  <span class="comment"># 或者 &quot;disk&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：日志配置</span></span><br><span class="line"><span class="attr">general_settings:</span></span><br><span class="line">  <span class="attr">master_key:</span> <span class="string">&quot;sk-1234&quot;</span>  <span class="comment"># 访问 LiteLLM 的密钥</span></span><br><span class="line">  <span class="attr">database_url:</span> <span class="string">&quot;postgresql://postgres:postgres@db:5432/litellm&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="步骤-3：配置环境变量"><a href="#步骤-3：配置环境变量" class="headerlink" title="步骤 3：配置环境变量"></a>步骤 3：配置环境变量</h4><p>创建 <code>.env</code> 文件存储敏感信息：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># LLM API 密钥</span></span><br><span class="line">OPENAI_API_KEY=sk-your-openai-key</span><br><span class="line">ANTHROPIC_API_KEY=sk-ant-your-anthropic-key</span><br><span class="line"></span><br><span class="line"><span class="comment"># Langfuse 密钥（第一次启动后获取）</span></span><br><span class="line">LANGFUSE_PUBLIC_KEY=pk-lf-your-public-key</span><br><span class="line">LANGFUSE_SECRET_KEY=sk-lf-your-secret-key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生产环境安全配置</span></span><br><span class="line">NEXTAUTH_SECRET=$(openssl rand -<span class="built_in">base64</span> 32)</span><br><span class="line">SALT=$(openssl rand -<span class="built_in">base64</span> 32)</span><br></pre></td></tr></table></figure>
+
+<h4 id="步骤-4：首次启动（获取-Langfuse-密钥）"><a href="#步骤-4：首次启动（获取-Langfuse-密钥）" class="headerlink" title="步骤 4：首次启动（获取 Langfuse 密钥）"></a>步骤 4：首次启动（获取 Langfuse 密钥）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一次启动（不包括 LiteLLM）</span></span><br><span class="line">docker compose up db langfuse-web -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待服务启动完成</span></span><br><span class="line">docker compose logs -f langfuse-web</span><br></pre></td></tr></table></figure>
+
+<p>访问 <a href="http://localhost:3000：">http://localhost:3000：</a></p>
+<ol>
+<li>注册账号并登录</li>
+<li>进入 <strong>Settings</strong> → <strong>API Keys</strong></li>
+<li>创建新的 API Key</li>
+<li>复制 <strong>Public Key</strong> (pk-lf-…) 和 <strong>Secret Key</strong> (sk-lf-…)</li>
+<li>更新 <code>.env</code> 文件或 <code>docker-compose.yml</code> 中的密钥</li>
+</ol>
+<h4 id="步骤-5：启动完整服务"><a href="#步骤-5：启动完整服务" class="headerlink" title="步骤 5：启动完整服务"></a>步骤 5：启动完整服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新配置后重新启动所有服务</span></span><br><span class="line">docker compose down</span><br><span class="line">docker compose up -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">docker compose ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line">docker compose logs -f</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h3><h4 id="1-PostgreSQL-数据库配置"><a href="#1-PostgreSQL-数据库配置" class="headerlink" title="1. PostgreSQL 数据库配置"></a>1. PostgreSQL 数据库配置</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">db:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">postgres:16</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">POSTGRES_USER=postgres</span>        <span class="comment"># 数据库用户名</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">POSTGRES_PASSWORD=postgres</span>    <span class="comment"># 数据库密码（生产环境必须修改）</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">POSTGRES_DB=langfuse</span>          <span class="comment"># 数据库名称</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">pgdata:/var/lib/postgresql/data</span>  <span class="comment"># 数据持久化</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项：</strong></p>
+<ul>
+<li>生产环境必须修改默认密码</li>
+<li>定期备份 <code>pgdata</code> 卷</li>
+<li>可以配置端口映射进行外部访问（不推荐）</li>
+</ul>
+<h4 id="2-Langfuse-Web-服务配置"><a href="#2-Langfuse-Web-服务配置" class="headerlink" title="2. Langfuse Web 服务配置"></a>2. Langfuse Web 服务配置</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">langfuse-web:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">langfuse/langfuse:2</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="comment"># 数据库连接（格式：postgresql://用户:密码@主机:端口/数据库）</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">DATABASE_URL=postgresql://postgres:postgres@db:5432/langfuse</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># NextAuth 配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">NEXTAUTH_SECRET=mysecret</span>      <span class="comment"># 用于 JWT 签名（必须修改）</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">SALT=mysalt</span>                   <span class="comment"># 密码加盐（必须修改）</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">NEXTAUTH_URL=http://localhost:3000</span>  <span class="comment"># 服务访问地址</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键环境变量说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+<th>生产环境建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DATABASE_URL</code></td>
+<td>PostgreSQL 连接字符串</td>
+<td>使用强密码</td>
+</tr>
+<tr>
+<td><code>NEXTAUTH_SECRET</code></td>
+<td>JWT 签名密钥</td>
+<td><code>openssl rand -base64 32</code> 生成</td>
+</tr>
+<tr>
+<td><code>SALT</code></td>
+<td>密码加盐值</td>
+<td><code>openssl rand -base64 32</code> 生成</td>
+</tr>
+<tr>
+<td><code>NEXTAUTH_URL</code></td>
+<td>服务外部访问地址</td>
+<td>使用实际域名，如 <code>https://langfuse.example.com</code></td>
+</tr>
+</tbody></table>
+<p><strong>可选配置：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">environment:</span></span><br><span class="line">  <span class="comment"># 禁用公开注册</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">AUTH_DISABLE_SIGNUP=true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 配置 SMTP 邮件服务</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">SMTP_CONNECTION_URL=smtp://user:pass@smtp.example.com:587</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">EMAIL_FROM_ADDRESS=noreply@example.com</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 启用 Google SSO</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">AUTH_GOOGLE_CLIENT_ID=your-client-id</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">AUTH_GOOGLE_CLIENT_SECRET=your-client-secret</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-LiteLLM-代理配置"><a href="#3-LiteLLM-代理配置" class="headerlink" title="3. LiteLLM 代理配置"></a>3. LiteLLM 代理配置</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">litellm-proxy:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">ghcr.io/berriai/litellm:main-latest</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">./litellm-config.yaml:/app/config.yaml</span>  <span class="comment"># 挂载配置文件</span></span><br><span class="line">  <span class="attr">command:</span> [<span class="string">&quot;--config&quot;</span>, <span class="string">&quot;/app/config.yaml&quot;</span>]</span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="comment"># Langfuse 集成配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">LANGFUSE_PUBLIC_KEY=pk-lf-xxx</span>   <span class="comment"># 从 Langfuse 后台获取</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">LANGFUSE_SECRET_KEY=sk-lf-xxx</span>   <span class="comment"># 从 Langfuse 后台获取</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">LANGFUSE_HOST=http://langfuse-web:3000</span>  <span class="comment"># Langfuse 服务地址</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>LiteLLM 配置文件详解：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># litellm-config.yaml</span></span><br><span class="line"><span class="attr">model_list:</span></span><br><span class="line">  <span class="comment"># 定义可用的模型</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">model_name:</span> <span class="string">gpt-4</span>              <span class="comment"># 你的应用中使用的模型名称</span></span><br><span class="line">    <span class="attr">litellm_params:</span></span><br><span class="line">      <span class="attr">model:</span> <span class="string">openai/gpt-4</span>          <span class="comment"># 实际调用的模型</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">os.environ/OPENAI_API_KEY</span>  <span class="comment"># API 密钥（从环境变量读取）</span></span><br><span class="line"></span><br><span class="line"><span class="attr">litellm_settings:</span></span><br><span class="line">  <span class="comment"># 自动将所有调用发送到 Langfuse</span></span><br><span class="line">  <span class="attr">success_callback:</span> [<span class="string">&quot;langfuse&quot;</span>]  <span class="comment"># 成功时回调</span></span><br><span class="line">  <span class="attr">failure_callback:</span> [<span class="string">&quot;langfuse&quot;</span>]  <span class="comment"># 失败时回调</span></span><br><span class="line"></span><br><span class="line"><span class="attr">general_settings:</span></span><br><span class="line">  <span class="attr">master_key:</span> <span class="string">&quot;sk-1234&quot;</span>  <span class="comment"># LiteLLM 访问密钥（可选，用于认证）</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>支持的模型提供商：</strong></p>
+<ul>
+<li>OpenAI (gpt-4, gpt-3.5-turbo 等)</li>
+<li>Anthropic (claude-3-opus, claude-3-sonnet 等)</li>
+<li>Azure OpenAI</li>
+<li>Google PaLM</li>
+<li>Cohere</li>
+<li>Replicate</li>
+<li>更多…</li>
+</ul>
+<h4 id="在-Langfuse-中查看追踪"><a href="#在-Langfuse-中查看追踪" class="headerlink" title="在 Langfuse 中查看追踪"></a>在 Langfuse 中查看追踪</h4><ol>
+<li>访问 <a href="http://localhost:3000/">http://localhost:3000</a></li>
+<li>登录后进入 <strong>Traces</strong> 页面</li>
+<li>查看所有 LLM 调用的详细信息：<ul>
+<li>请求参数和响应</li>
+<li>延迟时间</li>
+<li>Token 使用量</li>
+<li>成本统计</li>
+</ul>
+</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://langfuse.com/">Langfuse 官网</a></li>
+<li><a href="https://github.com/langfuse/langfuse">Langfuse GitHub 仓库</a></li>
+<li><a href="https://langfuse.com/docs/deployment/self-host">Langfuse 自托管文档</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>人工智能</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android Nearby Share快速分享至Linux</title>
     <url>/2024/04/02/Android-Nearby-Share%E5%BF%AB%E9%80%9F%E5%88%86%E4%BA%AB%E8%87%B3Linux/</url>
     <content><![CDATA[<p>一直以来原生的Android手机和Linux设备之间共享文字/文件等信息有诸多不便，之前也试过KDE Connect和AirDroid等软件尽管有诸多的第三方软件支持但是总觉得安装app太麻烦而且效果也不尽人意，直到我发现了一个软件 <a href="https://github.com/Martichou/rquickshare">RQuickShare</a> 这款软件支持Google原生的的Nearby Share快速分享用起来十分舒服这里推荐给大家。</p>
@@ -560,7 +733,9 @@
 
 <h3 id="获取当前window的view元素"><a href="#获取当前window的view元素" class="headerlink" title="获取当前window的view元素"></a>获取当前window的view元素</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wm dump-visible-window-views # 获取更详细的控件数据可以研究android.view.View#encode源码进行手动解析实现类似于uiautomator功能</span><br></pre></td></tr></table></figure>
 
-<h2 id="Activity相关"><a href="#Activity相关" class="headerlink" title="Activity相关"></a>Activity相关</h2><h3 id="启动Activity前停止app"><a href="#启动Activity前停止app" class="headerlink" title="启动Activity前停止app"></a>启动Activity前停止app</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell am start-activity -S -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
+<h2 id="Activity相关"><a href="#Activity相关" class="headerlink" title="Activity相关"></a>Activity相关</h2><h3 id="查询当前显示Activity"><a href="#查询当前显示Activity" class="headerlink" title="查询当前显示Activity"></a>查询当前显示Activity</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell dumpsys activity top | grep &quot;ACTIVITY&quot; | tail -n 1</span><br><span class="line"></span><br><span class="line">adb shell &quot;dumpsys activity activities | grep -E &#x27;mCurrentFocus|mFocusedApp&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动Activity前停止app"><a href="#启动Activity前停止app" class="headerlink" title="启动Activity前停止app"></a>启动Activity前停止app</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell am start-activity -S -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
 
 <h3 id="启动activity并等待打开"><a href="#启动activity并等待打开" class="headerlink" title="启动activity并等待打开"></a>启动activity并等待打开</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell am start-activity -W -n com.example.app/.MainActivity</span><br></pre></td></tr></table></figure>
 
@@ -638,6 +813,39 @@
 <h2 id="查询WebView相关信息"><a href="#查询WebView相关信息" class="headerlink" title="查询WebView相关信息"></a>查询WebView相关信息</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell dumpsys webviewupdate</span><br></pre></td></tr></table></figure>
 
 <h2 id="电量相关"><a href="#电量相关" class="headerlink" title="电量相关"></a>电量相关</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell dumpsys battery set [ac|usb|wireless|status|level|temp|present|invalid]</span><br><span class="line">adb shell dumpsys battery unplug # 模拟未插电</span><br><span class="line">adb shell dumpsys battery reset # 恢复实际状态</span><br><span class="line">adb shell dumpsys battery -h # 查看更多用法</span><br></pre></td></tr></table></figure>
+
+<h2 id="多用户相关"><a href="#多用户相关" class="headerlink" title="多用户相关"></a>多用户相关</h2><h3 id="查询最大允许创建的用户数量"><a href="#查询最大允许创建的用户数量" class="headerlink" title="查询最大允许创建的用户数量"></a>查询最大允许创建的用户数量</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell pm get-max-users</span><br></pre></td></tr></table></figure>
+
+<h3 id="为指定用户安装卸载软件包"><a href="#为指定用户安装卸载软件包" class="headerlink" title="为指定用户安装卸载软件包"></a>为指定用户安装卸载软件包</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb install --user &lt;userId&gt;</span><br><span class="line">adb install --user &lt;userId&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取当前用户ID"><a href="#获取当前用户ID" class="headerlink" title="获取当前用户ID"></a>获取当前用户ID</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell am get-current-user</span><br></pre></td></tr></table></figure>
+
+<h3 id="列出所有用户列表"><a href="#列出所有用户列表" class="headerlink" title="列出所有用户列表"></a>列出所有用户列表</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell pm list users</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell pm create-user [options] &lt;USER_NAME&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>&lt;USER_NAME&gt;</code></strong>: 一个用于命名新用户的 string(字符串)。</li>
+<li>**<code>[options]</code>**：可以包含各种 flags 来定义用户类型：<ul>
+<li><code>--profileOf USER_ID</code>：创建与特定父用户ID关联的托管配置文件（例如，用户0通常是主要用户）。</li>
+<li><code>--managed</code>：创建一个 managed(托管的) 配置文件（工作配置文件）。</li>
+<li><code>--restricted</code>：创建一个具有受限配置文件的 user。</li>
+<li><code>--ephemeral</code>: 创建一个临时的 user。</li>
+<li><code>--guest</code>：创建访客用户配置文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell pm remove-user &lt;USER_ID&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="前台切换用户"><a href="#前台切换用户" class="headerlink" title="前台切换用户"></a>前台切换用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell am switch-user &lt;USER_ID&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="后台启动用户"><a href="#后台启动用户" class="headerlink" title="后台启动用户"></a>后台启动用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell am start-user &lt;USER_ID&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="为指定用户停用或启用软件包"><a href="#为指定用户停用或启用软件包" class="headerlink" title="为指定用户停用或启用软件包"></a>为指定用户停用或启用软件包</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell pm disable --user</span><br><span class="line">adb shell pm enable --user</span><br></pre></td></tr></table></figure>
+
+<h3 id="列出指定用户安装的软件包列表"><a href="#列出指定用户安装的软件包列表" class="headerlink" title="列出指定用户安装的软件包列表"></a>列出指定用户安装的软件包列表</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages --user &lt;userId&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询用户相关信息"><a href="#查询用户相关信息" class="headerlink" title="查询用户相关信息"></a>查询用户相关信息</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb shell dumpsys user</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -745,6 +953,10 @@
 <p>更好看的任务栏资源监视器</p>
 <p><a href="https://extensions.gnome.org/extension/6682/astra-monitor/">https://extensions.gnome.org/extension/6682/astra-monitor/</a></p>
 </li>
+<li><p><strong>Tiling Shell</strong></p>
+<p>平铺窗口类似于windows</p>
+<p><a href="https://extensions.gnome.org/extension/7065/tiling-shell/">https://extensions.gnome.org/extension/7065/tiling-shell/</a></p>
+</li>
 </ul>
 <h2 id="KDE配置相关"><a href="#KDE配置相关" class="headerlink" title="KDE配置相关"></a>KDE配置相关</h2><p>安装<a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>插件后与其他设备配对</p>
 <ul>
@@ -760,7 +972,7 @@
 <p> Name: <code>Scrcpy#~</code></p>
 <p> Command: <code>/usr/bin/scrcpy-auto-detect</code></p>
 <p> Shortcut: <code>Ctrl + ~</code></p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有设备及其状态（排除标题行和空行）</span></span><br><span class="line">devices_info=$(adb devices | sed 1d | grep -v &#x27;^$&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices_info&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到任何 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取设备总数</span></span><br><span class="line">device_count=$(echo &quot;$devices_info&quot; | wc -l)</span><br><span class="line"></span><br><span class="line">if [ &quot;$device_count&quot; -eq 1 ]; then</span><br><span class="line">    # 只有一个设备，直接连接</span><br><span class="line">    device_id=$(echo &quot;$devices_info&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    scrcpy -s &quot;$device_id&quot;</span><br><span class="line">else</span><br><span class="line">    # 多个设备，显示选择界面</span><br><span class="line">    device_list=()</span><br><span class="line">    while IFS= read -r line; do</span><br><span class="line">        id=$(echo &quot;$line&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        status=$(echo &quot;$line&quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">        device_list+=(&quot;$id&quot; &quot;$status&quot;)</span><br><span class="line">    done &lt;&lt;&lt; &quot;$devices_info&quot;</span><br><span class="line"></span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; --column=&quot;状态&quot; \</span><br><span class="line">        &quot;$&#123;device_list[@]&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    # 提取选择的设备 ID（选中的整行内容是&quot;设备ID|状态&quot;）</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        selected_id=$(echo &quot;$selected_device&quot; | awk -F&#x27;|&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        scrcpy -s &quot;$selected_id&quot;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取所有设备及其状态（排除标题行和空行）</span></span><br><span class="line">devices_info=$(adb devices | sed 1d | grep -v &#x27;^$&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有设备，提示并退出</span></span><br><span class="line">if [ -z &quot;$devices_info&quot; ]; then</span><br><span class="line">    notify-send -i &quot;dialog-error&quot; &quot;设备未连接&quot; &quot;没有找到任何 Android 设备！&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取设备总数</span></span><br><span class="line">device_count=$(echo &quot;$devices_info&quot; | wc -l)</span><br><span class="line"></span><br><span class="line">if [ &quot;$device_count&quot; -eq 1 ]; then</span><br><span class="line">    # 只有一个设备，直接连接</span><br><span class="line">    device_id=$(echo &quot;$devices_info&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    nohup scrcpy -s &quot;$device_id&quot; &gt; /tmp/auto_scrcpy.log 2&gt;&amp;1 &amp;</span><br><span class="line">else</span><br><span class="line">    # 多个设备，显示选择界面</span><br><span class="line">    device_list=()</span><br><span class="line">    while IFS= read -r line; do</span><br><span class="line">        id=$(echo &quot;$line&quot; | awk &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        status=$(echo &quot;$line&quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">        device_list+=(&quot;$id&quot; &quot;$status&quot;)</span><br><span class="line">    done &lt;&lt;&lt; &quot;$devices_info&quot;</span><br><span class="line"></span><br><span class="line">    selected_device=$(zenity --list \</span><br><span class="line">        --title=&quot;选择 Android 设备&quot; \</span><br><span class="line">        --text=&quot;检测到多个设备，请选择要连接的设备：&quot; \</span><br><span class="line">        --column=&quot;设备 ID&quot; --column=&quot;状态&quot; \</span><br><span class="line">        &quot;$&#123;device_list[@]&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    # 提取选择的设备 ID（选中的整行内容是&quot;设备ID|状态&quot;）</span><br><span class="line">    if [ -n &quot;$selected_device&quot; ]; then</span><br><span class="line">        selected_id=$(echo &quot;$selected_device&quot; | awk -F&#x27;|&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">        nohup scrcpy -s &quot;$selected_id&quot; &gt; /tmp/auto_scrcpy.log 2&gt;&amp;1 &amp;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 
 <p> 将以上脚本内容保存到<code>/usr/bin/scrcpy-auto-detect</code> <strong>记得将文件设置为可执行权限</strong></p>
 </li>
@@ -808,6 +1020,94 @@
 ]]></content>
       <categories>
         <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>奇巧淫技</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三星手机基于DualMessage实现任意应用双开</title>
+    <url>/2025/12/15/%E4%B8%89%E6%98%9F%E6%89%8B%E6%9C%BA%E5%9F%BA%E4%BA%8EDualMessage%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E5%BA%94%E7%94%A8%E5%8F%8C%E5%BC%80/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Android 系统的多用户机制为应用双开提供了原生支持。三星的 Dual Messenger 功能就是基于此原理实现的。本文将介绍如何利用 Android 多用户机制，突破官方限制，为任意应用实现双开功能。</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>Android 系统支持多用户功能，每个用户拥有独立的应用空间和数据。三星 Dual Messenger 通过创建一个名为 “DUAL_APP” 的特殊用户（通常用户 ID 为 95），在该用户空间中安装应用的第二个实例，从而实现双开。</p>
+<p>官方仅支持特定应用（如 WhatsApp、Facebook Messenger 等）的双开，这些应用的白名单硬编码在 <code>/system/app/DAAgent/DAAgent.apk</code> 的 <code>WhiteListApps</code> 类中。通过 ADB 命令，我们可以绕过这个限制，为任意应用创建双开实例。</p>
+<h2 id="基础方法：ADB-安装应用到双开空间"><a href="#基础方法：ADB-安装应用到双开空间" class="headerlink" title="基础方法：ADB 安装应用到双开空间"></a>基础方法：ADB 安装应用到双开空间</h2><h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>启用 USB 调试</li>
+<li>安装 ADB 工具</li>
+<li>至少启用一个官方支持的双开应用（如 WhatsApp）</li>
+</ul>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p><strong>查找双开用户 ID</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list <span class="built_in">users</span></span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Users:</span><br><span class="line">    UserInfo&#123;0:Owner:c13&#125; running</span><br><span class="line">    UserInfo&#123;95:DUAL_APP:1030&#125; running</span><br></pre></td></tr></table></figure>
+
+<p>记录 DUAL_APP 的用户 ID（通常是 95）</p>
+</li>
+<li><p><strong>安装应用到双开空间</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install --user 95 /path/to/app.apk</span><br></pre></td></tr></table></figure>
+
+<p>安装成功后，应用会出现在双开空间中，图标带有双开标识。</p>
+</li>
+</ol>
+<h2 id="权限配置"><a href="#权限配置" class="headerlink" title="权限配置"></a>权限配置</h2><h3 id="方法一：通过系统设置授权"><a href="#方法一：通过系统设置授权" class="headerlink" title="方法一：通过系统设置授权"></a>方法一：通过系统设置授权</h3><p>新安装的双开应用默认没有任何权限，需要手动授予：</p>
+<ol>
+<li>进入 <strong>设置</strong> → <strong>权限管理器</strong></li>
+<li>选择需要授予的权限类型（如联系人、存储等）</li>
+<li>找到双开应用实例</li>
+<li>点击 <strong>查看所有权限</strong> 进入完整的权限设置页面</li>
+<li>逐一授予所需权限</li>
+</ol>
+<h3 id="方法二：通过-ADB-命令授权"><a href="#方法二：通过-ADB-命令授权" class="headerlink" title="方法二：通过 ADB 命令授权"></a>方法二：通过 ADB 命令授权</h3><p>更快捷的方式是使用 ADB 命令直接授权：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 授予存储读取权限</span></span><br><span class="line">adb shell pm grant --user 95 com.package.name android.permission.READ_EXTERNAL_STORAGE</span><br><span class="line"></span><br><span class="line"><span class="comment"># 授予存储写入权限</span></span><br><span class="line">adb shell pm grant --user 95 com.package.name android.permission.WRITE_EXTERNAL_STORAGE</span><br><span class="line"></span><br><span class="line"><span class="comment"># 授予相机权限</span></span><br><span class="line">adb shell pm grant --user 95 com.package.name android.permission.CAMERA</span><br><span class="line"></span><br><span class="line"><span class="comment"># 授予联系人权限</span></span><br><span class="line">adb shell pm grant --user 95 com.package.name android.permission.READ_CONTACTS</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>com.package.name</code> 替换为实际的应用包名。</p>
+<h2 id="高级方案：使用-Aurora-Store"><a href="#高级方案：使用-Aurora-Store" class="headerlink" title="高级方案：使用 Aurora Store"></a>高级方案：使用 Aurora Store</h2><p>为了方便在双开空间中安装和管理应用，可以将 Aurora Store 安装到双开空间。</p>
+<h3 id="安装-Aurora-Store"><a href="#安装-Aurora-Store" class="headerlink" title="安装 Aurora Store"></a>安装 Aurora Store</h3><ol>
+<li><p><strong>下载 Aurora Store APK</strong></p>
+</li>
+<li><p><strong>安装到双开空间</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install --user 95 aurora.apk</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>授予必要权限</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 授予存储权限</span></span><br><span class="line">adb shell pm grant --user 95 com.aurora.store android.permission.READ_EXTERNAL_STORAGE</span><br><span class="line">adb shell pm grant --user 95 com.aurora.store android.permission.WRITE_EXTERNAL_STORAGE</span><br><span class="line"></span><br><span class="line"><span class="comment"># 授予安装应用权限</span></span><br><span class="line">adb shell appops <span class="built_in">set</span> --user 95 com.aurora.store REQUEST_INSTALL_PACKAGES allow</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>使用 Aurora Store</strong></p>
+<p>打开双开空间中的 Aurora Store，即可直接下载安装应用，无需每次都通过 ADB。</p>
+</li>
+</ol>
+<h2 id="分离-APK-的处理"><a href="#分离-APK-的处理" class="headerlink" title="分离 APK 的处理"></a>分离 APK 的处理</h2><p>部分现代应用使用分离 APK（Split APKs）格式，无法直接通过 <code>adb install</code> 安装。需要使用专门的安装器。</p>
+<h3 id="使用-SAI（Split-APKs-Installer）"><a href="#使用-SAI（Split-APKs-Installer）" class="headerlink" title="使用 SAI（Split APKs Installer）"></a>使用 SAI（Split APKs Installer）</h3><ol>
+<li><p><strong>安装 SAI 到双开空间</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install --user 95 sai.apk</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>授予权限</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm grant --user 95 com.aefyr.sai android.permission.READ_EXTERNAL_STORAGE</span><br><span class="line">adb shell pm grant --user 95 com.aefyr.sai android.permission.WRITE_EXTERNAL_STORAGE</span><br><span class="line">adb shell appops <span class="built_in">set</span> --user 95 com.aefyr.sai REQUEST_INSTALL_PACKAGES allow</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>安装分离 APK</strong></p>
+<ul>
+<li>下载应用的 <code>.apkm</code> 或 <code>.apks</code> 文件</li>
+<li>将文件移动到双开空间的下载目录</li>
+<li>使用双开版 SAI 打开并安装</li>
+</ul>
+</li>
+</ol>
+<h2 id="技术深入：修改白名单（需要-Root）"><a href="#技术深入：修改白名单（需要-Root）" class="headerlink" title="技术深入：修改白名单（需要 Root）"></a>技术深入：修改白名单（需要 Root）</h2><p>对于已 Root 的设备，可以通过修改系统文件永久添加应用到白名单：</p>
+<ol>
+<li>系统服务 <code>dual_app</code> 维护着支持双开的应用列表</li>
+<li>白名单定义在 <code>/system/app/DAAgent/DAAgent.apk</code> 中</li>
+<li>可以通过反编译 APK，修改 <code>WhiteListApps</code> 类，重新打包并替换系统文件</li>
+<li>或使用 Xposed/Magisk 模块动态修改白名单</li>
+</ol>
+<p><strong>注意</strong>：修改系统文件有风险，操作前请做好备份。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li><strong>兼容性</strong>：不同厂商的 Android 系统对多用户的实现可能有差异，本方法主要适用于三星设备</li>
+<li><strong>稳定性</strong>：非官方双开的应用可能存在稳定性问题，建议先测试</li>
+<li><strong>数据安全</strong>：双开空间的数据独立存储，卸载应用会清除所有数据，注意备份</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://xdaforums.com/t/add-non-messenger-apps-to-samsung-dual-messenger.3817250/post-82316255">XDA Forums: Add non-Messenger apps to Samsung Dual Messenger</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
       </categories>
       <tags>
         <tag>奇巧淫技</tag>
@@ -945,6 +1245,87 @@
       </categories>
       <tags>
         <tag>运动</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于工作资料实现应用多开</title>
+    <url>/2025/12/15/%E5%9F%BA%E4%BA%8E%E5%B7%A5%E4%BD%9C%E8%B5%84%E6%96%99%E5%AE%9E%E7%8E%B0%E5%BA%94%E7%94%A8%E5%A4%9A%E5%BC%80/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Android 系统的工作资料（Work Profile）功能可以为应用创建独立的运行环境，实现应用双开。本文介绍如何通过 ADB 命令手动创建工作资料，并安装应用实现多开。</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>工作资料是 Android 5.0 引入的企业功能，本质上是创建一个受管理的用户配置文件（Managed Profile）。通过 <code>pm create-user</code> 命令创建托管配置文件，然后将应用安装到该配置文件中，实现与主用户空间的应用完全隔离。</p>
+<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><ul>
+<li>Android 5.0 及以上系统</li>
+<li>启用 USB 调试</li>
+<li>安装 ADB 工具</li>
+<li>设备未设置工作资料（一台设备只能有一个工作资料）</li>
+</ul>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="1-创建工作资料"><a href="#1-创建工作资料" class="headerlink" title="1. 创建工作资料"></a>1. 创建工作资料</h3><p>使用以下命令创建一个托管配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm create-user --profileOf 0 --managed 工作资料名称</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>--profileOf 0</code>：指定父用户为用户 0（主用户）</li>
+<li><code>--managed</code>：创建托管配置文件（工作资料）</li>
+<li><code>工作资料名称</code>：自定义名称，例如”工作空间”、”Work”等</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm create-user --profileOf 0 --managed Work</span><br></pre></td></tr></table></figure>
+
+<p>执行成功后会返回创建的用户 ID，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Success: created user id 13</span><br></pre></td></tr></table></figure>
+
+<p>记录这个用户 ID（本例中为 13），后续操作需要用到。</p>
+<h3 id="2-启动工作资料"><a href="#2-启动工作资料" class="headerlink" title="2. 启动工作资料"></a>2. 启动工作资料</h3><p>创建完成后需要启动工作资料：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell am start-user 13</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>13</code> 替换为上一步返回的实际用户 ID。</p>
+<h3 id="3-查看所有用户"><a href="#3-查看所有用户" class="headerlink" title="3. 查看所有用户"></a>3. 查看所有用户</h3><p>可以使用以下命令查看系统中的所有用户：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list <span class="built_in">users</span></span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Users:</span><br><span class="line">    UserInfo&#123;0:Owner:c13&#125; running</span><br><span class="line">    UserInfo&#123;13:Work:1030&#125; running</span><br></pre></td></tr></table></figure>
+
+<p>可以看到主用户（ID 为 0）和刚创建的工作资料（ID 为 13）都在运行中。</p>
+<h3 id="4-安装应用到工作资料"><a href="#4-安装应用到工作资料" class="headerlink" title="4. 安装应用到工作资料"></a>4. 安装应用到工作资料</h3><h4 id="方法一：复制已安装的应用"><a href="#方法一：复制已安装的应用" class="headerlink" title="方法一：复制已安装的应用"></a>方法一：复制已安装的应用</h4><p>如果主用户空间已经安装了某个应用，可以直接将其复制到工作资料中：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm install-existing --user 13 com.tencent.mm</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>--user 13</code>：指定目标用户 ID（工作资料）</li>
+<li><code>com.tencent.mm</code>：应用包名（此处以微信为例）</li>
+</ul>
+<p>常用应用包名：</p>
+<ul>
+<li>微信：<code>com.tencent.mm</code></li>
+<li>QQ：<code>com.tencent.mobileqq</code></li>
+<li>WhatsApp：<code>com.whatsapp</code></li>
+<li>Telegram：<code>org.telegram.messenger</code></li>
+</ul>
+<h4 id="方法二：直接安装-APK"><a href="#方法二：直接安装-APK" class="headerlink" title="方法二：直接安装 APK"></a>方法二：直接安装 APK</h4><p>也可以直接将 APK 安装到工作资料中：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install --user 13 /path/to/app.apk</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-验证安装"><a href="#5-验证安装" class="headerlink" title="5. 验证安装"></a>5. 验证安装</h3><p>安装完成后，可以查看工作资料中已安装的应用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages --user 13</span><br></pre></td></tr></table></figure>
+
+<p>工作资料中的应用会在桌面显示，图标带有工作资料标识（通常是公文包图标）。</p>
+<h2 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h2><p>以下是创建工作资料并安装微信的完整命令流程：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 创建工作资料</span></span><br><span class="line">adb shell pm create-user --profileOf 0 --managed Work</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设返回用户 ID 为 13</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 启动工作资料</span></span><br><span class="line">adb shell am start-user 13</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 复制微信到工作资料</span></span><br><span class="line">adb shell pm install-existing --user 13 com.tencent.mm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看工作资料中的应用列表</span></span><br><span class="line">adb shell pm list packages --user 13</span><br></pre></td></tr></table></figure>
+
+<h2 id="管理工作资料"><a href="#管理工作资料" class="headerlink" title="管理工作资料"></a>管理工作资料</h2><h3 id="停止工作资料"><a href="#停止工作资料" class="headerlink" title="停止工作资料"></a>停止工作资料</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell am stop-user 13</span><br></pre></td></tr></table></figure>
+
+<p>停止后，工作资料中的应用将停止运行，不会收到通知。</p>
+<h3 id="启动工作资料"><a href="#启动工作资料" class="headerlink" title="启动工作资料"></a>启动工作资料</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell am start-user 13</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除工作资料"><a href="#删除工作资料" class="headerlink" title="删除工作资料"></a>删除工作资料</h3><p>如果不再需要工作资料，可以删除：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm remove-user 13</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：删除工作资料会清除其中所有应用和数据，操作前请备份重要数据。</p>
+<h3 id="从工作资料卸载应用"><a href="#从工作资料卸载应用" class="headerlink" title="从工作资料卸载应用"></a>从工作资料卸载应用</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall --user 13 com.tencent.mm</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>奇巧淫技</tag>
       </tags>
   </entry>
   <entry>
