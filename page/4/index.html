@@ -153,6 +153,296 @@
     
     
     <article
+  id="post-ByteBuffer详解"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/11/ByteBuffer%E8%AF%A6%E8%A7%A3/"
+    >ByteBuffer详解</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/11/ByteBuffer%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2020-11-11T07:48:34.000Z" itemprop="datePublished">2020-11-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>之前对NIO开发不熟悉导致对ByteBuffer一直是一知半解的状态正好看到知乎上有个朋友写的不错于是转载过来</p>
+<p>转自:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56876443">https://zhuanlan.zhihu.com/p/56876443</a></p>
+</blockquote>
+<h2 id="在Java-nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解："><a href="#在Java-nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解：" class="headerlink" title="在Java nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解："></a>在Java nio中，主要有三大组件：Buffer，Channel和Selector。这三者之间的关系可以按照如下方式进行理解：</h2><ul>
+<li>Buffer提供了一个字节缓冲区，其可以不断的从Channel中读取接收到的数据。Buffer的优点主要在于其提供了一系列的Api，能够让用户更方便的对数据进行读取和写入；</li>
+<li>Channel简单来说就是一个信道，也就是客户端与服务器的一个连接，而且每个客户端都会对应一个Channel对象；</li>
+<li>Selector是Java nio能够支持高并发数据处理一个关键，其核心理念就是IO多路复用的原理，简单的说就是当多个客户端（Channel）连接服务器时，可以通过Selector同时对这些客户端请求进行监听，当客户端发送数据到服务器之后由Selector对这些Channel进行分发处理。</li>
+</ul>
+<p>本文首先讲解ByteBuffer的实现原理，然后会介绍ByteBuffer中常用的Api，以及其在使用过程中需要注意的点。</p>
+<ol>
+<li><p><strong>实现原理</strong><br>对于ByteBuffer，其主要有五个属性：mark，position，limit，capacity和array。这五个属性的作用如下：</p>
+<ul>
+<li>mark：记录了当前所标记的索引下标；</li>
+<li>position：对于写入模式，表示当前可写入数据的下标，对于读取模式，表示接下来可以读取的数据的下标；</li>
+<li>limit：对于写入模式，表示当前可以写入的数组大小，默认为数组的最大长度，对于读取模式，表示当前最多可以读取的数据的位置下标；</li>
+<li>capacity：表示当前数组的容量大小；</li>
+<li>array：保存了当前写入的数据。</li>
+</ul>
+<p>这几个数据中，除了array是用于保存数据的以外，这里最终的主要是position，limit和capacity三个属性，因为对于写入和读取模式，这三个属性的表示的含义大不一样。</p> 
+      <a class="article-more-link" href="/2020/11/11/ByteBuffer%E8%AF%A6%E8%A7%A3/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/" rel="tag">开发实战</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-Xposed为何对京东无法生效"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/"
+    >Xposed为何对京东无法生效</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/" class="article-date">
+  <time datetime="2020-11-06T10:20:36.000Z" itemprop="datePublished">2020-11-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>  前一阵子对京东的一个功能比较好奇于是就有了逆向京东的想法,我熟练的拿起了<code>jadx</code>对京东进行反编译居然没有混淆心中狂喜很快就找到入口点,于是又祭出了<code>Xposed</code>大法飞快的写了个插件Hook了<code>Activity</code>的<code>onCreate</code>方法,我迫不及待的跑了起来结果hook貌似没有生效任何Log都没有输出,反复检查后仍不得其解不过此时的我已心中暗暗猜测京东应该有一些反<code>Xposed</code>的机制,因为之前曾见过”酷安”和”知乎”也有这样的功能,于是又Hook了像<code>Class.forName </code>和<code>ClassLoader.loadClass</code>这样的函数来验证一下我的想法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">XposedHelpers.findAndHookMethod(ClassLoader.class, <span class="string">&quot;loadClass&quot;</span>, String.class, <span class="keyword">new</span> <span class="title class_">XC_MethodHook</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">beforeHookedMethod</span><span class="params">(MethodHookParam param)</span> <span class="keyword">throws</span> Throwable</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(((String)param.args[<span class="number">0</span>]).startsWith(<span class="string">&quot;de.robv.android.xposed&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">		Log.d(<span class="string">&quot;Kaisar&quot;</span>, <span class="string">&quot;loadclass:&quot;</span> + Arrays.toString(param.args), <span class="keyword">new</span> <span class="title class_">Throwable</span>());</span><br><span class="line">		param.setThrowable(<span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">XposedHelpers.findAndHookMethod(Class.class, <span class="string">&quot;forName&quot;</span>, String.class, <span class="keyword">new</span> <span class="title class_">XC_MethodHook</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">beforeHookedMethod</span><span class="params">(MethodHookParam param)</span> <span class="keyword">throws</span> Throwable</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(((String)param.args[<span class="number">0</span>]).startsWith(<span class="string">&quot;de.robv.android.xposed&quot;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">		Log.d(<span class="string">&quot;Kaisar&quot;</span>, <span class="string">&quot;forName:&quot;</span> + Arrays.toString(param.args), <span class="keyword">new</span> <span class="title class_">Throwable</span>());</span><br><span class="line">		param.setThrowable(<span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/11/06/Xposed%E4%B8%BA%E4%BD%95%E5%AF%B9%E4%BA%AC%E4%B8%9C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xposed/" rel="tag">Xposed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-InputStream无法与BufferReader同时用"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/"
+    >InputStream无法与BufferReader同时用</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/" class="article-date">
+  <time datetime="2020-11-05T09:15:35.000Z" itemprop="datePublished">2020-11-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>​    前两天客户端这边有一块业务一开始想的是用<code>socket</code>直接跟后端传数据,后来后端觉得基于目前的框架改太麻烦于是协商了一下还是改为HTTP协议,我一想HTTP传过来过我把HTTP的头给忽略掉不就可以了于是直接动手撸了个HTTP服务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> serverSocket.accept();</span><br><span class="line"></span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(socket.getInputStream()));</span><br><span class="line">LinkedHashMap&lt;String, String&gt; headerFields = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;String, String&gt;();</span><br><span class="line"><span class="keyword">for</span>(String header; (header = r.readLine()) != <span class="literal">null</span> &amp;&amp; !header.isEmpty();)&#123;</span><br><span class="line">    <span class="comment">//解析HTTP头</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(header)</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> Integer.parseInt(headerFields.get(<span class="string">&quot;Content-Length&quot;</span>));</span><br><span class="line"><span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[length];</span><br><span class="line">socket.getInputStream().read(buffer);</span><br><span class="line"><span class="comment">//处理业务数据</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">out.write(<span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line">out.write(<span class="string">&quot;fuck you\r\n&quot;</span>).getBytes());</span><br><span class="line">out.flush();</span><br><span class="line">socket.close();</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/11/05/InputStream%E6%97%A0%E6%B3%95%E4%B8%8EBufferReader%E5%90%8C%E6%97%B6%E7%94%A8/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-使用openstf部署一套内部测试平台"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/29/%E4%BD%BF%E7%94%A8openstf%E9%83%A8%E7%BD%B2%E4%B8%80%E5%A5%97%E5%86%85%E9%83%A8%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0/"
+    >使用openstf部署一套内部测试平台</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/29/%E4%BD%BF%E7%94%A8openstf%E9%83%A8%E7%BD%B2%E4%B8%80%E5%A5%97%E5%86%85%E9%83%A8%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0/" class="article-date">
+  <time datetime="2020-10-29T02:00:00.000Z" itemprop="datePublished">2020-10-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ul>
+<li>Ubuntu20.04</li>
+<li>Docker 19.03.13 #务必从<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">官方</a>渠道安装否则用自带可能会遇到莫名其妙的问题<ul>
+<li><a target="_blank" rel="noopener" href="https://registry.hub.docker.com/_/rethinkdb">rethinkdb</a></li>
+<li><a target="_blank" rel="noopener" href="https://registry.hub.docker.com/r/sorccu/adb">sorccu/adb</a></li>
+<li><a target="_blank" rel="noopener" href="https://registry.hub.docker.com/r/devicefarmer/stf">devicefarmer/stf</a> 镜像(该版本为开发活跃的分叉)</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装openstf"><a href="#安装openstf" class="headerlink" title="安装openstf"></a>安装openstf</h2><ol>
+<li><code>sudo docker pull rethinkdb:latest</code> # 拉取rethinkdb 镜像</li>
+<li><code>sudo docker pull sorccu/adb:latest </code># 拉取android adb 镜像</li>
+<li><code>sudo docker pull devicefarmer/stf:latest</code> #拉取openstf 镜像</li>
+</ol>
+<h2 id="部署openstf"><a href="#部署openstf" class="headerlink" title="部署openstf"></a>部署openstf</h2><p>openstf部署方式有两种</p>
+<ol>
+<li>集中管理: openstf管理平台所连接的设备在一台机器上</li>
+</ol>
+<p><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgIEFbT3BlblNURi3mnLrlmahBXSAtLT4gQihEZXZpY2UpXG4gICBBW09wZW5TVEYt5py65ZmoQV0gLS0-IEMoRGV2aWNlKVxuICAgQVtPcGVuU1RGLeacuuWZqEFdIC0tPiBEKERldmljZSlcbiAgIEFbT3BlblNURi3mnLrlmahBXSAtLT4gRShEZXZpY2UpXG4gICBBW09wZW5TVEYt5py65ZmoQV0gLS0-IEYoRGV2aWNlKVxuICAgQVtPcGVuU1RGLeacuuWZqEFdIC0tPiBIKC4uLikiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCIsInRoZW1lVmFyaWFibGVzIjp7ImJhY2tncm91bmQiOiJ3aGl0ZSIsInByaW1hcnlDb2xvciI6IiNFQ0VDRkYiLCJzZWNvbmRhcnlDb2xvciI6IiNmZmZmZGUiLCJ0ZXJ0aWFyeUNvbG9yIjoiaHNsKDgwLCAxMDAlLCA5Ni4yNzQ1MDk4MDM5JSkiLCJwcmltYXJ5Qm9yZGVyQ29sb3IiOiJoc2woMjQwLCA2MCUsIDg2LjI3NDUwOTgwMzklKSIsInNlY29uZGFyeUJvcmRlckNvbG9yIjoiaHNsKDYwLCA2MCUsIDgzLjUyOTQxMTc2NDclKSIsInRlcnRpYXJ5Qm9yZGVyQ29sb3IiOiJoc2woODAsIDYwJSwgODYuMjc0NTA5ODAzOSUpIiwicHJpbWFyeVRleHRDb2xvciI6IiMxMzEzMDAiLCJzZWNvbmRhcnlUZXh0Q29sb3IiOiIjMDAwMDIxIiwidGVydGlhcnlUZXh0Q29sb3IiOiJyZ2IoOS41MDAwMDAwMDAxLCA5LjUwMDAwMDAwMDEsIDkuNTAwMDAwMDAwMSkiLCJsaW5lQ29sb3IiOiIjMzMzMzMzIiwidGV4dENvbG9yIjoiIzMzMyIsIm1haW5Ca2ciOiIjRUNFQ0ZGIiwic2Vjb25kQmtnIjoiI2ZmZmZkZSIsImJvcmRlcjEiOiIjOTM3MERCIiwiYm9yZGVyMiI6IiNhYWFhMzMiLCJhcnJvd2hlYWRDb2xvciI6IiMzMzMzMzMiLCJmb250RmFtaWx5IjoiXCJ0cmVidWNoZXQgbXNcIiwgdmVyZGFuYSwgYXJpYWwiLCJmb250U2l6ZSI6IjE2cHgiLCJsYWJlbEJhY2tncm91bmQiOiIjZThlOGU4Iiwibm9kZUJrZyI6IiNFQ0VDRkYiLCJub2RlQm9yZGVyIjoiIzkzNzBEQiIsImNsdXN0ZXJCa2ciOiIjZmZmZmRlIiwiY2x1c3RlckJvcmRlciI6IiNhYWFhMzMiLCJkZWZhdWx0TGlua0NvbG9yIjoiIzMzMzMzMyIsInRpdGxlQ29sb3IiOiIjMzMzIiwiZWRnZUxhYmVsQmFja2dyb3VuZCI6IiNlOGU4ZTgiLCJhY3RvckJvcmRlciI6ImhzbCgyNTkuNjI2MTY4MjI0MywgNTkuNzc2NTM2MzEyOCUsIDg3LjkwMTk2MDc4NDMlKSIsImFjdG9yQmtnIjoiI0VDRUNGRiIsImFjdG9yVGV4dENvbG9yIjoiYmxhY2siLCJhY3RvckxpbmVDb2xvciI6ImdyZXkiLCJzaWduYWxDb2xvciI6IiMzMzMiLCJzaWduYWxUZXh0Q29sb3IiOiIjMzMzIiwibGFiZWxCb3hCa2dDb2xvciI6IiNFQ0VDRkYiLCJsYWJlbEJveEJvcmRlckNvbG9yIjoiaHNsKDI1OS42MjYxNjgyMjQzLCA1OS43NzY1MzYzMTI4JSwgODcuOTAxOTYwNzg0MyUpIiwibGFiZWxUZXh0Q29sb3IiOiJibGFjayIsImxvb3BUZXh0Q29sb3IiOiJibGFjayIsIm5vdGVCb3JkZXJDb2xvciI6IiNhYWFhMzMiLCJub3RlQmtnQ29sb3IiOiIjZmZmNWFkIiwibm90ZVRleHRDb2xvciI6ImJsYWNrIiwiYWN0aXZhdGlvbkJvcmRlckNvbG9yIjoiIzY2NiIsImFjdGl2YXRpb25Ca2dDb2xvciI6IiNmNGY0ZjQiLCJzZXF1ZW5jZU51bWJlckNvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IiOiJyZ2JhKDEwMiwgMTAyLCAyNTUsIDAuNDkpIiwiYWx0U2VjdGlvbkJrZ0NvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IyIjoiI2ZmZjQwMCIsInRhc2tCb3JkZXJDb2xvciI6IiM1MzRmYmMiLCJ0YXNrQmtnQ29sb3IiOiIjOGE5MGRkIiwidGFza1RleHRMaWdodENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dERhcmtDb2xvciI6ImJsYWNrIiwidGFza1RleHRPdXRzaWRlQ29sb3IiOiJibGFjayIsInRhc2tUZXh0Q2xpY2thYmxlQ29sb3IiOiIjMDAzMTYzIiwiYWN0aXZlVGFza0JvcmRlckNvbG9yIjoiIzUzNGZiYyIsImFjdGl2ZVRhc2tCa2dDb2xvciI6IiNiZmM3ZmYiLCJncmlkQ29sb3IiOiJsaWdodGdyZXkiLCJkb25lVGFza0JrZ0NvbG9yIjoibGlnaHRncmV5IiwiZG9uZVRhc2tCb3JkZXJDb2xvciI6ImdyZXkiLCJjcml0Qm9yZGVyQ29sb3IiOiIjZmY4ODg4IiwiY3JpdEJrZ0NvbG9yIjoicmVkIiwidG9kYXlMaW5lQ29sb3IiOiJyZWQiLCJsYWJlbENvbG9yIjoiYmxhY2siLCJlcnJvckJrZ0NvbG9yIjoiIzU1MjIyMiIsImVycm9yVGV4dENvbG9yIjoiIzU1MjIyMiIsImNsYXNzVGV4dCI6IiMxMzEzMDAiLCJmaWxsVHlwZTAiOiIjRUNFQ0ZGIiwiZmlsbFR5cGUxIjoiI2ZmZmZkZSIsImZpbGxUeXBlMiI6ImhzbCgzMDQsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlMyI6ImhzbCgxMjQsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSIsImZpbGxUeXBlNCI6ImhzbCgxNzYsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNSI6ImhzbCgtNCwgMTAwJSwgOTMuNTI5NDExNzY0NyUpIiwiZmlsbFR5cGU2IjoiaHNsKDgsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNyI6ImhzbCgxODgsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSJ9fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0"></p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name rethinkdb -v /srv/rethinkdb:/data --net host rethinkdb rethinkdb --<span class="built_in">bind</span> all --cache-size 8192 --http-port 8090</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name adbd --privileged -v /dev/bus/usb:/dev/bus/usb --net host sorccu/adb:latest</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name stf --net host devicefarmer/stf stf <span class="built_in">local</span> --public-ip <span class="variable">$&#123;你的ip&#125;</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点:简单快捷适合小规模部署</li>
+<li>缺点:不够灵活且单台机器挂载能有限</li>
+</ul>
+<ol start="2">
+<li>分布式管理: openstf提供了provider模式可以用来进行分布式部署</li>
+</ol>
+<p><img src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbkFbT3BlblNURi3mnLrlmahBXSAtLT4gQihQcm92aWRlciBOb2RlKVxuQihQcm92aWRlciBOb2RlLeacuuWZqEIpIC0tPiBCMShEZXZpY2UpXG5CKFByb3ZpZGVyIE5vZGUt5py65ZmoQikgLS0-IEIyKERldmljZSlcbkIoUHJvdmlkZXIgTm9kZS3mnLrlmahCKSAtLT4gQjMoLi4uKVxuQVtPcGVuU1RGLeacuuWZqEFdIC0tPiBDKFByb3ZpZGVyIE5vZGUpXG5DKFByb3ZpZGVyIE5vZGUt5py65ZmoQykgLS0-IEMxKERldmljZSlcbkMoUHJvdmlkZXIgTm9kZS3mnLrlmahDKSAtLT4gQzIoRGV2aWNlKVxuQyhQcm92aWRlciBOb2RlLeacuuWZqEMpIC0tPiBDMyguLi4pXG5BW09wZW5TVEYt5py65ZmoQV0gLS0-IEQoUHJvdmlkZXIgTm9kZSlcbkQoUHJvdmlkZXIgTm9kZS3mnLrlmahEKSAtLT4gRDEoRGV2aWNlKVxuRChQcm92aWRlciBOb2RlLeacuuWZqEQpIC0tPiBEMihEZXZpY2UpXG5EKFByb3ZpZGVyIE5vZGUt5py65ZmoRCkgLS0-IEQzKC4uLikiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCIsInRoZW1lVmFyaWFibGVzIjp7ImJhY2tncm91bmQiOiJ3aGl0ZSIsInByaW1hcnlDb2xvciI6IiNFQ0VDRkYiLCJzZWNvbmRhcnlDb2xvciI6IiNmZmZmZGUiLCJ0ZXJ0aWFyeUNvbG9yIjoiaHNsKDgwLCAxMDAlLCA5Ni4yNzQ1MDk4MDM5JSkiLCJwcmltYXJ5Qm9yZGVyQ29sb3IiOiJoc2woMjQwLCA2MCUsIDg2LjI3NDUwOTgwMzklKSIsInNlY29uZGFyeUJvcmRlckNvbG9yIjoiaHNsKDYwLCA2MCUsIDgzLjUyOTQxMTc2NDclKSIsInRlcnRpYXJ5Qm9yZGVyQ29sb3IiOiJoc2woODAsIDYwJSwgODYuMjc0NTA5ODAzOSUpIiwicHJpbWFyeVRleHRDb2xvciI6IiMxMzEzMDAiLCJzZWNvbmRhcnlUZXh0Q29sb3IiOiIjMDAwMDIxIiwidGVydGlhcnlUZXh0Q29sb3IiOiJyZ2IoOS41MDAwMDAwMDAxLCA5LjUwMDAwMDAwMDEsIDkuNTAwMDAwMDAwMSkiLCJsaW5lQ29sb3IiOiIjMzMzMzMzIiwidGV4dENvbG9yIjoiIzMzMyIsIm1haW5Ca2ciOiIjRUNFQ0ZGIiwic2Vjb25kQmtnIjoiI2ZmZmZkZSIsImJvcmRlcjEiOiIjOTM3MERCIiwiYm9yZGVyMiI6IiNhYWFhMzMiLCJhcnJvd2hlYWRDb2xvciI6IiMzMzMzMzMiLCJmb250RmFtaWx5IjoiXCJ0cmVidWNoZXQgbXNcIiwgdmVyZGFuYSwgYXJpYWwiLCJmb250U2l6ZSI6IjE2cHgiLCJsYWJlbEJhY2tncm91bmQiOiIjZThlOGU4Iiwibm9kZUJrZyI6IiNFQ0VDRkYiLCJub2RlQm9yZGVyIjoiIzkzNzBEQiIsImNsdXN0ZXJCa2ciOiIjZmZmZmRlIiwiY2x1c3RlckJvcmRlciI6IiNhYWFhMzMiLCJkZWZhdWx0TGlua0NvbG9yIjoiIzMzMzMzMyIsInRpdGxlQ29sb3IiOiIjMzMzIiwiZWRnZUxhYmVsQmFja2dyb3VuZCI6IiNlOGU4ZTgiLCJhY3RvckJvcmRlciI6ImhzbCgyNTkuNjI2MTY4MjI0MywgNTkuNzc2NTM2MzEyOCUsIDg3LjkwMTk2MDc4NDMlKSIsImFjdG9yQmtnIjoiI0VDRUNGRiIsImFjdG9yVGV4dENvbG9yIjoiYmxhY2siLCJhY3RvckxpbmVDb2xvciI6ImdyZXkiLCJzaWduYWxDb2xvciI6IiMzMzMiLCJzaWduYWxUZXh0Q29sb3IiOiIjMzMzIiwibGFiZWxCb3hCa2dDb2xvciI6IiNFQ0VDRkYiLCJsYWJlbEJveEJvcmRlckNvbG9yIjoiaHNsKDI1OS42MjYxNjgyMjQzLCA1OS43NzY1MzYzMTI4JSwgODcuOTAxOTYwNzg0MyUpIiwibGFiZWxUZXh0Q29sb3IiOiJibGFjayIsImxvb3BUZXh0Q29sb3IiOiJibGFjayIsIm5vdGVCb3JkZXJDb2xvciI6IiNhYWFhMzMiLCJub3RlQmtnQ29sb3IiOiIjZmZmNWFkIiwibm90ZVRleHRDb2xvciI6ImJsYWNrIiwiYWN0aXZhdGlvbkJvcmRlckNvbG9yIjoiIzY2NiIsImFjdGl2YXRpb25Ca2dDb2xvciI6IiNmNGY0ZjQiLCJzZXF1ZW5jZU51bWJlckNvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IiOiJyZ2JhKDEwMiwgMTAyLCAyNTUsIDAuNDkpIiwiYWx0U2VjdGlvbkJrZ0NvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IyIjoiI2ZmZjQwMCIsInRhc2tCb3JkZXJDb2xvciI6IiM1MzRmYmMiLCJ0YXNrQmtnQ29sb3IiOiIjOGE5MGRkIiwidGFza1RleHRMaWdodENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dERhcmtDb2xvciI6ImJsYWNrIiwidGFza1RleHRPdXRzaWRlQ29sb3IiOiJibGFjayIsInRhc2tUZXh0Q2xpY2thYmxlQ29sb3IiOiIjMDAzMTYzIiwiYWN0aXZlVGFza0JvcmRlckNvbG9yIjoiIzUzNGZiYyIsImFjdGl2ZVRhc2tCa2dDb2xvciI6IiNiZmM3ZmYiLCJncmlkQ29sb3IiOiJsaWdodGdyZXkiLCJkb25lVGFza0JrZ0NvbG9yIjoibGlnaHRncmV5IiwiZG9uZVRhc2tCb3JkZXJDb2xvciI6ImdyZXkiLCJjcml0Qm9yZGVyQ29sb3IiOiIjZmY4ODg4IiwiY3JpdEJrZ0NvbG9yIjoicmVkIiwidG9kYXlMaW5lQ29sb3IiOiJyZWQiLCJsYWJlbENvbG9yIjoiYmxhY2siLCJlcnJvckJrZ0NvbG9yIjoiIzU1MjIyMiIsImVycm9yVGV4dENvbG9yIjoiIzU1MjIyMiIsImNsYXNzVGV4dCI6IiMxMzEzMDAiLCJmaWxsVHlwZTAiOiIjRUNFQ0ZGIiwiZmlsbFR5cGUxIjoiI2ZmZmZkZSIsImZpbGxUeXBlMiI6ImhzbCgzMDQsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlMyI6ImhzbCgxMjQsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSIsImZpbGxUeXBlNCI6ImhzbCgxNzYsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNSI6ImhzbCgtNCwgMTAwJSwgOTMuNTI5NDExNzY0NyUpIiwiZmlsbFR5cGU2IjoiaHNsKDgsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNyI6ImhzbCgxODgsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSJ9fX0"></p>
+<p>   需要准备两台机器A,B 在机器A上部署OpenSTF管理平台</p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name rethinkdb -v /srv/rethinkdb:/data --net host rethinkdb rethinkdb --<span class="built_in">bind</span> all --cache-size 8192 --http-port 8090</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name adbd --privileged -v /dev/bus/usb:/dev/bus/usb --net host sorccu/adb:latest</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name stf --net host devicefarmer/stf stf <span class="built_in">local</span> --public-ip <span class="variable">$&#123;你的ip&#125;</span> --bind-dev-pub=<span class="string">&quot;tcp://0.0.0.0:7114&quot;</span> --bind-dev-pull=<span class="string">&quot;tcp://0.0.0.0:7116&quot;</span> --allow-remote</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意事项</strong>:</p>
+</blockquote>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--bind-dev-pub=&quot;tcp://0.0.0.0:7114&quot; --bind-dev-pull=&quot;tcp://0.0.0.0:7116&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>这行一定要加否则服务将监听在127.0.0.1地址上会导致provider节点无法连接之前没加导致排查了很久</strong></p>
+<p>在机器B上部署Provider节点</p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name adbd --privileged -v /dev/bus/usb:/dev/bus/usb --net host sorccu/adb:latest</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -d --name stf --net host devicefarmer/stf stf provider --connect-sub tcp://<span class="variable">$&#123;机器A的IP&#125;</span>:7114 --connect-push tcp://<span class="variable">$&#123;机器A的IP&#125;</span>:7116 --public-ip <span class="variable">$&#123;机器A的IP&#125;</span> --storage-url http://<span class="variable">$&#123;机器A的IP&#125;</span>:7100/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点:灵活且理论支持无限拓展连接设备</li>
+<li>缺点:配置略微复杂</li>
+</ul>
+<p>部署好后访问安装OpenSTF管理平台机器的ip地址加端口7100,如<a target="_blank" rel="noopener" href="http://192.168.1.1:7100/">http://192.168.1.1:7100</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/" rel="tag">开发实战</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-不通过文件转储直接从adb-shell读取stdout数据"
   class="article article-type-post"
   itemscope
@@ -541,128 +831,13 @@
 </article>
 
     
-    <article
-  id="post-如何在Android上通过pm命令安装拆分包"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/11/26/%E5%A6%82%E4%BD%95%E5%9C%A8Android%E4%B8%8A%E9%80%9A%E8%BF%87pm%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E6%8B%86%E5%88%86%E5%8C%85/"
-    >如何在Android上通过pm命令安装拆分包</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/11/26/%E5%A6%82%E4%BD%95%E5%9C%A8Android%E4%B8%8A%E9%80%9A%E8%BF%87pm%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E6%8B%86%E5%88%86%E5%8C%85/" class="article-date">
-  <time datetime="2019-11-26T06:17:36.000Z" itemprop="datePublished">2019-11-26</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ol>
-<li>首先需要先调用<code>pm install-create -S [size]</code>创建一个install session 其中<code>[size]</code>是指所有拆分文件的总字节数，不过不加<code>-S [size]</code>貌似也是可以的，命令执行完会返回一个session id 这个session会在下面用到。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pm install-create -S 28658294</span><br><span class="line">Success: created install session [1691973442]</span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/2019/11/26/%E5%A6%82%E4%BD%95%E5%9C%A8Android%E4%B8%8A%E9%80%9A%E8%BF%87pm%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E6%8B%86%E5%88%86%E5%8C%85/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/" rel="tag">开发实战</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Android低版本-4-x-无法通过app-process启动java进程详解"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/"
-    >Android低版本(4.x)无法通过app_process启动java进程问题详解</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time datetime="2019-11-16T17:53:46.000Z" itemprop="datePublished">2019-11-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>最近遇到一个奇怪的事情，公司有一块业务需要在Android上通过启动一个普通的java进程，但是从后台统计数据上来看在Android4.x上进程无法启动所以找台Nexux4 4.2.2的手机来试果然会崩溃，崩溃日志如下</p> 
-      <a class="article-more-link" href="/2019/11/17/Android%E4%BD%8E%E7%89%88%E6%9C%AC-4-x-%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87app-process%E5%90%AF%E5%8A%A8java%E8%BF%9B%E7%A8%8B%E8%AF%A6%E8%A7%A3/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="tag">疑难杂症</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
   </nav>
   
 </section>

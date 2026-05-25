@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.8k</span>
+            <span class="post-count">1.9k</span>
         </span>
     </span>
 
@@ -97,7 +97,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">9 min</span>
+            <span class="post-count">10 min</span>
         </span>
     </span>
 </div>
@@ -175,6 +175,16 @@
 <h3 id="显示触摸位置"><a href="#显示触摸位置" class="headerlink" title="显示触摸位置"></a>显示触摸位置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put system pointer_location 1</span><br></pre></td></tr></table></figure>
 
 <h3 id="录制触屏轨迹"><a href="#录制触屏轨迹" class="headerlink" title="录制触屏轨迹"></a>录制触屏轨迹</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell getevent | grep --line-buffered ^/ | tee /tmp/android-touch-events.log # 录制</span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;printf &quot;%s %d %d %d\n&quot;, substr($1, 1, length($1) -1), strtonum(&quot;0x&quot;$2), strtonum(&quot;0x&quot;$3), strtonum(&quot;0x&quot;$4)&#125;&#x27; /tmp/android-touch-events.log | xargs -l adb shell sendevent # 重放</span><br></pre></td></tr></table></figure>
+
+<h2 id="导航相关"><a href="#导航相关" class="headerlink" title="导航相关"></a>导航相关</h2><h3 id="切换导航模式"><a href="#切换导航模式" class="headerlink" title="切换导航模式"></a>切换导航模式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put secure navigation_mode 0</span><br><span class="line">0 = 三键导航</span><br><span class="line">1 = 两键导航（部分设备）</span><br><span class="line">2 = 全屏手势导航</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell cmd overlay enable com.android.internal.systemui.navbar.gestural //三星特有?</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看可用导航模式：</span></span><br><span class="line">adb shell cmd overlay list | grep navbar</span><br></pre></td></tr></table></figure>
+
+<h3 id="隐藏导航栏"><a href="#隐藏导航栏" class="headerlink" title="隐藏导航栏"></a>隐藏导航栏</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global policy_control immersive.navigation=*</span><br></pre></td></tr></table></figure>
+
+<h3 id="隐藏导航栏-状态栏"><a href="#隐藏导航栏-状态栏" class="headerlink" title="隐藏导航栏+状态栏"></a>隐藏导航栏+状态栏</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global policy_control immersive.full=*</span><br></pre></td></tr></table></figure>
+
+<h3 id="恢复导航栏"><a href="#恢复导航栏" class="headerlink" title="恢复导航栏"></a>恢复导航栏</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global policy_control null*</span><br></pre></td></tr></table></figure>
 
 <h2 id="语言相关"><a href="#语言相关" class="headerlink" title="语言相关"></a>语言相关</h2><h3 id="设置系统语言"><a href="#设置系统语言" class="headerlink" title="设置系统语言"></a>设置系统语言</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb shell content query --uri content://settings/system --where &quot;name=\&#x27;system_locales\&#x27;&quot;</span><br><span class="line"></span><br><span class="line">adb shell content delete --uri content://settings/system --where &quot;name=\&#x27;system_locales\&#x27;&quot;</span><br><span class="line"></span><br><span class="line">adb shell content insert --uri content://settings/system --bind name:s:system_locales --bind value:s:en-US</span><br><span class="line">adb shell content insert --uri content://settings/system --bind name:s:system_locales --bind value:s:zh-Hant-TW</span><br><span class="line">adb shell content insert --uri content://settings/system --bind name:s:system_locales --bind value:s:zh-Hant-TW,en-US,ja-JP</span><br></pre></td></tr></table></figure>
 

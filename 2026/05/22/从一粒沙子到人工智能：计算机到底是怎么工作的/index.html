@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Kaisar,Android,Android developer,Android hacker,Kaisar youtuber,Mobile security" />
+       
+      <meta name="description" content="Kaisar Android developer blog" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>从一粒沙子到人工智能：计算机到底是怎么工作的 |  狂人日记</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-从一粒沙子到人工智能：计算机到底是怎么工作的"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  从一粒沙子到人工智能：计算机到底是怎么工作的
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2026/05/22/%E4%BB%8E%E4%B8%80%E7%B2%92%E6%B2%99%E5%AD%90%E5%88%B0%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%B0%E5%BA%95%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/" class="article-date">
+  <time datetime="2026-05-22T09:53:42.000Z" itemprop="datePublished">2026-05-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">13 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>如果用一句话概括计算机的全部原理，那就是：</p>
+<p><strong>用电的开和关，模拟逻辑的真和假。</strong></p>
+<p>听起来很简单，甚至有点粗糙。但现代计算机、操作系统、编译器、虚拟机，甚至今天的人工智能，本质上都是从这个简单事实一层一层堆出来的。</p>
+<p>计算机世界最神奇的地方不在于它一开始就很复杂，而在于它用极其简单的规则，构造出了极其复杂的系统。</p>
+<h2 id="一、最底层：电的开和关"><a href="#一、最底层：电的开和关" class="headerlink" title="一、最底层：电的开和关"></a>一、最底层：电的开和关</h2><p>想象你面前有一根电线。</p>
+<p>通电，我们记作 <code>1</code>。</p>
+<p>断电，我们记作 <code>0</code>。</p>
+<p>这就是计算机里最小的信息单位：<strong>bit，比特</strong>。</p>
+<p>一个 bit 本身几乎什么也做不了。它就像一个灯泡，只能亮或者灭。</p>
+<p>但是，如果我们把很多个 bit 组合起来，事情就开始变得有意思了。</p>
+<p>比如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>可以表示真假。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">00</span><br><span class="line">01</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td></tr></table></figure>
+
+<p>两个 bit 可以表示四种状态。</p>
+<p>8 个 bit 可以表示 256 种状态，也就是一个字节。</p>
+<p>于是，数字、字母、图片、声音、视频，最终都可以被编码成一串串 <code>0</code> 和 <code>1</code>。</p>
+<p>但光有 <code>0</code> 和 <code>1</code> 还不够。计算机不只是存储信息，它还要处理信息。</p>
+<p>那么，处理信息靠什么？</p>
+<p>靠逻辑门。</p>
+<h2 id="二、逻辑门：用电路表达逻辑"><a href="#二、逻辑门：用电路表达逻辑" class="headerlink" title="二、逻辑门：用电路表达逻辑"></a>二、逻辑门：用电路表达逻辑</h2><p>假设有一个电路，它有两个输入，一个输出。</p>
+<p>它的规则是：</p>
+<blockquote>
+<p>只有两个输入都通电时，输出才通电。</p>
+</blockquote>
+<p>这就是 <strong>与门</strong>。</p>
+<p>用逻辑表示就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 AND 1 = 1</span><br><span class="line">1 AND 0 = 0</span><br><span class="line">0 AND 1 = 0</span><br><span class="line">0 AND 0 = 0</span><br></pre></td></tr></table></figure>
+
+<p>类似的基本逻辑门还有：</p>
+<ul>
+<li><strong>或门</strong>：只要有一个输入是 1，输出就是 1</li>
+<li><strong>非门</strong>：输入是 1，输出就是 0；输入是 0，输出就是 1</li>
+<li><strong>异或门</strong>：两个输入不同，输出为 1；相同则为 0</li>
+</ul>
+<p>这些门看起来很简单，但它们是计算机世界的积木。</p>
+<p>只要把这些逻辑门组合起来，就可以构造出更复杂的电路。</p>
+<p>其中最关键的一种电路，叫做 <strong>加法器</strong>。</p>
+<h2 id="三、加法器：计算能力的起点"><a href="#三、加法器：计算能力的起点" class="headerlink" title="三、加法器：计算能力的起点"></a>三、加法器：计算能力的起点</h2><p>二进制加法的规则很简单：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 + 0 = 0</span><br><span class="line">0 + 1 = 1</span><br><span class="line">1 + 0 = 1</span><br><span class="line">1 + 1 = 10</span><br></pre></td></tr></table></figure>
+
+<p>最后一个 <code>1 + 1 = 10</code> 的意思是：</p>
+<p>当前位结果是 <code>0</code>，向高位进 <code>1</code>。</p>
+<p>这个过程可以用逻辑门实现。</p>
+<p>比如：</p>
+<ul>
+<li>当前位的结果，可以用异或门得到</li>
+<li>是否产生进位，可以用与门得到</li>
+</ul>
+<p>也就是说，我们可以用电路搭出一个真正能做加法的机器。</p>
+<p>一旦有了加法，很多事情就可以继续推导出来：</p>
+<ul>
+<li>减法可以看作加负数</li>
+<li>乘法可以看作反复加法</li>
+<li>除法可以看作反复减法</li>
+<li>比较大小可以通过减法判断结果</li>
+<li>位运算可以直接通过逻辑门完成</li>
+</ul>
+<p>所以，从某种意义上说：</p>
+<p><strong>有了加法，计算机就拥有了计算的基础。</strong></p>
+<p>但此时我们得到的还只是一个计算器。</p>
+<p>计算器和计算机之间，还差一个关键能力。</p>
+<h2 id="四、计算器和计算机的区别"><a href="#四、计算器和计算机的区别" class="headerlink" title="四、计算器和计算机的区别"></a>四、计算器和计算机的区别</h2><p>计算器需要人来按按钮。</p>
+<p>你按 <code>1 + 1 =</code>，它才计算 <code>1 + 1</code>。</p>
+<p>你按 <code>5 × 8 =</code>，它才计算 <code>5 × 8</code>。</p>
+<p>也就是说，计算器本身不会决定下一步该做什么。</p>
+<p>而计算机不同。</p>
+<p>计算机可以自己从内存里读取指令，然后自己执行。</p>
+<p>这就是计算机真正强大的地方。</p>
+<p>它不只是能计算，它还能自动执行一系列计算步骤。</p>
+<p>这个过程可以概括为三个动作：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">取指令 → 解码 → 执行</span><br></pre></td></tr></table></figure>
+
+<p>CPU 一生都在做这件事。</p>
+<p>每秒几十亿次。</p>
+<h2 id="五、CPU-到底在干什么？"><a href="#五、CPU-到底在干什么？" class="headerlink" title="五、CPU 到底在干什么？"></a>五、CPU 到底在干什么？</h2><p>CPU 可以粗略分成几个部分：</p>
+<ul>
+<li><strong>控制单元</strong></li>
+<li><strong>算术逻辑单元</strong></li>
+<li><strong>寄存器</strong></li>
+<li><strong>缓存</strong></li>
+<li><strong>总线接口</strong></li>
+</ul>
+<p>其中最核心的是两个部分：</p>
+<h3 id="1-算术逻辑单元"><a href="#1-算术逻辑单元" class="headerlink" title="1. 算术逻辑单元"></a>1. 算术逻辑单元</h3><p>算术逻辑单元，也就是 ALU，负责真正的计算。</p>
+<p>比如：</p>
+<ul>
+<li>加法</li>
+<li>减法</li>
+<li>与运算</li>
+<li>或运算</li>
+<li>异或运算</li>
+<li>比较大小</li>
+</ul>
+<p>它就是前面那些逻辑门和加法器的高级组合。</p>
+<h3 id="2-控制单元"><a href="#2-控制单元" class="headerlink" title="2. 控制单元"></a>2. 控制单元</h3><p>控制单元负责指挥。</p>
+<p>它会从内存里读取一条指令，然后判断这条指令是什么意思。</p>
+<p>比如某条指令可能表示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">把内存 A 里的数字取出来</span><br><span class="line">把内存 B 里的数字取出来</span><br><span class="line">相加</span><br><span class="line">把结果存回内存 C</span><br></pre></td></tr></table></figure>
+
+<p>CPU 不断重复这个过程：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">读取指令</span><br><span class="line">理解指令</span><br><span class="line">执行指令</span><br><span class="line">读取下一条指令</span><br></pre></td></tr></table></figure>
+
+<p>这就是所谓的 <strong>取指-译码-执行循环</strong>。</p>
+<p>计算机所有复杂行为，本质上都是这个循环高速重复的结果。</p>
+<h2 id="六、内存：存放数据，也存放指令"><a href="#六、内存：存放数据，也存放指令" class="headerlink" title="六、内存：存放数据，也存放指令"></a>六、内存：存放数据，也存放指令</h2><p>现在问题来了。</p>
+<p>CPU 从哪里读取指令？</p>
+<p>答案是：内存。</p>
+<p>内存可以理解为一大片格子。</p>
+<p>每个格子里都存着一串 <code>0</code> 和 <code>1</code>。</p>
+<p>这些 <code>0</code> 和 <code>1</code> 可以是数字，可以是文字，可以是图片，也可以是 CPU 要执行的指令。</p>
+<p>这里出现了计算机历史上极其重要的一点：</p>
+<p><strong>指令和数据，在内存里长得一模一样。</strong></p>
+<p>它们都是二进制。</p>
+<p>比如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01011001</span><br></pre></td></tr></table></figure>
+
+<p>这串东西到底是一个数字，还是一个字符，还是一条 CPU 指令？</p>
+<p>它自己并不知道。</p>
+<p>关键在于：CPU 如何解释它。</p>
+<p>如果 CPU 把它当成数字，它就是数字。</p>
+<p>如果 CPU 把它当成指令，它就是指令。</p>
+<p>这就是冯·诺依曼架构最重要的思想之一：</p>
+<p><strong>程序和数据统一存储。</strong></p>
+<h2 id="七、冯·诺依曼架构：现代计算机的灵魂"><a href="#七、冯·诺依曼架构：现代计算机的灵魂" class="headerlink" title="七、冯·诺依曼架构：现代计算机的灵魂"></a>七、冯·诺依曼架构：现代计算机的灵魂</h2><p>在冯·诺依曼架构里，程序和数据都放在内存中。</p>
+<p>CPU 按照程序计数器指向的位置，一条一条读取指令并执行。</p>
+<p>这带来了一个非常深远的结果：</p>
+<p><strong>程序可以处理程序。</strong></p>
+<p>一段程序可以读取另一段程序。</p>
+<p>一段程序可以生成另一段程序。</p>
+<p>一段程序甚至可以修改自己。</p>
+<p>这意味着计算机不再是一台固定功能的机器。</p>
+<p>它变成了一台可以通过更换程序来改变用途的通用机器。</p>
+<p>同一台电脑：</p>
+<ul>
+<li>装上浏览器，它就能上网</li>
+<li>装上游戏，它就能娱乐</li>
+<li>装上编译器，它就能写程序</li>
+<li>装上虚拟机，它就能模拟另一台计算机</li>
+<li>装上操作系统，它就能管理其他程序</li>
+</ul>
+<p>硬件没有改变。</p>
+<p>改变的只是内存里那一串串 <code>0</code> 和 <code>1</code>。</p>
+<p>这就是现代计算机最根本的力量。</p>
+<h2 id="八、编译器：程序生成程序"><a href="#八、编译器：程序生成程序" class="headerlink" title="八、编译器：程序生成程序"></a>八、编译器：程序生成程序</h2><p>既然程序本身也是数据，那么我们就可以写一个程序，让它去处理另一段程序。</p>
+<p>比如，人类写的代码是这样的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">1</span> + <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>CPU 并不能直接理解这句话。</p>
+<p>CPU 只能理解机器指令，也就是二进制。</p>
+<p>于是我们需要一个程序，把人类能读懂的代码翻译成 CPU 能执行的机器码。</p>
+<p>这个程序就是 <strong>编译器</strong>。</p>
+<p>编译器本质上也是一个普通程序。</p>
+<p>它读取文本，分析语法，理解结构，然后生成另一批二进制指令。</p>
+<p>也就是说：</p>
+<p><strong>编译器是一个生产程序的程序。</strong></p>
+<p>这件事非常重要。</p>
+<p>因为有了编译器，人类就不需要直接面对 <code>0</code> 和 <code>1</code> 了。</p>
+<p>我们可以写 C、C++、Java、Go、Rust、Python，再由编译器或解释器转换成机器能够执行的形式。</p>
+<p>软件文明由此开始膨胀。</p>
+<h2 id="九、操作系统：管理所有程序的程序"><a href="#九、操作系统：管理所有程序的程序" class="headerlink" title="九、操作系统：管理所有程序的程序"></a>九、操作系统：管理所有程序的程序</h2><p>如果计算机只能一次运行一个程序，那还不够好用。</p>
+<p>我们需要同时打开浏览器、编辑器、音乐播放器、终端和聊天软件。</p>
+<p>问题是：</p>
+<p>CPU 到底先执行谁？</p>
+<p>内存怎么分配？</p>
+<p>硬盘谁来读写？</p>
+<p>键盘输入给哪个程序？</p>
+<p>网络数据交给谁？</p>
+<p>这些事情都需要一个总管。</p>
+<p>这个总管就是 <strong>操作系统</strong>。</p>
+<p>操作系统也是程序。</p>
+<p>只不过它是一个特殊的程序，负责管理其他程序。</p>
+<p>它主要做几件事：</p>
+<ul>
+<li>管理 CPU 时间</li>
+<li>管理内存</li>
+<li>管理文件系统</li>
+<li>管理输入输出设备</li>
+<li>管理进程和线程</li>
+<li>提供系统调用接口</li>
+</ul>
+<p>应用程序不能直接随便操作硬件。</p>
+<p>它们需要请求操作系统，由操作系统统一调度。</p>
+<p>所以，我们平时写程序，很多时候并不是在直接控制硬件，而是在调用操作系统提供的能力。</p>
+<p>比如读文件、开网络连接、创建进程，本质上都是在请求操作系统帮忙。</p>
+<h2 id="十、虚拟机：用程序模拟另一台计算机"><a href="#十、虚拟机：用程序模拟另一台计算机" class="headerlink" title="十、虚拟机：用程序模拟另一台计算机"></a>十、虚拟机：用程序模拟另一台计算机</h2><p>既然程序可以处理程序，那还能做一件更离谱的事：</p>
+<p><strong>写一个程序，假装自己是一台计算机。</strong></p>
+<p>这就是虚拟机。</p>
+<p>虚拟机可以模拟 CPU、内存、硬盘、网卡等硬件设备。</p>
+<p>真实硬件上运行着一个操作系统。</p>
+<p>操作系统里运行着一个虚拟机程序。</p>
+<p>虚拟机程序里面又运行着另一个操作系统。</p>
+<p>这听起来像套娃，但原理仍然没有变：</p>
+<p>CPU 执行程序。</p>
+<p>程序模拟硬件。</p>
+<p>被模拟出来的硬件继续执行另一个程序。</p>
+<p>这就是为什么我们可以在一台电脑上运行多个系统。</p>
+<p>也是为什么云计算可以把一台大型服务器切分成很多台虚拟服务器。</p>
+<h2 id="十一、从晶体管到软件文明"><a href="#十一、从晶体管到软件文明" class="headerlink" title="十一、从晶体管到软件文明"></a>十一、从晶体管到软件文明</h2><p>现在我们把链路重新串起来：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">电的开关</span><br><span class="line">↓</span><br><span class="line">0 和 1</span><br><span class="line">↓</span><br><span class="line">逻辑门</span><br><span class="line">↓</span><br><span class="line">加法器</span><br><span class="line">↓</span><br><span class="line">算术逻辑单元</span><br><span class="line">↓</span><br><span class="line">CPU</span><br><span class="line">↓</span><br><span class="line">内存</span><br><span class="line">↓</span><br><span class="line">取指令、解码、执行</span><br><span class="line">↓</span><br><span class="line">程序和数据统一存储</span><br><span class="line">↓</span><br><span class="line">编译器</span><br><span class="line">↓</span><br><span class="line">操作系统</span><br><span class="line">↓</span><br><span class="line">虚拟机</span><br><span class="line">↓</span><br><span class="line">现代软件生态</span><br></pre></td></tr></table></figure>
+
+<p>看起来复杂，但每一层都是建立在上一层之上的。</p>
+<p>没有魔法。</p>
+<p>只有抽象。</p>
+<p>所谓计算机科学，很大程度上就是不断把底层复杂性封装起来，然后在更高一层继续构建新的系统。</p>
+<p>底层是电路。</p>
+<p>上一层是指令。</p>
+<p>再上一层是汇编。</p>
+<p>再上一层是高级语言。</p>
+<p>再上一层是操作系统 API。</p>
+<p>再上一层是框架、应用、服务和人工智能。</p>
+<p>每一层都隐藏了下面的细节，让人类可以处理更复杂的问题。</p>
+<h2 id="十二、人工智能也是这条链路的延续"><a href="#十二、人工智能也是这条链路的延续" class="headerlink" title="十二、人工智能也是这条链路的延续"></a>十二、人工智能也是这条链路的延续</h2><p>最后再看人工智能。</p>
+<p>人工智能看起来像是另一个世界。</p>
+<p>模型、神经网络、参数、训练、推理、涌现能力，这些概念听起来和逻辑门、CPU、内存相距很远。</p>
+<p>但从本质上说，AI 仍然运行在同一套计算机体系之上。</p>
+<p>神经网络的核心运算是什么？</p>
+<p>大量矩阵乘法。</p>
+<p>矩阵乘法又是什么？</p>
+<p>大量乘法和加法。</p>
+<p>乘法和加法又是什么？</p>
+<p>逻辑门组合出来的电路操作。</p>
+<p>所以，即使是今天的大语言模型，归根结底也没有脱离那条链路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">晶体管 → 逻辑门 → 加法器 → CPU/GPU → 矩阵运算 → 神经网络 → 大语言模型</span><br></pre></td></tr></table></figure>
+
+<p>AI 的特殊之处在于，它不是靠人类手写规则来完成任务，而是通过大量数据和计算，调整模型内部的参数。</p>
+<p>以前的很多人工智能系统依赖人工规则。</p>
+<p>人告诉机器：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果出现 A，就执行 B</span><br><span class="line">如果出现 C，就执行 D</span><br></pre></td></tr></table></figure>
+
+<p>但现代神经网络不是这样。</p>
+<p>它更像是通过海量样本自己学出一种复杂的映射关系。</p>
+<p>你给它输入，它给你输出。</p>
+<p>中间的规律不是人类逐条写进去的，而是在训练过程中逐渐形成的。</p>
+<h2 id="十三、为什么算力改变了一切？"><a href="#十三、为什么算力改变了一切？" class="headerlink" title="十三、为什么算力改变了一切？"></a>十三、为什么算力改变了一切？</h2><p>神经网络并不是最近才出现的东西。</p>
+<p>它的思想已经存在了很久。</p>
+<p>但早期神经网络并不强，因为它需要巨大的数据和算力。</p>
+<p>过去的计算机不够快，数据也不够多。</p>
+<p>所以很长一段时间里，基于规则的方法更受欢迎。</p>
+<p>后来事情变了。</p>
+<p>CPU 越来越快。</p>
+<p>GPU 被用于通用计算。</p>
+<p>互联网积累了海量数据。</p>
+<p>分布式计算和云计算降低了训练大模型的门槛。</p>
+<p>于是神经网络终于等到了适合自己的时代。</p>
+<p>尤其是 GPU，非常适合做矩阵运算。</p>
+<p>而神经网络训练和推理中最核心的计算，正是大规模矩阵运算。</p>
+<p>当模型参数从几百万增长到几十亿、几百亿、几千亿时，一些过去不明显的能力开始出现。</p>
+<p>比如：</p>
+<ul>
+<li>语言理解</li>
+<li>代码生成</li>
+<li>数学推理</li>
+<li>多轮对话</li>
+<li>工具调用</li>
+<li>多模态理解</li>
+</ul>
+<p>这些能力看起来像是突然“涌现”出来的。</p>
+<p>但它们仍然建立在最底层的二进制计算之上。</p>
+<h2 id="十四、计算机的本质：用简单规则堆出复杂世界"><a href="#十四、计算机的本质：用简单规则堆出复杂世界" class="headerlink" title="十四、计算机的本质：用简单规则堆出复杂世界"></a>十四、计算机的本质：用简单规则堆出复杂世界</h2><p>回头看整条路径：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">沙子</span><br><span class="line">↓</span><br><span class="line">硅</span><br><span class="line">↓</span><br><span class="line">晶体管</span><br><span class="line">↓</span><br><span class="line">逻辑门</span><br><span class="line">↓</span><br><span class="line">加法器</span><br><span class="line">↓</span><br><span class="line">CPU</span><br><span class="line">↓</span><br><span class="line">内存</span><br><span class="line">↓</span><br><span class="line">指令执行循环</span><br><span class="line">↓</span><br><span class="line">程序</span><br><span class="line">↓</span><br><span class="line">编译器</span><br><span class="line">↓</span><br><span class="line">操作系统</span><br><span class="line">↓</span><br><span class="line">虚拟机</span><br><span class="line">↓</span><br><span class="line">互联网</span><br><span class="line">↓</span><br><span class="line">云计算</span><br><span class="line">↓</span><br><span class="line">神经网络</span><br><span class="line">↓</span><br><span class="line">人工智能</span><br></pre></td></tr></table></figure>
+
+<p>从一粒沙子，到一个可以和人类对话的 AI，中间没有任何一步需要神秘力量。</p>
+<p>每一步都是工程上的组合、抽象和放大。</p>
+<p>计算机并不真正“懂”文字。</p>
+<p>它只是处理数字。</p>
+<p>计算机也不真正“懂”图片。</p>
+<p>它只是处理像素矩阵。</p>
+<p>计算机甚至不真正“懂”程序。</p>
+<p>它只是按照规则读取指令、解码指令、执行指令。</p>
+<p>但当这些简单操作以极高速度、极大规模运行时，复杂性就出现了。</p>
+<p>这就是计算机最迷人的地方。</p>
+<p>它的底层极其笨拙：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开，关。</span><br><span class="line">1，0。</span><br><span class="line">是，否。</span><br></pre></td></tr></table></figure>
+
+<p>但它的上层极其宏大：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">操作系统</span><br><span class="line">互联网</span><br><span class="line">游戏</span><br><span class="line">搜索引擎</span><br><span class="line">云计算</span><br><span class="line">人工智能</span><br></pre></td></tr></table></figure>
+
+<p>整个计算机文明，就是人类用最简单的开关，一层一层搭出来的巴别塔。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>计算机的原理并不神秘。</p>
+<p>它不是一开始就拥有智能，也不是天生就会处理复杂任务。</p>
+<p>它只是从最简单的电信号开始：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通电是 1</span><br><span class="line">断电是 0</span><br></pre></td></tr></table></figure>
+
+<p>然后人类用逻辑门构造运算，用内存保存状态，用 CPU 执行指令，用操作系统管理资源，用编译器生产程序，用网络连接世界，最后用海量算力训练出了今天的人工智能。</p>
+<p>所以，计算机真正伟大的地方，不是它底层有多聪明。</p>
+<p>恰恰相反。</p>
+<p><strong>它的底层极其简单，但人类用抽象把这种简单堆成了一个复杂世界。</strong></p>
+<p>从开关到 AI，这就是计算机的故事。</p>
+<hr>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/666025968/answer/2039687286485415912">能从底层解释一下计算机的原理吗? - sum哈哈的回答 - 知乎</a></p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://kaisar.kozow.com/2026/05/22/%E4%BB%8E%E4%B8%80%E7%B2%92%E6%B2%99%E5%AD%90%E5%88%B0%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%B0%E5%BA%95%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3/" rel="tag">编程随想</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2026/04/28/%E4%BD%BF%E7%94%A8OpenGrok%E9%83%A8%E7%BD%B2%E4%B8%80%E5%A5%97AOSP%E6%BA%90%E7%A0%81%E5%AE%A1%E8%AE%A1%E7%AB%99%E7%82%B9/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">使用OpenGrok部署一套AOSP源码审计站点</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "wzGK4U2ABF7dnC2fpU0rMY4c-9Nh9j0Va",
+    app_key: "xwX7ayGotkpPKwssQO2AeS77",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2026
+        <i class="ri-heart-fill heart_icon"></i> Kaisar
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar-circle.png" alt="狂人日记"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/Android/">Android</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/Linux/">Linux</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Tesla/">Tesla</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/">移动安全</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay_qrcode.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat_qrcode.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
